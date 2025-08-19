@@ -1,0 +1,4 @@
+#!/bin/bash
+gcc -shared -o generaloptimizer.so -fPIC -ffast-math -mavx2 -mfma -O3 -march=native generaloptimizer.c DISOwithRCF.c GPC.c GWCA.c SPO.c ANS.c BSA.c CS.c DE.c EA.c GA.c HS.c MA.c SFS.c GLS.c ILS.c SA.c TS.c VNS.c AFSA.c ES.c HBO.c KA.c PO.c SO.c ADS.c AAA.c BCO.c BBM.c CBO.c CFO.c CRO.c CA.c CulA.c FA.c FFO.c SDS.c KCA.c LS.c WCA.c ACO.c ALO.c BA.c ABC.c CSO.c CroSA.c CO.c CucS.c DEA.c EHO.c EPO.c FHO.c FlyFO.c FirefA.c HHO.c GWO.c JA.c KHO.c MfA.c MSO.c LOA.c MFO.c OSA.c PuO.c RDA.c SFL.c SMO.c SSA.c SWO.c CMOA.c WO.c WOA.c FSA.c BBO.c ICA.c SEO.c SLCO.c TLBO.c SGO.c DRA.c CSS.c BHA.c CheRO.c EFO.c EVO.c SCA.c LSA.c SAO.c TEO.c PVS.c TFWO.c ARFO.c FPA.c POA.c IWO.c WPA.c BSO.c AMO.c COA.c GlowSO.c GalSO.c HPO.c DHLO.c IWD.c JOA.c LoSA.c WGMO.c RMO.c PSO.c PRO.c SaSA.c SOA.c BDFO.c SFO.c -lm -fopenmp
+
+#gcc -shared -o generaloptimizer.so -fPIC -mavx2 -O3 -march=native -ftree-vectorize -funroll-loops generaloptimizer.c DISOwithRCF.c GPC.c GWCA.c SPO.c -lm

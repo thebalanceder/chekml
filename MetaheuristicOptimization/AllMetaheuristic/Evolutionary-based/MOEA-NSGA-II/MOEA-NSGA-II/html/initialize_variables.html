@@ -1,0 +1,140 @@
+<html xmlns:mwsh="http://www.mathworks.com/namespace/mcode/v1/syntaxhighlight.dtd">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   
+      <!--
+This HTML is auto-generated from an M-file.
+To make changes, update the M-file and republish this document.
+      -->
+      <title>function f = initialize_variables(N,problem)</title>
+      <meta name="generator" content="MATLAB 7.0">
+      <meta name="date" content="2006-03-07">
+      <meta name="m-file" content="initialize_variables"><style>
+body {
+  background-color: white;
+  margin:10px;
+}
+h1 {
+  color: #990000; 
+  font-size: x-large;
+}
+h2 {
+  color: #990000;
+  font-size: medium;
+}
+p.footer {
+  text-align: right;
+  font-size: xx-small;
+  font-weight: lighter;
+  font-style: italic;
+  color: gray;
+}
+
+pre.codeinput {
+  margin-left: 30px;
+}
+
+span.keyword {color: #0000FF}
+span.comment {color: #228B22}
+span.string {color: #A020F0}
+span.untermstring {color: #B20000}
+span.syscmd {color: #B28C00}
+
+pre.showbuttons {
+  margin-left: 30px;
+  border: solid black 2px;
+  padding: 4px;
+  background: #EBEFF3;
+}
+
+pre.codeoutput {
+  color: gray;
+  font-style: italic;
+}
+pre.error {
+  color: red;
+}
+
+/* Make the text shrink to fit narrow windows, but not stretch too far in 
+wide windows.  On Gecko-based browsers, the shrink-to-fit doesn't work. */ 
+p,h1,h2,div {
+  /* for MATLAB's browser */
+  width: 600px;
+  /* for Mozilla, but the "width" tag overrides it anyway */
+  max-width: 600px;
+  /* for IE */
+  width:expression(document.body.clientWidth > 620 ? "600px": "auto" );
+}
+
+    </style></head>
+   <body>
+      <h1>function f = initialize_variables(N,problem)</h1><pre class="codeinput"><span class="comment">% function f = initialize_variables(N,problem)</span>
+<span class="comment">% N - Population size</span>
+<span class="comment">% problem - takes integer values 1 and 2 where,</span>
+<span class="comment">%           '1' for MOP1</span>
+<span class="comment">%           '2' for MOP2</span>
+<span class="comment">%</span>
+<span class="comment">% This function initializes the population with N individuals and each</span>
+<span class="comment">% individual having M decision variables based on the selected problem.</span>
+<span class="comment">% M = 6 for problem MOP1 and M = 12 for problem MOP2. The objective space</span>
+<span class="comment">% for MOP1 is 2 dimensional while for MOP2 is 3 dimensional.</span>
+
+<span class="comment">% Both the MOP's has 0 to 1 as its range for all the decision variables.</span>
+min = 0;
+max = 1;
+<span class="keyword">switch</span> problem
+    <span class="keyword">case</span> 1
+        M = 6;
+        K = 8;
+    <span class="keyword">case</span> 2
+        M = 12;
+        K = 15;
+<span class="keyword">end</span>
+<span class="keyword">for</span> i = 1 : N
+    <span class="comment">% Initialize the decision variables</span>
+    <span class="keyword">for</span> j = 1 : M
+        f(i,j) = rand(1); <span class="comment">% i.e f(i,j) = min + (max - min)*rand(1);</span>
+    <span class="keyword">end</span>
+    <span class="comment">% Evaluate the objective function</span>
+    f(i,M + 1: K) = evaluate_objective(f(i,:),problem);
+<span class="keyword">end</span>
+</pre<p class="footer"><br>
+         Published with MATLAB&reg; 7.0<br></p>
+      <!--
+##### SOURCE BEGIN #####
+%% function f = initialize_variables(N,problem)
+
+% function f = initialize_variables(N,problem)
+% N - Population size
+% problem - takes integer values 1 and 2 where,
+%           '1' for MOP1
+%           '2' for MOP2
+%
+% This function initializes the population with N individuals and each
+% individual having M decision variables based on the selected problem. 
+% M = 6 for problem MOP1 and M = 12 for problem MOP2. The objective space
+% for MOP1 is 2 dimensional while for MOP2 is 3 dimensional.
+
+% Both the MOP's has 0 to 1 as its range for all the decision variables. 
+min = 0;
+max = 1;
+switch problem
+    case 1
+        M = 6;
+        K = 8;
+    case 2
+        M = 12;
+        K = 15;
+end
+for i = 1 : N
+    % Initialize the decision variables
+    for j = 1 : M
+        f(i,j) = rand(1); % i.e f(i,j) = min + (max - min)*rand(1);
+    end
+    % Evaluate the objective function
+    f(i,M + 1: K) = evaluate_objective(f(i,:),problem);
+end
+##### SOURCE END #####
+-->
+   </body>
+</html>

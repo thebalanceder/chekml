@@ -1,0 +1,5 @@
+https://catalog.data.gov/api/3/action/package_search
+
+https://www.europeandataportal.eu/data/api/3/action/package_search
+
+http://your-ckan-instance/api/3/action/package_search

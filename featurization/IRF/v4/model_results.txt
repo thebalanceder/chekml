@@ -1,0 +1,53 @@
+Feature Mutual Information with Target:
+feature1: 0.0000
+feature2: 0.0335
+feature3: 0.0000
+
+Predictions DataFrame:
+   feature1  feature2  feature3    target  feature1_xg_boost_custom_metric_custom_metric  feature1_decision_tree_custom_metric_custom_metric  feature2_decision_tree_custom_metric_custom_metric
+0  0.496714 -1.415371  0.357787 -1.626209                                       0.880287                                            0.965541                                            0.965541
+1 -0.138264 -0.420645  0.560785 -0.859869                                       0.611599                                            0.620506                                            0.620506
+2  0.647689 -0.342715  1.083051  0.749915                                       0.545358                                            0.559567                                            0.559567
+3  1.523030 -0.802277  1.053802  0.633861                                       0.506524                                            0.490946                                            0.490946
+4 -0.234153 -0.161286 -1.377669 -0.245934                                       0.297692                                            0.219886                                            0.219886
+
+Metric Scores DataFrame:
+        feature_combo          model         metric  loss_function     score  mutual_information direction
+0            feature1  decision_tree        pearson        pearson  1.000000            3.344044  maximize
+1            feature1  decision_tree       spearman       spearman  1.000000            2.738019  maximize
+2            feature1  decision_tree  custom_metric  custom_metric  1.428786            2.174284  minimize
+3            feature1       xg_boost        pearson        pearson  0.991989            2.004366  maximize
+4            feature1       xg_boost       spearman       spearman  0.989367            1.762136  maximize
+5            feature1       xg_boost  custom_metric  custom_metric  1.429066            1.772408  minimize
+6            feature2  decision_tree        pearson        pearson  1.000000            3.344044  maximize
+7            feature2  decision_tree       spearman       spearman  1.000000            2.746685  maximize
+8            feature2  decision_tree  custom_metric  custom_metric  1.428786            2.174284  minimize
+9            feature2       xg_boost        pearson        pearson  0.994201            2.002437  maximize
+10           feature2       xg_boost       spearman       spearman  0.995905            2.003864  maximize
+11           feature2       xg_boost  custom_metric  custom_metric  1.423416            1.868201  minimize
+12           feature3  decision_tree        pearson        pearson  1.000000            3.344044  maximize
+13           feature3  decision_tree       spearman       spearman  1.000000            2.743352  maximize
+14           feature3  decision_tree  custom_metric  custom_metric  1.428786            2.174284  minimize
+15           feature3       xg_boost        pearson        pearson  0.996305            2.222146  maximize
+16           feature3       xg_boost       spearman       spearman  0.995007            1.910197  maximize
+17           feature3       xg_boost  custom_metric  custom_metric  1.421630            1.889029  minimize
+18  feature1_feature2  decision_tree        pearson        pearson  1.000000            3.344044  maximize
+19  feature1_feature2  decision_tree       spearman       spearman  1.000000            2.714019  maximize
+20  feature1_feature2  decision_tree  custom_metric  custom_metric  1.428786            2.174284  minimize
+21  feature1_feature2       xg_boost        pearson        pearson  0.999509            2.820532  maximize
+22  feature1_feature2       xg_boost       spearman       spearman  0.999676            2.635094  maximize
+23  feature1_feature2       xg_boost  custom_metric  custom_metric  1.427775            2.137483  minimize
+24  feature1_feature3  decision_tree        pearson        pearson  1.000000            3.344044  maximize
+25  feature1_feature3  decision_tree       spearman       spearman  1.000000            2.724685  maximize
+26  feature1_feature3  decision_tree  custom_metric  custom_metric  1.428786            2.174284  minimize
+27  feature1_feature3       xg_boost        pearson        pearson  0.999754            2.933425  maximize
+28  feature1_feature3       xg_boost       spearman       spearman  0.998932            2.416131  maximize
+29  feature1_feature3       xg_boost  custom_metric  custom_metric  1.427254            2.152907  minimize
+30  feature2_feature3  decision_tree        pearson        pearson  1.000000            3.344044  maximize
+31  feature2_feature3  decision_tree       spearman       spearman  1.000000            2.728019  maximize
+32  feature2_feature3  decision_tree  custom_metric  custom_metric  1.428786            2.174284  minimize
+33  feature2_feature3       xg_boost        pearson        pearson  0.999382            2.741850  maximize
+34  feature2_feature3       xg_boost       spearman       spearman  0.999712            2.617302  maximize
+35  feature2_feature3       xg_boost  custom_metric  custom_metric  1.426531            2.124112  minimize
+
+Number of trained models: 0

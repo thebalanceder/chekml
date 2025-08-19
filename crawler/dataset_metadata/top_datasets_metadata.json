@@ -1,0 +1,64 @@
+[
+    {
+        "dataset_id": "a6965e42-a086-474c-80de-93644a40df2d",
+        "dataset_title": "U.S. Annual/Seasonal Climate Normals (1981-2010)",
+        "dataset_url": null,
+        "score": 1.5,
+        "csv_resources": [
+            {
+                "cache_last_updated": null,
+                "cache_url": null,
+                "created": "2024-01-01T16:54:24.240347",
+                "description": "This sample data file shows how the data are formatted in CSV and is for example purposes only.",
+                "format": "CSV",
+                "hash": "",
+                "id": "0d9bbb32-704a-4faf-b119-1e310ba4f4b7",
+                "last_modified": null,
+                "metadata_modified": "2024-01-01T16:54:24.134258",
+                "mimetype": "text/csv",
+                "mimetype_inner": null,
+                "name": "Annual/Seasonal Climate Normals CSV Sample",
+                "package_id": "a6965e42-a086-474c-80de-93644a40df2d",
+                "position": 9,
+                "resource_locator_function": "download",
+                "resource_locator_protocol": "HTTPS",
+                "resource_type": null,
+                "size": null,
+                "state": "active",
+                "url": "https://www.ncei.noaa.gov/pub/data/cdo/samples/NORMAL_ANN_sample_csv.csv",
+                "url_type": null
+            }
+        ]
+    },
+    {
+        "dataset_id": "95310743-f7f7-487b-92cf-79fd41d7ed77",
+        "dataset_title": "U.S. Daily Climate Normals (1981-2010)",
+        "dataset_url": null,
+        "score": 1.0,
+        "csv_resources": [
+            {
+                "cache_last_updated": null,
+                "cache_url": null,
+                "created": "2023-09-19T21:59:19.708666",
+                "description": "This sample data file shows how the data are formatted in CSV and is for example purposes only.",
+                "format": "CSV",
+                "hash": "",
+                "id": "f32ab50b-b037-4450-ae07-7ed5496f6b5e",
+                "last_modified": null,
+                "metadata_modified": "2023-09-19T21:59:19.589014",
+                "mimetype": "text/csv",
+                "mimetype_inner": null,
+                "name": "Daily Climate Normals CSV Sample",
+                "package_id": "95310743-f7f7-487b-92cf-79fd41d7ed77",
+                "position": 8,
+                "resource_locator_function": "download",
+                "resource_locator_protocol": "HTTPS",
+                "resource_type": null,
+                "size": null,
+                "state": "active",
+                "url": "https://www.ncei.noaa.gov/pub/data/cdo/samples/NORMAL_DLY_sample_csv.csv",
+                "url_type": null
+            }
+        ]
+    }
+]

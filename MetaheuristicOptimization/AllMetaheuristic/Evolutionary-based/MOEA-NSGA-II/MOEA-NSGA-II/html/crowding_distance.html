@@ -1,0 +1,163 @@
+<html xmlns:mwsh="http://www.mathworks.com/namespace/mcode/v1/syntaxhighlight.dtd">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   
+      <!--
+This HTML is auto-generated from an M-file.
+To make changes, update the M-file and republish this document.
+      -->
+      <title>function f = crowding_distance(x,problem)</title>
+      <meta name="generator" content="MATLAB 7.0">
+      <meta name="date" content="2006-03-07">
+      <meta name="m-file" content="crowding_distance"><style>
+body {
+  background-color: white;
+  margin:10px;
+}
+h1 {
+  color: #990000; 
+  font-size: x-large;
+}
+h2 {
+  color: #990000;
+  font-size: medium;
+}
+p.footer {
+  text-align: right;
+  font-size: xx-small;
+  font-weight: lighter;
+  font-style: italic;
+  color: gray;
+}
+
+pre.codeinput {
+  margin-left: 30px;
+}
+
+span.keyword {color: #0000FF}
+span.comment {color: #228B22}
+span.string {color: #A020F0}
+span.untermstring {color: #B20000}
+span.syscmd {color: #B28C00}
+
+pre.showbuttons {
+  margin-left: 30px;
+  border: solid black 2px;
+  padding: 4px;
+  background: #EBEFF3;
+}
+
+pre.codeoutput {
+  color: gray;
+  font-style: italic;
+}
+pre.error {
+  color: red;
+}
+
+/* Make the text shrink to fit narrow windows, but not stretch too far in 
+wide windows.  On Gecko-based browsers, the shrink-to-fit doesn't work. */ 
+p,h1,h2,div {
+  /* for MATLAB's browser */
+  width: 600px;
+  /* for Mozilla, but the "width" tag overrides it anyway */
+  max-width: 600px;
+  /* for IE */
+  width:expression(document.body.clientWidth > 620 ? "600px": "auto" );
+}
+
+    </style></head>
+   <body>
+      <h1>function f = crowding_distance(x,problem)</h1><pre class="codeinput"><span class="comment">% This function calculates the crowding distance</span>
+[N,M] = size(x);
+<span class="keyword">switch</span> problem
+    <span class="keyword">case</span> 1
+        M = 2;
+        V = 6;
+    <span class="keyword">case</span> 2
+        M = 3;
+        V = 12;
+<span class="keyword">end</span>
+
+<span class="comment">% Crowding distance for each front</span>
+<span class="keyword">for</span> i = 1 : length(F(front).f)
+    y(i,:) = x(F(front).f(i),:);
+<span class="keyword">end</span>
+<span class="keyword">for</span> i = 1 : M
+    [sorted(i).individual,sorted(i).index] = sort(y(:,V + i));
+    distance(sorted(i).index(1)).individual = Inf;
+    distance(sorted(i).index(length(sorted(i).index))).individual = Inf;
+<span class="keyword">end</span>
+
+[num,len] = size(y);
+<span class="comment">% Initialize all the distance of individuals as zero.</span>
+<span class="keyword">for</span> i = 1 : M
+    <span class="keyword">for</span> j = 2 : num - 1
+        distance(j).individual = 0;
+    <span class="keyword">end</span>
+    objective(i).range = <span class="keyword">...</span>
+                sorted(i).individual(length(sorted(i).individual)) - <span class="keyword">...</span>
+                sorted(i).individual(1);
+        <span class="comment">% Maximum and minimum objectives value for the ith objective</span>
+<span class="keyword">end</span>
+<span class="comment">% Caluclate the crowding distance for front one.</span>
+<span class="keyword">for</span> i = 1 : M
+    <span class="keyword">for</span> j = 2 : num - 1
+        distance(j).individual = distance(j).individual + <span class="keyword">...</span>
+            (sorted(i).individual(j + 1) - sorted(i).individual(j - 1))/<span class="keyword">...</span>
+            objective(i).range;
+        y(sorted(i).index(j),M + V + 2) = distance(j).individual;
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+</pre<p class="footer"><br>
+         Published with MATLAB&reg; 7.0<br></p>
+      <!--
+##### SOURCE BEGIN #####
+%% function f = crowding_distance(x,problem)
+
+% This function calculates the crowding distance
+[N,M] = size(x);
+switch problem
+    case 1
+        M = 2;
+        V = 6;
+    case 2
+        M = 3;
+        V = 12;
+end
+
+% Crowding distance for each front
+for i = 1 : length(F(front).f)
+    y(i,:) = x(F(front).f(i),:);
+end
+for i = 1 : M
+    [sorted(i).individual,sorted(i).index] = sort(y(:,V + i));
+    distance(sorted(i).index(1)).individual = Inf;
+    distance(sorted(i).index(length(sorted(i).index))).individual = Inf;
+end
+
+[num,len] = size(y);
+% Initialize all the distance of individuals as zero.
+for i = 1 : M
+    for j = 2 : num - 1
+        distance(j).individual = 0;
+    end
+    objective(i).range = ...
+                sorted(i).individual(length(sorted(i).individual)) - ...
+                sorted(i).individual(1);
+        % Maximum and minimum objectives value for the ith objective
+end 
+% Caluclate the crowding distance for front one.
+for i = 1 : M
+    for j = 2 : num - 1
+        distance(j).individual = distance(j).individual + ...
+            (sorted(i).individual(j + 1) - sorted(i).individual(j - 1))/...
+            objective(i).range;
+        y(sorted(i).index(j),M + V + 2) = distance(j).individual;
+    end
+end
+
+##### SOURCE END #####
+-->
+   </body>
+</html>

@@ -1,0 +1,241 @@
+from collections import defaultdict
+import random
+import math
+
+# Initialize a logic table with 50%/50% probabilities for Output1 and Output2
+def initialize_logic_table():
+    logic_table = {f"{a}{b}{c}": {'Output1_prob': {'P0': 0.5, 'P1': 0.5}, 'Output2_prob': {'P0': 0.5, 'P1': 0.5}}
+                   for a in '01' for b in '01' for c in '01'}
+    return logic_table
+
+# Training function to adjust logic table probabilities
+def train(training_sets, epochs=100, learning_rate=0.05):
+    # Determine bits needed
+    max_decimal = max(max(abs(int(a)), abs(int(b)), abs(int(out))) for a, b, out in training_sets)
+    bits = math.ceil(math.log2(max_decimal + 1)) + 1
+    
+    # Initialize logic tables
+    logic_tables = [initialize_logic_table() for _ in range(bits)]
+    final_logic_table = initialize_logic_table()
+    
+    for epoch in range(epochs):
+        total_error = 0
+        for decimal_a, decimal_b, expected_output in training_sets:
+            # Convert to binary
+            bin_a = format(int(decimal_a), '0' + str(bits) + 'b')
+            bin_b = format(int(decimal_b), '0' + str(bits) + 'b')
+            bin_expected = format(max(0, int(expected_output)), '0' + str(bits+1) + 'b')
+            
+            # Simulate prediction
+            hidden_binaries = []
+            used_entries = [[] for _ in range(bits)]  # Track used ABCs per table
+            final_used_entries = []
+            
+            # Process binary2 digits
+            for digit_b_idx in range(bits-1, -1, -1):
+                b_bit = bin_b[digit_b_idx]
+                current_table = logic_tables[bits-1-digit_b_idx]
+                hidden_binary = []
+                carry = '0'
+                for digit_a_idx in range(bits-1, -1, -1):
+                    a_bit = bin_a[digit_a_idx]
+                    abc = f"{a_bit}{b_bit}{carry}"
+                    probs = current_table[abc]
+                    out1 = '1' if random.random() < probs['Output1_prob']['P1'] else '0'
+                    out2 = '1' if random.random() < probs['Output2_prob']['P1'] else '0'
+                    hidden_binary.append(out2)
+                    carry = out1
+                    used_entries[bits-1-digit_b_idx].append((abc, out1, out2))
+                hidden_binary = hidden_binary[::-1]
+                if (bits-1-digit_b_idx) > 0:
+                    shift = bits-1-digit_b_idx
+                    hidden_binary = ['0'] * shift + hidden_binary[:-shift]
+                hidden_binaries.append(hidden_binary)
+            
+            # Final layer
+            result = []
+            carry = '0'
+            for pos in range(bits):
+                bits_at_pos = [hb[pos] for hb in hidden_binaries]
+                a_bit = bits_at_pos[0] if len(bits_at_pos) > 0 else '0'
+                b_bit = bits_at_pos[1] if len(bits_at_pos) > 1 else '0'
+                abc = f"{a_bit}{b_bit}{carry}"
+                probs = final_logic_table[abc]
+                out1 = '1' if random.random() < probs['Output1_prob']['P1'] else '0'
+                out2 = '1' if random.random() < probs['Output2_prob']['P1'] else '0'
+                result.append(out2)
+                carry = out1
+                final_used_entries.append((abc, out1, out2))
+            # Extra digit
+            a_bit = '0'
+            b_bit = '0'
+            abc = f"{a_bit}{b_bit}{carry}"
+            probs = final_logic_table[abc]
+            out1 = '1' if random.random() < probs['Output1_prob']['P1'] else '0'
+            out2 = '1' if random.random() < probs['Output2_prob']['P1'] else '0'
+            result.append(out2)
+            final_used_entries.append((abc, out1, out2))
+            result = result[::-1]
+            
+            # Compute error (Hamming distance)
+            error = sum(a != b for a, b in zip(''.join(result), bin_expected))
+            total_error += error
+            
+            # Update probabilities
+            for table_idx, entries in enumerate(used_entries):
+                for abc, out1, out2 in entries:
+                    # Determine correct output bit based on position
+                    pos = len(result) - len(entries) + entries.index((abc, out1, out2))
+                    correct_out2 = bin_expected[pos] if pos < len(bin_expected) else '0'
+                    # Update Output2_prob
+                    if out2 == correct_out2:
+                        logic_tables[table_idx][abc]['Output2_prob']['P1'] += learning_rate * (1 - logic_tables[table_idx][abc]['Output2_prob']['P1'])
+                    else:
+                        logic_tables[table_idx][abc]['Output2_prob']['P1'] -= learning_rate * logic_tables[table_idx][abc]['Output2_prob']['P1']
+                    logic_tables[table_idx][abc]['Output2_prob']['P0'] = 1 - logic_tables[table_idx][abc]['Output2_prob']['P1']
+                    # Clip probabilities
+                    logic_tables[table_idx][abc]['Output2_prob']['P1'] = max(0.01, min(0.99, logic_tables[table_idx][abc]['Output2_prob']['P1']))
+                    logic_tables[table_idx][abc]['Output2_prob']['P0'] = 1 - logic_tables[table_idx][abc]['Output2_prob']['P1']
+                    # Simplified Output1 update
+                    logic_tables[table_idx][abc]['Output1_prob']['P1'] = max(0.01, min(0.99, logic_tables[table_idx][abc]['Output1_prob']['P1']))
+                    logic_tables[table_idx][abc]['Output1_prob']['P0'] = 1 - logic_tables[table_idx][abc]['Output1_prob']['P1']
+            
+            for abc, out1, out2 in final_used_entries:
+                pos = len(result) - len(final_used_entries) + final_used_entries.index((abc, out1, out2))
+                correct_out2 = bin_expected[pos] if pos < len(bin_expected) else '0'
+                if out2 == correct_out2:
+                    final_logic_table[abc]['Output2_prob']['P1'] += learning_rate * (1 - final_logic_table[abc]['Output2_prob']['P1'])
+                else:
+                    final_logic_table[abc]['Output2_prob']['P1'] -= learning_rate * final_logic_table[abc]['Output2_prob']['P1']
+                final_logic_table[abc]['Output2_prob']['P0'] = 1 - final_logic_table[abc]['Output2_prob']['P1']
+                final_logic_table[abc]['Output2_prob']['P1'] = max(0.01, min(0.99, final_logic_table[abc]['Output2_prob']['P1']))
+                final_logic_table[abc]['Output2_prob']['P0'] = 1 - final_logic_table[abc]['Output2_prob']['P1']
+                final_logic_table[abc]['Output1_prob']['P1'] = max(0.01, min(0.99, final_logic_table[abc]['Output1_prob']['P1']))
+                final_logic_table[abc]['Output1_prob']['P0'] = 1 - final_logic_table[abc]['Output1_prob']['P1']
+        
+        print(f"Epoch {epoch+1}, Average Error: {total_error / len(training_sets):.4f}")
+    
+    return logic_tables, final_logic_table, bits
+
+# Prediction function with new calculation steps
+def predict(decimal_a, decimal_b, logic_tables, final_logic_table, bits, firm=False):
+    # Convert decimals to binary (pad to specified bits)
+    bin_a = format(int(decimal_a), '0' + str(bits) + 'b')
+    bin_b = format(int(decimal_b), '0' + str(bits) + 'b')
+    
+    hidden_binaries = []
+    
+    # Process each digit of binary2
+    for digit_b_idx in range(bits-1, -1, -1):  # LSB to MSB
+        b_bit = bin_b[digit_b_idx]
+        current_logic_table = logic_tables[bits-1-digit_b_idx]
+        hidden_binary = []
+        carry = '0'  # Initialize carry for each binary2 digit
+        
+        # Interact b_bit with each digit of binary1
+        for digit_a_idx in range(bits-1, -1, -1):  # LSB to MSB
+            a_bit = bin_a[digit_a_idx]
+            abc = f"{a_bit}{b_bit}{carry}"
+            probs = current_logic_table[abc]
+            
+            if firm:
+                out1 = '1' if probs['Output1_prob']['P1'] > probs['Output1_prob']['P0'] else '0'
+                out2 = '1' if probs['Output2_prob']['P1'] > probs['Output2_prob']['P0'] else '0'
+            else:
+                out1 = '1' if random.random() < probs['Output1_prob']['P1'] else '0'
+                out2 = '1' if random.random() < probs['Output2_prob']['P1'] else '0'
+            
+            hidden_binary.append(out2)
+            carry = out1
+            print(f"Binary2 Digit {bits-digit_b_idx}: A={a_bit}, B={b_bit}, C={carry}, Output1={out1} (P1={probs['Output1_prob']['P1']:.2f}), Output2={out2} (P1={probs['Output2_prob']['P1']:.2f})")
+        
+        # Reverse to get correct order (MSB to LSB)
+        hidden_binary = hidden_binary[::-1]
+        # Apply left shift for digits 2 and beyond
+        shift_amount = bits - 1 - digit_b_idx
+        if shift_amount > 0:
+            hidden_binary = ['0'] * shift_amount + hidden_binary[:-shift_amount]
+        hidden_binaries.append(hidden_binary)
+        print(f"Hidden Binary {bits-digit_b_idx}: {hidden_binary}")
+    
+    # Combine hidden binaries using final logic table
+    result = []
+    carry = '0'
+    for pos in range(bits):  # Process each bit position
+        bits_at_pos = [hb[pos] for hb in hidden_binaries]
+        a_bit = bits_at_pos[0] if len(bits_at_pos) > 0 else '0'
+        b_bit = bits_at_pos[1] if len(bits_at_pos) > 1 else '0'
+        abc = f"{a_bit}{b_bit}{carry}"
+        probs = final_logic_table[abc]
+        
+        if firm:
+            out1 = '1' if probs['Output1_prob']['P1'] > probs['Output1_prob']['P0'] else '0'
+            out2 = '1' if probs['Output2_prob']['P1'] > probs['Output2_prob']['P0'] else '0'
+        else:
+            out1 = '1' if random.random() < probs['Output1_prob']['P1'] else '0'
+            out2 = '1' if random.random() < probs['Output2_prob']['P1'] else '0'
+        
+        result.append(out2)
+        carry = out1
+        print(f"Final Layer Pos {pos+1}: A={a_bit}, B={b_bit}, C={carry}, Output1={out1} (P1={probs['Output1_prob']['P1']:.2f}), Output2={out2} (P1={probs['Output2_prob']['P1']:.2f})")
+    
+    # Process one additional digit
+    a_bit = '0'
+    b_bit = '0'
+    abc = f"{a_bit}{b_bit}{carry}"
+    probs = final_logic_table[abc]
+    if firm:
+        out1 = '1' if probs['Output1_prob']['P1'] > probs['Output1_prob']['P0'] else '0'
+        out2 = '1' if probs['Output2_prob']['P1'] > probs['Output2_prob']['P0'] else '0'
+    else:
+        out1 = '1' if random.random() < probs['Output1_prob']['P1'] else '0'
+        out2 = '1' if random.random() < probs['Output2_prob']['P1'] else '0'
+    result.append(out2)
+    print(f"Final Layer Extra Digit: A={a_bit}, B={b_bit}, C={out1}, Output1={out1} (P1={probs['Output1_prob']['P1']:.2f}), Output2={out2} (P1={probs['Output2_prob']['P1']:.2f})")
+    
+    # Reverse result to get correct binary order
+    result = result[::-1]
+    print(f"Result bits (MSB to LSSB): {result}")
+    # Convert binary result to decimal
+    binary_str = ''.join(result)
+    print(f"Binary string: {binary_str}")
+    decimal_output = int(binary_str, 2)
+    
+    return decimal_output
+
+# Example usage
+if __name__ == "__main__":
+    # Define multiple training sets
+    def generate_combinations():
+        combinations = []
+        for a in range(11):  # First number from 0 to 10
+            for b in range(11):  # Second number from 0 to 10
+                combinations.append((a, b, a + b))
+        return combinations
+    
+    # Generate training set
+    training_sets = generate_combinations()
+    
+    # Train model
+    print("Training model...")
+    logic_tables, final_logic_table, bits = train(training_sets, epochs=100, learning_rate=0.05)
+    
+    # Print final logic tables
+    for idx, table in enumerate(logic_tables):
+        print(f"\nLogic Table for Binary2 Digit {idx+1}:")
+        print("A\tB\tC\tOutput1_P0\tOutput1_P1\tOutput2_P0\tOutput2_P1")
+        for abc, probs in table.items():
+            print(f"{abc[0]}\t{abc[1]}\t{abc[2]}\t{probs['Output1_prob']['P0']:.2f}\t\t{probs['Output1_prob']['P1']:.2f}\t\t{probs['Output2_prob']['P0']:.2f}\t\t{probs['Output2_prob']['P1']:.2f}")
+    
+    print("\nFinal Logic Table:")
+    print("A\tB\tC\tOutput1_P0\tOutput1_P1\tOutput2_P0\tOutput2_P1")
+    for abc, probs in final_logic_table.items():
+        print(f"{abc[0]}\t{abc[1]}\t{abc[2]}\t{probs['Output1_prob']['P0']:.2f}\t\t{probs['Output1_prob']['P1']:.2f}\t\t{probs['Output2_prob']['P0']:.2f}\t\t{probs['Output2_prob']['P1']:.2f}")
+    
+    # Test prediction
+    a = 2
+    b = 20
+    print(f"\nPrediction for A={a}, B={b} (firm=True):")
+    predicted_output = predict(a, b, logic_tables, final_logic_table, bits, firm=True)
+    print(f"\nInput A: {a} (binary: {format(a, '0' + str(bits) + 'b')}), B: {b} (binary: {format(b, '0' + str(bits) + 'b')})")
+    print(f"Predicted Output: {predicted_output} (binary: {format(predicted_output, '0' + str(bits+1) + 'b')})")

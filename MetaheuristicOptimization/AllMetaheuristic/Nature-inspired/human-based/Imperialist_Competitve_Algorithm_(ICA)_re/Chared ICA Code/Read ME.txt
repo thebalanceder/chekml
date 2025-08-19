@@ -1,0 +1,15 @@
+Plese open the Mfile: "ImperialistCompetitveAlgorithm_GlobalOptimizationStrategy" and run it.
+
+To use this code, you should only prepare your cost function and apply
+CCA to it. Please read the guide available in my home page. 
+
+For updated and some papers about this algorithm visit my home page:
+http://www.atashpaz.com
+
+Esmaeil Atashpaz Gargari
+Control and Intelligent Processing Center of Excellence,
+ECE school of University of Tehran, Iran
+Cellphone: (+98)-932-9011620
+Email: e.atashpaz@ece.ut.ac.ir & atashpaz.gargari@gmail.com
+Home Page: http://www.atashpaz.com
+

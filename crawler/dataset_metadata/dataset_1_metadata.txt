@@ -1,0 +1,10 @@
+Dataset 1:
+Title: U.S. Annual/Seasonal Climate Normals (1981-2010)
+URL: None
+Score: 1.5
+
+Description:
+No description available.
+
+CSV Resources:
+  - https://www.ncei.noaa.gov/pub/data/cdo/samples/NORMAL_ANN_sample_csv.csv
