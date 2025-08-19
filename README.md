@@ -5,10 +5,10 @@
    - Data crawler using LLM through ollama
    - Featurization (maximizing importance of information)
  - Model Construction
-   -Machine learning
-   -Custom layer
+   - Machine learning
+   - Custom layer
  - Optimization
-   -tuning
+   - Tuning
  
  ---
  ## Future Direction
