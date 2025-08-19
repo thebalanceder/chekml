@@ -1,0 +1,22 @@
+CC = gcc
+CFLAGS = -O2 -Wall -std=c11 -g
+LDLIBS = -lm
+
+TARGET = convn_custom_test
+SRCS = main.c convn_forward_custom.c
+OBJS = $(SRCS:.c=.o)
+
+all: $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(CFLAGS) -o $@ $^ $(LDLIBS)
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+run: $(TARGET)
+	./$(TARGET)
+
+clean:
+	rm -f $(TARGET) $(OBJS)
+

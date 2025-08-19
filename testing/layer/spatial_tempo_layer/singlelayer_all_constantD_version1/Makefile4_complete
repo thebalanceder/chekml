@@ -1,0 +1,30 @@
+CC = gcc
+CFLAGS = -O2 -Wall -std=c11 -g
+LDLIBS = -lm
+
+TARGET = convn_custom_test
+TARGET_KOF = convn_kof
+
+SRCS = convn_forward_custom.c
+OBJS = $(SRCS:.c=.o)
+
+all: $(TARGET) $(TARGET_KOF)
+
+$(TARGET): main.c $(OBJS)
+	$(CC) $(CFLAGS) -o $@ $^ $(LDLIBS)
+
+kof_parser.o: kof_parser.c kof_parser.h
+	$(CC) $(CFLAGS) -c kof_parser.c -o kof_parser.o
+
+$(TARGET_KOF): main_kof.c kof_parser.o $(OBJS)
+	$(CC) $(CFLAGS) -o $@ $^ $(LDLIBS)
+
+run_plus: $(TARGET_KOF)
+	./$(TARGET_KOF) plus.kof
+
+run_circle: $(TARGET_KOF)
+	./$(TARGET_KOF) circle_r2.kof
+
+clean:
+	rm -f $(TARGET) $(TARGET_KOF) *.o
+

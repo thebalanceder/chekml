@@ -1,0 +1,20 @@
+# Compiler and flags
+CC = gcc
+CFLAGS = -O2 -Wall -g
+
+# Output binary
+TARGET = convn_test
+
+# Source files
+SRCS = main.c convn_forward.c
+
+# Build target
+all: $(TARGET)
+
+$(TARGET): $(SRCS)
+	$(CC) $(CFLAGS) -o $@ $(SRCS)
+
+# Clean build artifacts
+clean:
+	rm -f $(TARGET) *.o
+

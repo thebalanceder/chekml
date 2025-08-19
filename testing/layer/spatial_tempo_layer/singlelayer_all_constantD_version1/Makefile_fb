@@ -1,0 +1,32 @@
+CC = gcc
+CFLAGS = -O2 -Wall -std=c11 -g
+LDLIBS = -lm
+
+# Existing objects
+COMMON_OBJS = convn_forward_custom.o convn_backward_custom.o
+
+all: convn_custom_test convn_custom_backprop grad_check
+
+convn_forward_custom.o: convn_forward_custom.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+convn_backward_custom.o: convn_backward_custom.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Your existing demos (optional)
+convn_custom_test: main.c convn_forward_custom.o
+	$(CC) $(CFLAGS) -o $@ $^ $(LDLIBS)
+
+convn_custom_backprop: main_backprop.c $(COMMON_OBJS)
+	$(CC) $(CFLAGS) -o $@ $^ $(LDLIBS)
+
+# New: numerical gradient check
+grad_check: test_grad.c $(COMMON_OBJS)
+	$(CC) $(CFLAGS) -o $@ $^ $(LDLIBS)
+
+run_grad: grad_check
+	./grad_check
+
+clean:
+	rm -f convn_custom_test convn_custom_backprop grad_check *.o
+

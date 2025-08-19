@@ -1,0 +1,13 @@
+# sigmoid_input.kof
+ndim: 3
+scale: 1.0
+norm: l2
+taps:
+ 0  0  0  1.0
+ 0  0 -1  1.0
+ 0  0  1  1.0
+
+operation: x * w
+input_encode: 1 / (1 + exp(-x))
+kernel_encode: w
+

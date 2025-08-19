@@ -1,0 +1,16 @@
+[vars]
+w
+k1
+k2
+g
+
+[formula]
+w * (1 + k1 * g + k2 * g^2)
+
+[testing]
+g > 0.5
+
+[params]
+k1_init 0.05
+k2_init 0.01
+history_length 5

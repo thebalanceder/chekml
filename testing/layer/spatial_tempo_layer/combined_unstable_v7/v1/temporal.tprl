@@ -1,0 +1,7 @@
+[vars]
+w k g
+[formula]
+w * (1 + k * g)
+[params]
+k_init 0.1
+history_length 5

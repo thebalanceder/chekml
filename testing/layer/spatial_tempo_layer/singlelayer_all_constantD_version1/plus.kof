@@ -1,0 +1,12 @@
+# plus.kof
+ndim: 2
+taps: 5
+anchor: center
+normalize: none
+
+tap:  0  0   1
+tap: -1  0   1
+tap:  1  0   1
+tap:  0 -1   1
+tap:  0  1   1
+
