@@ -16,4 +16,4 @@
  - viewing model structure in detail
 
  ---
- feel free to point out any appreciate bug, great appreciation for any contribution
+ feel free to point out any potential bug, great appreciation for any contribution
