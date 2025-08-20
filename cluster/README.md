@@ -1,5 +1,5 @@
- ## Algorithm overview and usage
- # 1. SelfEvolvingClustering
+ # Algorithm overview and usage
+ ## 1. SelfEvolvingClustering
  - Description: Self-Evolving Clustering is an online clustering algorithm that incrementally updates cluster centroids based on incoming data points.
  - Parameters:
    - `distance_threshold` (float,default=1.0) :Maximum distance to assign a point to an existing cluster. Larger values allow points to join clusters farther away.
@@ -22,7 +22,7 @@ labels = sec.predict(data)
 print(f"Number of clusters: {len(sec.cluster)})"
 ```
 
- # 2. TransformerBasedClustering
+ ## 2. TransformerBasedClustering
  - Description: This algorithm uses a transformer model (e.g. BERT) to generate embeddings for text data, followed by KMeans clustering. It is ideal for clustering text documents based on semantic similarity.
  - Parameters:
    - 'model_name' (str,default="bert-base-uncased",num_clusters=2)
