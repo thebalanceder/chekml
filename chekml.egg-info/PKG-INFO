@@ -1,0 +1,30 @@
+Metadata-Version: 2.4
+Name: chekml
+Version: 0.1.0
+Summary: A versatile library for data manipulation
+Author-email: Chek Chee Him <cchgolden050@gmail.com>
+License: MIT
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: license-file
+
+ ## Chek's Math Logic (chekml)
+ ---
+ ## Features
+ - Preprocessing
+   - Data crawler using LLM through ollama
+   - Featurization (maximizing importance of information)
+ - Model Construction
+   - Machine learning
+   - Custom layer
+ - Optimization
+   - Tuning
+ 
+ ---
+ ## Future Direction
+ - exploring binary neural network
+ - viewing model structure in detail
+
+ ---
+ feel free to point out any potential bug, great appreciation for any contribution

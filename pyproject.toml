@@ -1,5 +1,5 @@
 [project]
-name = "Chek's Math Logic (chekml)"
+name = "chekml"
 version = "0.1.0"
 description = "A versatile library for data manipulation"
 readme = "README.md"

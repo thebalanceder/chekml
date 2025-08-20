@@ -1,0 +1,5 @@
+exclude testing/*
+exclude testing/**/*
+exclude documentation/*
+exclude documentation/**/*
+
