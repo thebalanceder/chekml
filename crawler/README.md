@@ -1,16 +1,22 @@
 # How to setup and run
-## 1. Install Ollama
+- [SequentialCrawler](#SequentialCrawler)
+- [ParallelCrawler](#ParallelCrawler)
+- [MutimodelCrawler](#MutimodelCrawler)
+- [MixturemodelCrawler](#MixturemodelCrawler)
+
+## SequentialCrawler
+### 1. Install Ollama
 - ollama.com/download
-## 2. Pull a Model
+### 2. Pull a Model
 ```bash
 ollama pull deepseek-r1:7b
 ```
-## 3. Set Ollama Server's Port
+### 3. Set Ollama Server's Port
 - by default using script server uses port 11500
 ```bash
 export OLLAMA_HOST=0.0.0.0:11500
 ```
-## 4. Configuration of Script
+### 4. Configuration of Script
 Open SequentialCrawler.py in a text editor. Key configurable settings at the top:
 
  - `QUERY = "urban heat island"`: The search query for datasets (e.g., change to "climate change" for different topics).
@@ -29,3 +35,7 @@ Open SequentialCrawler.py in a text editor. Key configurable settings at the top
  - Other implicit settings:
    - `PROCESSED_DATASETS_FILE = "dataset_metadata/processed_datasets.json"`: Tracks processed dataset IDs.
    - Metadata saved to `dataset_metadata/` folder (JSON and optional TXT files).
+
+ ## ParallelCrawler
+ ## MutimodelCrawler
+ ## MixturemodelCrawler
