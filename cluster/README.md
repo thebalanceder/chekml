@@ -78,7 +78,7 @@ print("Soft labels(first 10):",soft_labels[:10])
    - Apply KMeans to the eigenvectors to obtain cluster labels
    - Evaluate clustering quality using Adjusted Rand Index(ARI) and Normalized Mutual Information(NMI) if ground truth labels are available.
     
- - Usage Example:
+   - Usage Example:
 
 **Python**
 ```python
