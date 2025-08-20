@@ -19,6 +19,7 @@
     - Averages predicitons from both models for test data.
    
   - Usage Example:
+ 
 **Python**
 ```python
 from chekml.OutlierIdentifier.outlier_hybrid import OutlierHybrid
@@ -51,6 +52,7 @@ print("Predictions:",predictions[:5])
    - Predicts anomalies based on whether points lies within the decision boudary
   
    - Usage Example:
+  
 **Python**
 ```python
 from chekml.OutlierIdentifier.robust_svm import RobustOneClassSVM
@@ -74,6 +76,7 @@ print("Predictions (1=inlier, 0=outlier):",predictions[:5])
    - Returns a dictionary with model names, their accuracy scores, and execution times.
   
    - Usage Example:
+   
 **Python**
 ```python
 from robust_svm import OutlierEvaluator
