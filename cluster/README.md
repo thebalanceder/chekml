@@ -13,6 +13,7 @@
   
   - Usage Example
 
+**Python**
 ```python
 from chekml.cluster.self_evolving_clustering import SelfEvolvingClustering
 import numpy as np
@@ -20,6 +21,7 @@ sec = SelfEvolvingClustering(distance_threshold=0.2,learning_rate=0.05,merge_thr
 sec.fit(data)
 labels = sec.predict(data)
 print(f"Number of clusters: {len(sec.cluster)})"
+```
 
  ## 2. TransformerBasedClustering
  - Description: This algorithm uses a transformer model (e.g. BERT) to generate embeddings for text data, followed by KMeans clustering. It is ideal for clustering text documents based on semantic similarity.
