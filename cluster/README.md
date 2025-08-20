@@ -54,7 +54,7 @@ print("CLuster labels:",labels)
    - Construct a soft reachability matrix based on pairwise distances and density differences.
    - Use iteration to compute soft cluster, allow points to belong to multiple clusters with many probability states.
   
-   - Usage Example
+   - Usage Example:
 
 **Python**
 ```python
@@ -62,9 +62,35 @@ from chekml.cluster.ddbc_clustering import DDBC
 from sklearn.datasets import make_moons
 
 X, _ = make_moons(n_samples=300,noise=0.1,random_state=42)
-ddbc=DDBC(bandwidth=0.2,reachability_threshold=0.5)
-soft_labels=ddbc.fit_predict(X)
+ddbc = DDBC(bandwidth=0.2,reachability_threshold=0.5)
+soft_labels = ddbc.fit_predict(X)
 print("Soft labels(first 10):",soft_labels[:10]) 
 ```
 
  ## 4. Adaptive Graph Clustering
+ - Description: This algorithm constructs a graph based on k-nearest neighbors, computes a normalized graph Laplacian, performs spectral clustering with an adaptive number of clusters determined by eigenvalue gaps. 
+ - Parameters:
+   - `k` (int,default=5) :Number of nearest neighbors to construct the affinity matrix. Higher values increase connectivtiy in the graph.
+ - Algorithm Explanations:
+   - build an affinity matrix using k-nearest neighbors and a Gaussian kernel based on distances
+   - Compute the normalized graph Laplacian.
+   - Calculate eigenvalues and eigenvectors, then estimate the number of clusters using the eigenvalue gap.
+   - Apply KMeans to the eigenvectors to obtain cluster labels
+   - Evaluate clustering quality using Adjusted Rand Index(ARI) and Normalized Mutual Information(NMI) if ground truth labels are available.
+    
+ - Usage Example:
+
+**Python**
+```python
+from chekml.cluster.adaptive_graph_clustering import AdaptiveGraphClustering
+from sklearn.datasets import load_iris
+
+iris = load_iris()
+data = iris.data
+true_labels = iris.target
+agc = AdaptiveGraphClustering(k=5)
+labels = agc.fit_predict(data)
+ari,nmi = agc.evaluate(true_labels, labels)
+print("Cluster labels:",labels[:10])
+print(f"ARI:{ari:.4f},NMI:{nmi:.4f}")
+```
