@@ -20,7 +20,6 @@ sec = SelfEvolvingClustering(distance_threshold=0.2,learning_rate=0.05,merge_thr
 sec.fit(data)
 labels = sec.predict(data)
 print(f"Number of clusters: {len(sec.cluster)})"
-```
 
  ## 2. TransformerBasedClustering
  - Description: This algorithm uses a transformer model (e.g. BERT) to generate embeddings for text data, followed by KMeans clustering. It is ideal for clustering text documents based on semantic similarity.
@@ -28,4 +27,4 @@ print(f"Number of clusters: {len(sec.cluster)})"
    - 'model_name' (str,default="bert-base-uncased",num_clusters=2)
    - 'num_clusters' (int,default=2) :Number of clusters for KMeans. Must be set based on the expected number of groups.
  - Algorithm Explanation:
-   -
+   - Tokenize and encode input text using the specified transformer model to obtain embeddings
