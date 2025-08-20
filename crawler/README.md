@@ -4,9 +4,9 @@
 - [MutimodelCrawler](#MutimodelCrawler)
 - [MixturemodelCrawler](#MixturemodelCrawler)
 
-## SequentialCrawler
 ### 1. Install Ollama
 - ollama.com/download
+
 ### 2. Pull a Model
 ```bash
 ollama pull deepseek-r1:7b
@@ -16,6 +16,8 @@ ollama pull deepseek-r1:7b
 ```bash
 export OLLAMA_HOST=0.0.0.0:11500
 ```
+## SequentialCrawler
+
 ### 4. Configuration of Script
 Open SequentialCrawler.py in a text editor. Key configurable settings at the top:
 
