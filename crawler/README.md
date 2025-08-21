@@ -94,29 +94,29 @@ Edit config.py for all key settings:
  - `DEBUG_MODE = True`: Enables debug prints (set to False for quieter output).
 
 ## MixturemodelCrawler
-
 Edit config.py for primary settings:
-CKAN Search:
-`CKAN_API_URL`: API endpoint.
-`QUERY = "urban heat island"`: Search query.
-`TARGET_CSV_COUNT = 5`: Top datasets to process.
-Paths:
-`PROCESSED_DATASETS_FILE`: Processed IDs JSON.
-`METADATA_FOLDER`: Metadata output.
-`DOWNLOAD_FOLDER`: CSVs output.
-Models & Ollama:
-`MODELS = ["deepseek-r1:7b", "tinyllama:1.1b"]`: Available LLMs (pull first).
-`NUM_MODELS_TO_USE = 2`: Randomly select this many per run.
-`NUM_INSTANCES_PER_MODEL`: Instances dict (default: 2 each; scales servers/ports).
-`OLLAMA_START_PORT = 11500`: Start port; MODEL_PORT_MAP auto-generates (e.g., DeepSeek: [11500, 11501], TinyLlama: [11502, 11503]).
-Download:
-`DEFAULT_MAX_DOWNLOAD_WORKERS = 5`: Download threads.
-Debug:
-`DEBUG_MODE = True`: Enable debug logs.
-Other tunables:
-`dataset_crawler.py` (`search_ckan_datasets`): `page_size=10` (per call), `max_pages=1` (total pages).
-`dataset_evaluator.py`: Traditional weights (+5 title, +2/CSV, +2 recency >=2020, +2 open license; cap 10). CSV preview: `num_rows=5`, `max_cols=5`, `max_chars=2000`. Score: 0.5 traditional + 0.5 LLM (cap 10).
-`main.py` (save_dataset_metadata): save_as_json=True, save_individual_files=True.
+
+ - CKAN Search:
+ - `CKAN_API_URL`: API endpoint.
+ - `QUERY = "urban heat island"`: Search query.
+ - `TARGET_CSV_COUNT = 5`: Top datasets to process.
+ - Paths:
+ - `PROCESSED_DATASETS_FILE`: Processed IDs JSON.
+ - `METADATA_FOLDER`: Metadata output.
+ - `DOWNLOAD_FOLDER`: CSVs output.
+ - Models & Ollama:
+ - `MODELS = ["deepseek-r1:7b", "tinyllama:1.1b"]`: Available LLMs (pull first).
+ - `NUM_MODELS_TO_USE = 2`: Randomly select this many per run.
+ - `NUM_INSTANCES_PER_MODEL`: Instances dict (default: 2 each; scales servers/ports).
+ - `OLLAMA_START_PORT = 11500`: Start port; MODEL_PORT_MAP auto-generates (e.g., DeepSeek: [11500, 11501], TinyLlama: [11502, 11503]).
+ - Download:
+ - `DEFAULT_MAX_DOWNLOAD_WORKERS = 5`: Download threads.
+ - Debug:
+ - `DEBUG_MODE = True`: Enable debug logs.
+ - Other tunables:
+ - `dataset_crawler.py` (`search_ckan_datasets`): `page_size=10` (per call), `max_pages=1` (total pages).
+ - `dataset_evaluator.py`: Traditional weights (+5 title, +2/CSV, +2 recency >=2020, +2 open license; cap 10). CSV preview: `num_rows=5`, `max_cols=5`, `max_chars=2000`. Score: 0.5 traditional + 0.5 LLM (cap 10).
+ - `main.py` (save_dataset_metadata): save_as_json=True, save_individual_files=True.
 
 ### Comparison of Script
 
