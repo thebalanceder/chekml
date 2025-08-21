@@ -1,0 +1,20 @@
+# full_featured.tprl: Simplified temporal processing configuration
+[vars]
+w k g m
+[formula]
+w * (1 + 0.1 * k * g / (1 + abs(g)))  # Gradient-based adjustment
+w * (1 + 0.1 * k * m / (1 + abs(m)) + 0.05 * (wh0 + gh0) / (1 + abs(wh0) + abs(gh0)))  # Memory and history
+w * (1 + 0.1 * k * (g + m) / (1 + abs(g) + abs(m)))  # Combined gradient and memory
+[conditions]
+epoch > 10 : 1
+grad_mean < 0.01 : 2
+epoch > 20 : 2
+[testing]
+w + k > g  # Mask weights where w + k <= g
+#[memory]
+m + 0.05 * g + 0.01 * wh0  # Temporarily disabled to isolate issue
+[params]
+k_init 0.05
+history_length 5
+grad_threshold 1e-4
+adaptive_history true

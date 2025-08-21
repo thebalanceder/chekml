@@ -1,2 +1,2 @@
-from .inequality_based_featurization import InequalityFeaturizer
-__all__ = ["InequalityFeaturizer"]
+from .information_repurposed_featurization import InformationRepurposedFeaturizer
+__all__ = ["InformationRepurposedFeaturizer"]
