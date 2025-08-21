@@ -73,6 +73,11 @@ All settings are centralized in config.py. Edit as needed:
      - `save_as_json=True`: Saves combined JSON metadata.
      - `save_individual_files=True`: Saves per-dataset TXT files.
 
+ - Run:
+   ```bash
+   python3 SequentialCrawler.py
+   ```
+   
 ## MutimodelCrawler
 Edit config.py for all key settings:
 
@@ -93,6 +98,11 @@ Edit config.py for all key settings:
  - Debug & Logs:
  - `DEBUG_MODE = True`: Enables debug prints (set to False for quieter output).
 
+ - Run:
+   ```bash
+   python3 SequentialCrawler.py
+   ```
+   
 ## MixturemodelCrawler
 Edit config.py for primary settings:
 
@@ -118,6 +128,11 @@ Edit config.py for primary settings:
  - `dataset_evaluator.py`: Traditional weights (+5 title, +2/CSV, +2 recency >=2020, +2 open license; cap 10). CSV preview: `num_rows=5`, `max_cols=5`, `max_chars=2000`. Score: 0.5 traditional + 0.5 LLM (cap 10).
  - `main.py` (save_dataset_metadata): save_as_json=True, save_individual_files=True.
 
+ - Run:
+   ```bash
+   python3 SequentialCrawler.py
+   ```
+   
 ### Comparison of Script
 
  **Core Settings for all**
