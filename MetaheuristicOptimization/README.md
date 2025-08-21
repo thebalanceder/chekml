@@ -65,8 +65,8 @@ if __name__ == "__main__":
     main()
 ```
 
-Example 2: Hyperparameter Tuning (SVR)
-Optimizes kernel, C, and epsilon for an SVR model to minimize MSE.
+### Example 2: Hyperparameter Tuning (SVR)
+Optimizes `kernel`, `C`, and `epsilon` for an SVR model to minimize MSE.
 
 ```python
 import numpy as np
@@ -134,7 +134,7 @@ if __name__ == "__main__":
     main()
 ```
 
- ## Example 3: Robustness to Noise
+ ### Example 3: Robustness to Noise
  Tests optimization under noisy quadratic objectives.
 
 ```python
@@ -165,7 +165,7 @@ if __name__ == "__main__":
     main()
 ```
 
- ## Example 4: Scalability Test (20D)
+ ### Example 4: Scalability Test (20D)
  Evaluates performance in higher dimensions.
 
 ```python
