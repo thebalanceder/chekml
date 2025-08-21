@@ -15,7 +15,7 @@ Features:
 
 ---
 
-## `.kof` File Format
+## .kof File Format
 
 The `.kof` file specifies dimensionality, kernels, taps (offsets and weights), and optional formulas.  
 - Lines starting with `#` are comments.  
