@@ -1,4 +1,6 @@
-# FuzzySVM
+# All Available Supervise Learning Methods
+
+## 1.FuzzySVM
 
 ## Overview
 **Fuzzy Support Vector Machine (FSVM)** is an extension of the standard SVM that handles noisy or outlier data by assigning **fuzzy membership weights** to samples. This reduces the influence of unreliable points and improves robustness, especially in real-world datasets.
@@ -39,7 +41,7 @@ print("Predictions:", predictions)
 fuzzy_svm.optimize_hyperparameters(X, y)
 ```
 
-# TwinSVM & MultiClassTwinSVM
+## 2.TwinSVM & MultiClassTwinSVM
 
 ## Overview
 **Twin Support Vector Machine (TWSVM)** is a faster variant of SVM that constructs **two non-parallel hyperplanes** instead of one. Each hyperplane is closer to one class while being farther from the other.  
@@ -112,7 +114,7 @@ y_pred = model.predict(X_test)
 print(classification_report(y_test, y_pred))
 ```
 
-# HellingerDecisionTree
+## 3.HellingerDecisionTree
 
 ## Overview
 **Hellinger Distance Decision Tree (HDDT)** is a decision tree variant designed for **imbalanced datasets**.  
@@ -168,7 +170,7 @@ preds = hddt.predict(X_test)
 print("Accuracy:", accuracy_score(y_test, preds))
 print("F1-Score:", f1_score(y_test, preds, average='weighted'))
 ```
-# ProximalSVM
+## 4.ProximalSVM
 
 ## Overview
 **Proximal Support Vector Machine (PSVM)** is an efficient variant of SVM that reformulates the optimization problem into a **regularized least-squares problem**.  
@@ -229,7 +231,7 @@ print("Training Time:", time.time() - start)
 y_pred = model.predict(X_test)
 print("Accuracy:", accuracy_score(y_test, y_pred))
 ```
-# SupportMatrixMachine (SMM)
+## 5.SupportMatrixMachine (SMM)
 
 ## Overview
 **Support Matrix Machine (SMM)** is an extension of the traditional Support Vector Machine (SVM) that directly operates on **matrix-structured inputs** (e.g., images, correlation matrices).  
@@ -289,7 +291,7 @@ print("Recall:", recall_score(y_test, preds))
 print("F1 Score:", f1_score(y_test, preds))
 ```
 
-# Fast Feature Linear Regression (FFLR)
+## 6.Fast Feature Linear Regression (FFLR)
 
 ## Overview
 **Fast Feature Linear Regression (FFLR)** is an optimized linear regression solver designed for **large-scale datasets**.  
