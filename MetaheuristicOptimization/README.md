@@ -17,6 +17,19 @@ It allows flexible configuration of **dimensionality, population size, iteration
 
 ---
 
+### Parameters
+
+| Submodule           | Accuracy | Speed | Description |
+|---------------------|-----------------------------------------------------------------------------|
+| CIntegration_cython | Precision accuracy | Moderate | Minor optimization towards speed but ensure everything safe and sound |
+| CIntegration_ctypes | Precision accuracy | Fast | Optimize using C coding techniques, still memory safe |
+| CIntegration_cffi   | Precision accuracy |
+| CIntegration_cffi1  ||
+| CIntegration_cffi2  ||
+| CIntegration_cffi3  ||
+
+---
+
 ### Key Methods
 
 - **`optimize(objective_function)`**  
