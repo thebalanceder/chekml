@@ -32,6 +32,19 @@ It allows flexible configuration of **dimensionality, population size, iteration
 
 ### Key Methods
 
+- if using CIntegration_ctypes, use:
+```python
+# Define the objective function for ctypes
+@ctypes.CFUNCTYPE(ctypes.c_double, ctypes.POINTER(ctypes.c_double))
+def objective_function(x):
+    """Compute the sum of squares for a C double array."""
+    # Convert ctypes pointer to numpy array (assuming dim=10)
+    x_array = np.ctypeslib.as_array(x, shape=(10,))
+    fitness = np.sum(x_array**2)
+    logging.debug(f"Objective function called with x={x_array}, fitness={fitness}")
+    return ctypes.c_double(fitness)
+```
+
 - **`optimize(objective_function)`**  
   Runs the optimization on the given objective function.  
   Input: A callable that takes a vector `x` and returns a scalar fitness.
