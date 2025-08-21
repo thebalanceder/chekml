@@ -159,7 +159,7 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 
-from test import CustomConvLayer  # Import from test1.py
+from chekml.layer.spatial_tempo.test import CustomConvLayer
 
 class ExampleNet(nn.Module):
     def __init__(self, kof_path, tprl_path):
