@@ -1,13 +1,14 @@
 import numpy as np
 import cffi
 import logging
+import os
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)  # Change to DEBUG for verbose output
 
 # Initialize CFFI
 ffi = cffi.FFI()
-lib = ffi.dlopen("./generaloptimizer.so")
+lib = ffi.dlopen(os.path.join(os.path.dirname(__file__), "generaloptimizer.so"))
 
 # Define C structures
 ffi.cdef("""

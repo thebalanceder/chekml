@@ -1,12 +1,13 @@
 import ctypes
 import numpy as np
 import logging
+import os
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)  # Change to DEBUG for verbose output
 
 # Load shared library
-lib = ctypes.CDLL("./generaloptimizer.so")
+lib = ctypes.CDLL(os.path.join(os.path.dirname(__file__), "generaloptimizer.so"))
 
 # Define function pointer type
 OBJ_FUNC_TYPE = ctypes.CFUNCTYPE(ctypes.c_double, ctypes.POINTER(ctypes.c_double))
