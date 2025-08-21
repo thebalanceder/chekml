@@ -2,4 +2,6 @@ exclude testing/*
 exclude testing/**/*
 exclude documentation/*
 exclude documentation/**/*
+include README.md
+include LICENSE
 
