@@ -295,7 +295,7 @@ print(f"Best SMM Log-Likelihood: {best_smm.compute_log_likelihood(X_mixed)}")
 print(f"Number of Unique Clusters: {len(np.unique(labels_smm))}")
 ```
 
-## 7.Normalizing Flow Mixture Model (NFMM)
+## 7.Normalizing Flow Mixture Model (NFMM) (Tensorflow >= 2.18
 
 ### Algorithm Explanation
 The **Normalizing Flow Mixture Model (NFMM)** combines **normalizing flows** (e.g., RealNVP) with a Gaussian Mixture Model (GMM).  
