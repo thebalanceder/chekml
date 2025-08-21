@@ -79,7 +79,7 @@ print("Predictions (1=inlier, 0=outlier):",predictions[:5])
    
 **Python**
 ```python
-from robust_svm import OutlierEvaluator
+from chekml.OutlierIdentifier.robust_svm import OutlierEvaluator
 from sklearn.model_selection import train_test_split
 import numpy as np
 
