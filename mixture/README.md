@@ -1,10 +1,5 @@
 # Mixture Models Collection
 
-This repository contains implementations of various mixture models, from classical EM-based approaches to advanced deep learning and Bayesian methods.  
-Each section explains the algorithm, its parameters, and provides a demonstration example.
-
----
-
 ## 1.GammaMixtureModel
 
 ### Algorithm Explanation
