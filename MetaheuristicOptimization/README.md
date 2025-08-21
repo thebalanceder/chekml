@@ -21,12 +21,12 @@ It allows flexible configuration of **dimensionality, population size, iteration
 
 | Submodule           | Accuracy | Speed | Description |
 |---------------------|----------|-------|-------------|
-| CIntegration_cython | Precision accuracy | Moderate | Minor optimization towards speed but ensure everything safe and sound |
-| CIntegration_ctypes | Precision accuracy | Fast | Optimize using C coding techniques, still memory safe |
-| CIntegration_cffi   | Precision accuracy |
-| CIntegration_cffi1  ||
-| CIntegration_cffi2  ||
-| CIntegration_cffi3  ||
+| CIntegration_cython | Precision accuracy | Baseline Fast | Minor optimization towards speed but ensure everything safe and sound |
+| CIntegration_ctypes | Precision accuracy | Optimized Fast | Optimize using C coding techniques, with ctypes for python wrapper
+| CIntegration_cffi   | Precision accuracy | Optimized Fast | Optimize by C with cffi to parse to python
+| CIntegration_cffi1  | Very High Accuracy | High Speed | Integrated with AVX techniques, branchless and other techniques with highly optimized for CPU utilization
+| CIntegration_cffi2  | High Accuracy | Very Fast | CPU + GPU hybrid using opencl
+| CIntegration_cffi3  | High Accuracy | Maximmum speed | Major operations like matrix-multiplication carry out in GPU with opencl
 
 ---
 
