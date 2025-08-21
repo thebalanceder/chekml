@@ -17,7 +17,7 @@ It allows flexible configuration of **dimensionality, population size, iteration
 
 ---
 
-### Parameters
+### Submodule Performance Comparison
 
 | Submodule           | Accuracy | Speed | Description |
 |---------------------|----------|-------|-------------|
