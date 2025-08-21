@@ -58,20 +58,9 @@ export OLLAMA_HOST=0.0.0.0:11500
 | save_as_json                | Yes (default True) | Yes | Yes | Yes |
 | save_individual_files       | Yes (default True) | Yes | Yes | Yes |
 | CSV Preview                 | num_rows=5, max_cols=5, max_chars=2000 | Same | Same | Same |
-| **Performance**             |                   |                 |                   |                     |
+| **Performance**             | 
 | Evaluation Speed            | Slowest (sequential) | Faster (parallel instances) | Balanced (multiple models) | Most flexible (random subset, multiple instances) |
 | Scalability                 | Limited (single model) | Moderate (single model, multiple instances) | Good (multiple models) | Best (random model subset, multiple instances) |
 | Resource Usage              | Low (~8GB RAM for DeepSeek) | Moderate (~4–8GB RAM per instance) | Moderate (~10GB for 2 models) | High (~20GB for 4 instances) |
 | Use Case                    | Simple, low-resource systems; single model evaluation | Balanced performance; single model with parallelism | Diverse model evaluations | Flexible, high-throughput with varied model subset |
 | Ollama Setup                | 1 server (port 11500) | 2 servers (11500–11501) | 2 servers (11500–11501) | 4 servers (11500–11503) |
-
----
-
-### Key Notes
-- **SequentialCrawler**: Simplest, uses one LLM (DeepSeek-R1:7b) sequentially. Low resource, but slow.  
-- **ParallelCrawler**: One LLM with multiple instances for parallel evaluation. Balanced performance.  
-- **MultiModelCrawler**: Cycles through multiple models (DeepSeek, TinyLlama) for diversity.  
-- **MixtureModelCrawler**: Random subset of models, multiple instances per model. Most flexible and scalable, but resource-heavy.  
-- **Common Features**: All support CKAN API, CSV filtering, metadata saving, multithreaded downloads.  
-- **Disabling LLMs**: Possible in all crawlers to reduce resource needs.  
-- **Ollama Setup**: Requires servers on specified ports (`OLLAMA_HOST=0.0.0.0:port ollama serve`).  
