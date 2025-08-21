@@ -156,7 +156,7 @@ The `CustomConvLayer` extends `torch.nn.Module`.
 import torch
 import torch.nn as nn
 import torch.optim as optim
-from custom_conv import CustomConvLayer
+from chekml.layer.spatial_tempo.test import CustomConvLayer
 
 class ExampleNet(nn.Module):
     def __init__(self, kof_path, tprl_path):
