@@ -27,7 +27,7 @@ Optimizes weights using constrained minimization. Works for both regression (MSE
 
 ### Usage Example
 ```python
-from greedy_ensemble import GreedyEnsembleSelection
+from chekml.ensemble.greedy_ensemble import GreedyEnsembleSelection
 import numpy as np
 from sklearn.linear_model import LinearRegression
 from sklearn.svm import SVR
@@ -74,12 +74,19 @@ Weights are computed as the exponential of negative MSE, favoring models with lo
 
 ### Usage Example
 ```python
-from bayesian_model_combination import BayesianModelCombination
+from chekml.ensemble.bayesian_model_combination import BayesianModelCombination
 import numpy as np
 from sklearn.linear_model import LinearRegression
 from sklearn.svm import SVR
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.metrics import mean_squared_error
+
+# Sample data
+np.random.seed(42)
+X_reg = np.random.rand(100, 2) * 10
+y_reg = 2 * X_reg[:, 0] + 3 * X_reg[:, 1] + np.random.randn(100)
+X_train_reg, X_test_reg = X_reg[:80], X_reg[80:]
+y_train_reg, y_test_reg = y_reg[:80], y_reg[80:]
 
 reg_models_dict = {
     "Linear": LinearRegression(),
@@ -115,7 +122,7 @@ Encourages **negative correlation** so that models complement each other rather 
 
 ### Usage Example
 ```python
-from negative_correlation_ensemble import NCLEnsemble
+from chekml.ensemble.negative_correlation_ensemble import NCLEnsemble
 import numpy as np
 from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
@@ -159,12 +166,19 @@ Learns through **rewards** (−MSE) over multiple episodes, balancing **explorat
 
 ### Usage Example
 ```python
-from rl_ensemble import RLEnsemble
+from chekml.ensemble.rl_ensemble import RLEnsemble
 import numpy as np
 from sklearn.linear_model import LinearRegression
 from sklearn.svm import SVR
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.metrics import mean_squared_error
+
+# Sample data
+np.random.seed(42)
+X_reg = np.random.rand(100, 2) * 10
+y_reg = 2 * X_reg[:, 0] + 3 * X_reg[:, 1] + np.random.randn(100)
+X_train_reg, X_test_reg = X_reg[:80], X_reg[80:]
+y_train_reg, y_test_reg = y_reg[:80], y_reg[80:]
 
 models = {
     "Linear": LinearRegression(),
@@ -203,7 +217,7 @@ It performs an internal train-validation split to create meta-features, enabling
 
 ### Usage Example
 ```python
-from hierarchical_stacking import HierarchicalStacking
+from chekml.ensemble.hierarchical_stacking import HierarchicalStacking
 import numpy as np
 from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
