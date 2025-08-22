@@ -1,4 +1,4 @@
-## 1.InequalityFeaturizer
+## 1. InequalityFeaturizer
 
 ## All Available Parameters
 
@@ -128,7 +128,7 @@ cInequality inequalities[] = {
 - Mutual Information Scores: Printed and optionally saved to report_path.
 - CSV Output: New `DataFrame` saved to `csv_path` if specified.
 
-## 2.InformationRepurposedFeaturizer
+## 2. InformationRepurposedFeaturizer
 
 ### All Available Parameters
 
@@ -280,7 +280,7 @@ print(metric_scores_df)
 print("\nNumber of trained models:", len(trained_models))
 ```
 
-### 3.Metaheuristic Featurizer
+## 3. Metaheuristic Featurizer
 - Based on the provided code in `MhF.py` and `runMhF.py` the `MetaheuristicFeaturizer` function accepts the following parameters:
 
 - Function: `MetaheuristicFeaturizer`:
@@ -441,7 +441,7 @@ for model_name, model in models.items():
 - The Wrapper class must be properly configured and compiled (refer to its documentation).
 - Metaheuristic optimization can be computationally intensive; adjust wrapper_population_size and wrapper_max_iter based on available resources.
 
-## 4.Featurizer Pipeline
+## 4. Featurizer Pipeline
 - Based on the provided code in featurizer_pipeline.py and example.py, the FeaturizerPipeline class and its methods accept the following parameters:
 
 - Class Initialization (`__init__`):
