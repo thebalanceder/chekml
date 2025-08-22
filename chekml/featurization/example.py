@@ -1,9 +1,9 @@
 import pandas as pd
 import numpy as np
 from sklearn.datasets import make_classification, make_regression
-from chekml.featurization.IF import InequalityFeaturizer
-from chekml.featurization.IRF import InformationRepurposedFeaturizer
-from chekml.featurization.MhF import MetaheuristicFeaturizer
+from IF.v2.inequality_based_featurization import InequalityFeaturizer
+from IRF.v4.information_repurposed_featurization import InformationRepurposedFeaturizer
+from MhF.MhF import MetaheuristicFeaturizer
 from sklearn.tree import DecisionTreeRegressor
 from xgboost import XGBRegressor
 

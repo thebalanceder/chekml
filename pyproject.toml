@@ -1,6 +1,6 @@
 [project]
 name = "chekml"
-version = "0.1.2"
+version = "0.1.3"
 description = "A versatile library for data manipulation"
 readme = "README.md"
 authors = [

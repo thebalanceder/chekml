@@ -1,13 +1,12 @@
 import pandas as pd
 import numpy as np
-from sklearn.feature_selection import VarianceThreshold, SelectKBest, chi2, f_classif, f_regression, mutual_info_classif, mutual_info_regression, RFE, RFECV
+from sklearn.feature_selection import VarianceThreshold, SelectKBest, chi2, f_classif, f_regression, mutual_info_classif, mutual_info_regression, RFE
 from sklearn.linear_model import LogisticRegression, LinearRegression, Lasso, Ridge, ElasticNet
 from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
 from sklearn.model_selection import cross_val_score
 from sklearn.preprocessing import StandardScaler
-from sklearn.metrics import make_scorer, accuracy_score, mean_squared_error
+from sklearn.metrics import accuracy_score, mean_squared_error
 import xgboost as xgb
-from wrapper import Wrapper  # From uploaded files
 import logging
 import warnings
 
@@ -15,7 +14,17 @@ import warnings
 warnings.filterwarnings("ignore")
 logging.basicConfig(level=logging.INFO)
 
-def MetaheuristicFeaturizer(dataframes, top_n=5, problem_type="classification"):
+def MetaheuristicFeaturizer(
+    dataframes, 
+    top_n=5, 
+    problem_type="classification",
+    model=None,
+    scorer=None,
+    wrapper_method="DISO",
+    wrapper_population_size=20,
+    wrapper_max_iter=50,
+    **wrapper_kwargs
+):
     """
     Selects feature combinations from multiple DataFrames by merging them and ensuring a single 'target' column.
     
@@ -23,6 +32,12 @@ def MetaheuristicFeaturizer(dataframes, top_n=5, problem_type="classification"):
     - dataframes (list): List of pandas DataFrames, each with a 'target' column.
     - top_n (int): Number of top features to select for filter methods.
     - problem_type (str): 'classification' or 'regression'.
+    - model: Custom model instance for metaheuristic objective function and wrapper methods. If None, uses default based on problem_type.
+    - scorer: Custom scorer for cross_val_score. If None, uses default based on problem_type ('accuracy' for classification, 'neg_mean_squared_error' for regression).
+    - wrapper_method (str): Method for the Wrapper optimizer (e.g., "DISO").
+    - wrapper_population_size (int): Population size for the Wrapper optimizer.
+    - wrapper_max_iter (int): Maximum iterations for the Wrapper optimizer.
+    - **wrapper_kwargs: Additional keyword arguments for Wrapper initialization.
     
     Returns:
     - dict: Dictionary of DataFrames, each with selected features and 'target'.
@@ -88,6 +103,12 @@ def MetaheuristicFeaturizer(dataframes, top_n=5, problem_type="classification"):
     scaler = StandardScaler()
     X_scaled = pd.DataFrame(scaler.fit_transform(X), columns=X.columns)
     
+    # Determine default model and scorer if not provided
+    if model is None:
+        model = LogisticRegression() if problem_type == "classification" else LinearRegression()
+    if scorer is None:
+        scorer = "accuracy" if problem_type == "classification" else "neg_mean_squared_error"
+    
     # 1. Filter Methods
     logging.info("Applying filter methods...")
     
@@ -143,8 +164,7 @@ def MetaheuristicFeaturizer(dataframes, top_n=5, problem_type="classification"):
     
     # 2. Wrapper Methods
     logging.info("Applying wrapper methods...")
-    estimator = LogisticRegression() if problem_type == "classification" else LinearRegression()
-    rfe = RFE(estimator=estimator, n_features_to_select=top_n)
+    rfe = RFE(estimator=model, n_features_to_select=top_n)
     rfe.fit(X_scaled, y)
     rfe_features = X.columns[rfe.support_].tolist()
     selected_dfs["RFE"] = pd.concat([X[rfe_features], y], axis=1)
@@ -152,28 +172,52 @@ def MetaheuristicFeaturizer(dataframes, top_n=5, problem_type="classification"):
     # 3. Embedded Methods
     logging.info("Applying embedded methods...")
     
-    # Lasso
-    lasso = Lasso(alpha=0.1)
-    lasso.fit(X_scaled, y)
-    lasso_features = X.columns[lasso.coef_ != 0].tolist()
-    if len(lasso_features) > top_n:
-        lasso_features = lasso_features[:top_n]
-    selected_dfs["Lasso"] = pd.concat([X[lasso_features], y], axis=1)
-    
-    # Ridge (select top features based on coefficient magnitude)
-    ridge = Ridge(alpha=1.0)
-    ridge.fit(X_scaled, y)
-    ridge_coef = pd.Series(np.abs(ridge.coef_), index=X.columns)
-    ridge_features = ridge_coef.nlargest(top_n).index.tolist()
-    selected_dfs["Ridge"] = pd.concat([X[ridge_features], y], axis=1)
-    
-    # ElasticNet
-    elastic = ElasticNet(alpha=0.1, l1_ratio=0.5)
-    elastic.fit(X_scaled, y)
-    elastic_features = X.columns[elastic.coef_ != 0].tolist()
-    if len(elastic_features) > top_n:
-        elastic_features = elastic_features[:top_n]
-    selected_dfs["ElasticNet"] = pd.concat([X[elastic_features], y], axis=1)
+    if problem_type == "classification":
+        # Lasso-like (L1 penalty)
+        lasso_model = LogisticRegression(penalty='l1', solver='liblinear', max_iter=1000)
+        lasso_model.fit(X_scaled, y)
+        lasso_features = X.columns[lasso_model.coef_[0] != 0].tolist()
+        if len(lasso_features) > top_n:
+            lasso_features = lasso_features[:top_n]
+        selected_dfs["Lasso"] = pd.concat([X[lasso_features], y], axis=1)
+        
+        # Ridge-like (L2 penalty)
+        ridge_model = LogisticRegression(penalty='l2', solver='liblinear', max_iter=1000)
+        ridge_model.fit(X_scaled, y)
+        ridge_coef = pd.Series(np.abs(ridge_model.coef_[0]), index=X.columns)
+        ridge_features = ridge_coef.nlargest(top_n).index.tolist()
+        selected_dfs["Ridge"] = pd.concat([X[ridge_features], y], axis=1)
+        
+        # ElasticNet-like
+        elastic_model = LogisticRegression(penalty='elasticnet', solver='saga', l1_ratio=0.5, max_iter=1000)
+        elastic_model.fit(X_scaled, y)
+        elastic_features = X.columns[elastic_model.coef_[0] != 0].tolist()
+        if len(elastic_features) > top_n:
+            elastic_features = elastic_features[:top_n]
+        selected_dfs["ElasticNet"] = pd.concat([X[elastic_features], y], axis=1)
+    else:
+        # Lasso
+        lasso_model = Lasso(alpha=0.1)
+        lasso_model.fit(X_scaled, y)
+        lasso_features = X.columns[lasso_model.coef_ != 0].tolist()
+        if len(lasso_features) > top_n:
+            lasso_features = lasso_features[:top_n]
+        selected_dfs["Lasso"] = pd.concat([X[lasso_features], y], axis=1)
+        
+        # Ridge
+        ridge_model = Ridge(alpha=1.0)
+        ridge_model.fit(X_scaled, y)
+        ridge_coef = pd.Series(np.abs(ridge_model.coef_), index=X.columns)
+        ridge_features = ridge_coef.nlargest(top_n).index.tolist()
+        selected_dfs["Ridge"] = pd.concat([X[ridge_features], y], axis=1)
+        
+        # ElasticNet
+        elastic_model = ElasticNet(alpha=0.1, l1_ratio=0.5)
+        elastic_model.fit(X_scaled, y)
+        elastic_features = X.columns[elastic_model.coef_ != 0].tolist()
+        if len(elastic_features) > top_n:
+            elastic_features = elastic_features[:top_n]
+        selected_dfs["ElasticNet"] = pd.concat([X[elastic_features], y], axis=1)
     
     # RandomForest
     rf = RandomForestClassifier() if problem_type == "classification" else RandomForestRegressor()
@@ -192,7 +236,7 @@ def MetaheuristicFeaturizer(dataframes, top_n=5, problem_type="classification"):
     # 4. Metaheuristic Methods
     logging.info("Applying metaheuristic methods...")
     
-    def objective_function(solution, X, y, problem_type):
+    def objective_function(solution, X, y, model, scorer):
         """Objective function for metaheuristic feature selection."""
         if hasattr(solution, "contents"):  # Handle ctypes pointer
             solution = np.ctypeslib.as_array(solution, shape=(X.shape[1],))
@@ -203,33 +247,33 @@ def MetaheuristicFeaturizer(dataframes, top_n=5, problem_type="classification"):
         # Convert solution to binary (select features where value > 0.5)
         selected = [i for i, val in enumerate(solution) if val > 0.5]
         if not selected:
-            return float('inf')
+            return float('inf') if "neg_" in str(scorer) else -float('inf')
         
         selected_features = X.columns[selected].tolist()
         X_subset = X[selected_features]
         
-        # Choose model and scoring
-        model = LogisticRegression() if problem_type == "classification" else LinearRegression()
-        scoring = "accuracy" if problem_type == "classification" else "neg_mean_squared_error"
-        
         try:
-            scores = cross_val_score(model, X_subset, y, cv=3, scoring=scoring)
-            return -scores.mean()  # Minimize negative score
+            scores = cross_val_score(model, X_subset, y, cv=3, scoring=scorer)
+            mean_score = scores.mean()
+            # For maximization scorers (e.g., accuracy), negate to minimize
+            # For minimization (e.g., neg_mse), return as is (since it's negative)
+            return -mean_score if "neg_" not in str(scorer) else mean_score
         except Exception as e:
             logging.error(f"Error in metaheuristic optimization: {e}")
-            return float('inf')
+            return float('inf') if "neg_" not in str(scorer) else -float('inf')
     
     # Initialize optimizer
     optimizer = Wrapper(
         dim=X.shape[1],
         bounds=[(0, 1)] * X.shape[1],  # Binary selection
-        population_size=20,
-        max_iter=50,
-        method="DISO"
+        population_size=wrapper_population_size,
+        max_iter=wrapper_max_iter,
+        method=wrapper_method,
+        **wrapper_kwargs
     )
     
     try:
-        optimizer.optimize(lambda sol: objective_function(sol, X, y, problem_type))
+        optimizer.optimize(lambda sol: objective_function(sol, X, y, model, scorer))
         best_solution, _ = optimizer.get_best_solution()
         selected_indices = [i for i, val in enumerate(best_solution) if val > 0.5]
         meta_features = X.columns[selected_indices].tolist()

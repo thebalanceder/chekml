@@ -10,7 +10,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 try:
-    from ineq_cython import compute_features_cython
+    from IF.v2.ineq_cython import compute_features_cython
 except ImportError:
     print("Cython module not found. Please compile ineq_cython.pyx first.")
     compute_features_cython = None
@@ -18,8 +18,8 @@ except ImportError:
 class InequalityFeaturizer:
     def __init__(self):
         self.user_inequalities = {}  # name: source_code (for reference only)
-        self.c_file_path = "inequalities.c"
-        self.cython_file_path = "ineq_cython.pyx"
+        self.c_file_path = os.path.join(os.path.dirname(__file__),"inequalities.c")
+        self.cython_file_path = os.path.join(os.path.dirname(__file__),"ineq_cython.pyx")
         self.default_inequalities = [
             "am", "gm", "hm", "qm", "pm3", "pm_neg1", "lehmer2", "lehmer05",
             "log_mean", "identric", "heronian", "contra_hm", "rms",

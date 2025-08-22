@@ -1,7 +1,15 @@
-exclude testing/*
-exclude testing/**/*
-exclude documentation/*
-exclude documentation/**/*
-include README.md
+# Always include important metadata
 include LICENSE
+include README.md
+include pyproject.toml
+
+# Include the source tree
+graft chekml
+
+# Exclude unwanted dirs
+prune testing
+prune documentation
+prune dist
+prune __pycache__
+prune *.egg-info
 

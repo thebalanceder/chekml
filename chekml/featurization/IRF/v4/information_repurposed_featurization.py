@@ -15,7 +15,7 @@ import cloudpickle
 import os
 import copy
 from joblib import Parallel, delayed
-import metrics  # Pybind11 module with OpenCL
+from IRF.v4 import metrics  # Pybind11 module with OpenCL
 warnings.filterwarnings("ignore")
 
 def custom_digitize(data, bins):
