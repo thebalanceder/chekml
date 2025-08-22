@@ -1,15 +1,18 @@
-# Always include important metadata
 include LICENSE
 include README.md
 include pyproject.toml
 
-# Include the source tree
 graft chekml
 
-# Exclude unwanted dirs
 prune testing
 prune documentation
 prune dist
+prune build
 prune __pycache__
-prune *.egg-info
+
+global-exclude *.o
+global-exclude *.pyc
+global-exclude *.pyo
+global-exclude *.pyd
+global-exclude *.pdb
 
