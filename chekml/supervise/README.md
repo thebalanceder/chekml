@@ -24,7 +24,7 @@ This transforms the standard SVM optimization into a **weighted SVM problem**, w
 ```python
 import numpy as np
 from sklearn.datasets import make_classification
-from FuSVM import FuzzySVM  # Assuming the file is named FuSVM.py
+from chekml.supervise.FuSVM import FuzzySVM  # Assuming the file is named FuSVM.py
 
 # Generate synthetic data
 X, y = make_classification(n_samples=1000, n_features=20, random_state=42)
@@ -78,7 +78,7 @@ import numpy as np
 from sklearn.datasets import make_classification
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
-from TwinSVM import TwinSVM
+from chekml.supervise.TwinSVM import TwinSVM
 
 # Generate binary dataset (labels -1 and +1)
 X, y = make_classification(n_samples=1000, n_features=20, n_classes=2, random_state=42)
@@ -96,7 +96,7 @@ print(classification_report(y_test, y_pred))
 
 ### Multi-class TwinSVM
 ```python
-from TwinSVM import MultiClassTwinSVM
+from chekml.supervise.TwinSVM import MultiClassTwinSVM
 from sklearn.datasets import make_classification
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
@@ -147,7 +147,7 @@ import numpy as np
 from sklearn.datasets import make_classification
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, f1_score
-from HDT import HellingerDecisionTree
+from chekml.supervise.HDT import HellingerDecisionTree
 
 # Generate imbalanced dataset
 X, y = make_classification(
@@ -211,7 +211,7 @@ import time
 from sklearn.datasets import make_classification
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
-from PSVC import ProximalSVM
+from chekml.supervise.PSVC import ProximalSVM
 
 # Generate dataset (labels -1/1)
 X, y = make_classification(n_samples=5000, n_features=20, random_state=42)
@@ -268,7 +268,7 @@ Where:
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
-from SMM import SupportMatrixMachine
+from chekml.supervise.SMM import SupportMatrixMachine
 
 # Generate synthetic matrix data (labels -1/1)
 np.random.seed(42)
@@ -337,7 +337,7 @@ This makes FFLR suitable for **both exact solutions** (small/medium datasets) an
 import dask.array as da
 import time
 from sklearn.metrics import mean_squared_error
-from FFLR import FFLR  # Or use FFLR_ from FFLR_.py
+from chekml.supervise.FFLR import FFLR  # Or use FFLR_ from FFLR_.py
 
 # Generate large Dask dataset
 X = da.random.random((1000000, 10), chunks=(100000, 10))
