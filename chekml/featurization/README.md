@@ -1,59 +1,39 @@
-Available Parameters for InequalityFeaturizer
-Based on the provided code, the InequalityFeaturizer class and its methods accept the following parameters:
+## InequalityFeaturizer
 
-Class Initialization (__init__):
+## All Available Parameters
 
-No parameters are required for initialization.
-Initializes with a list of default inequalities (e.g., am, gm, hm, etc.) and sets paths for C and Cython files.
+Method: `add_inequality(name, source_code)`:
+`name`: String, the name of the user-defined inequality.
+`source_code`: String, the Python source code for the inequality (stored for reference, requires manual C implementation).
 
+Method: `delete_inequality(name)`:
+`name`: String, the name of the user-defined inequality to remove.
 
-Method: add_inequality(name, source_code):
-
-name: String, the name of the user-defined inequality.
-source_code: String, the Python source code for the inequality (stored for reference, requires manual C implementation).
-
-
-Method: delete_inequality(name):
-
-name: String, the name of the user-defined inequality to remove.
-
-
-Method: delete_all_inequalities():
-
+Method: `delete_all_inequalities()`:
 No parameters.
 Removes all user-defined inequalities.
 
-
-Method: print_inequalities():
-
+Method: `print_inequalities()`:
 No parameters.
 Prints all default and user-defined inequalities.
 
-
-Method: featurize(df, level=1, stage=1, csv_path=None, report_path=None):
-
-df: Pandas DataFrame, the input data containing features and a target column.
-level: Integer, the maximum number of features to combine when generating inequality-based features (default: 1).
-stage: Integer, the number of top inequalities to select for each feature combination based on their average absolute value (default: 1).
-csv_path: String or None, path to save the resulting DataFrame as a CSV file (must end with .csv, default: None).
-report_path: String or None, path to save the mutual information scores report as a text file (must end with .txt, default: None).
-
-
+Method: `featurize(df, level=1, stage=1, csv_path=None, report_path=None)`:
+`df`: Pandas DataFrame, the input data containing features and a target column.
+`level`: Integer, the maximum number of features to combine when generating inequality-based features (default: 1).
+`stage`: Integer, the number of top inequalities to select for each feature combination based on their average absolute value (default: 1).
+`csv_path`: String or None, path to save the resulting DataFrame as a CSV file (must end with .csv, default: None).
+`report_path`: String or None, path to save the mutual information scores report as a text file (must end with .txt, default: None).
 
 Algorithm of InequalityFeaturizer
 The InequalityFeaturizer is designed to create new features for a dataset by applying mathematical inequalities to combinations of input features, implemented efficiently using C and Cython for performance. Here’s how the algorithm works:
 
 Initialization:
-
 The class initializes with a predefined list of inequalities (e.g., arithmetic mean (am), geometric mean (gm), harmonic mean (hm), etc.) defined in inequalities.c.
 It sets up paths for the C implementation (inequalities.c) and Cython interface (ineq_cython.pyx).
 
-
-Adding/Deleting Inequalities:
-
-Users can add custom inequalities via add_inequality, but the Python source code is only stored for reference. The actual implementation must be manually added to inequalities.c and inequalities.h, followed by recompilation.
+### Adding/Deleting Inequalities:
+- Users can add custom inequalities via add_inequality, but the Python source code is only stored for reference. The actual implementation must be manually added to inequalities.c and inequalities.h, followed by recompilation.
 delete_inequality and delete_all_inequalities remove user-defined inequalities from the internal dictionary, but manual removal from C files is required.
-
 
 Featurization Process (featurize method):
 
