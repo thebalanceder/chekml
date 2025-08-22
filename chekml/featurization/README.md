@@ -2,95 +2,80 @@
 
 ## All Available Parameters
 
-Method: `add_inequality(name, source_code)`:
-`name`: String, the name of the user-defined inequality.
-`source_code`: String, the Python source code for the inequality (stored for reference, requires manual C implementation).
+- Method: `add_inequality(name, source_code)`:
+  - `name`: String, the name of the user-defined inequality.
+  - `source_code`: String, the Python source code for the inequality (stored for reference, requires manual C implementation).
 
-Method: `delete_inequality(name)`:
-`name`: String, the name of the user-defined inequality to remove.
+- Method: `delete_inequality(name)`:
+  - `name`: String, the name of the user-defined inequality to remove.
 
-Method: `delete_all_inequalities()`:
-No parameters.
-Removes all user-defined inequalities.
+- Method: `delete_all_inequalities()`:
+  - No parameters.
+  - Removes all user-defined inequalities.
 
-Method: `print_inequalities()`:
-No parameters.
-Prints all default and user-defined inequalities.
+- Method: `print_inequalities()`:
+  - No parameters.
+  - Prints all default and user-defined inequalities.
 
-Method: `featurize(df, level=1, stage=1, csv_path=None, report_path=None)`:
-`df`: Pandas DataFrame, the input data containing features and a target column.
-`level`: Integer, the maximum number of features to combine when generating inequality-based features (default: 1).
-`stage`: Integer, the number of top inequalities to select for each feature combination based on their average absolute value (default: 1).
-`csv_path`: String or None, path to save the resulting DataFrame as a CSV file (must end with .csv, default: None).
-`report_path`: String or None, path to save the mutual information scores report as a text file (must end with .txt, default: None).
+- Method: `featurize(df, level=1, stage=1, csv_path=None, report_path=None)`:
+  - `df`: Pandas DataFrame, the input data containing features and a target column.
+  - `level`: Integer, the maximum number of features to combine when generating inequality-based features (default: 1).
+  - `stage`: Integer, the number of top inequalities to select for each feature combination based on their average absolute value (default: 1).
+  - `csv_path`: String or None, path to save the resulting DataFrame as a CSV file (must end with .csv, default: None).
+  - `report_path`: String or None, path to save the mutual information scores report as a text file (must end with .txt, default: None).
 
-Algorithm of InequalityFeaturizer
-The InequalityFeaturizer is designed to create new features for a dataset by applying mathematical inequalities to combinations of input features, implemented efficiently using C and Cython for performance. Here’s how the algorithm works:
+### Algorithm of InequalityFeaturizer
+- The InequalityFeaturizer is designed to create new features for a dataset by applying mathematical inequalities to combinations of input features, implemented efficiently using C and Cython for performance. Here’s how the algorithm works:
 
-Initialization:
-The class initializes with a predefined list of inequalities (e.g., arithmetic mean (am), geometric mean (gm), harmonic mean (hm), etc.) defined in inequalities.c.
-It sets up paths for the C implementation (inequalities.c) and Cython interface (ineq_cython.pyx).
+### Initialization:
+- The class initializes with a predefined list of inequalities (e.g., arithmetic mean (am), geometric mean (gm), harmonic mean (hm), etc.) defined in inequalities.c.
+- It sets up paths for the C implementation (inequalities.c) and Cython interface (ineq_cython.pyx).
 
 ### Adding/Deleting Inequalities:
-- Users can add custom inequalities via add_inequality, but the Python source code is only stored for reference. The actual implementation must be manually added to inequalities.c and inequalities.h, followed by recompilation.
-delete_inequality and delete_all_inequalities remove user-defined inequalities from the internal dictionary, but manual removal from C files is required.
+- Users can add custom inequalities via `add_inequality`, but the Python source code is only stored for reference. The actual implementation must be manually added to `inequalities.c` and `inequalities.h`, followed by recompilation.
+- `delete_inequality` and `delete_all_inequalities` remove user defined inequalities from the internal dictionary, but manual removal from C files is required.
 
-Featurization Process (featurize method):
+### Featurization Process (featurize method):
+- Input Validation: Ensures the input DataFrame has no NaN values and contains a target column.
+- Data Preparation: Extracts features (excluding target) and converts them to a NumPy array for C compatibility.
 
-Input Validation: Ensures the input DataFrame has no NaN values and contains a target column.
-Data Preparation: Extracts features (excluding target) and converts them to a NumPy array for C compatibility.
-Feature Combination:
+### Feature Combination:
+- Generates combinations of features up to the specified level (e.g., level=2 means pairs of features).
+- For each combination, applies all defined inequalities (from inequalities[] in inequalities.c).
 
-Generates combinations of features up to the specified level (e.g., level=2 means pairs of features).
-For each combination, applies all defined inequalities (from inequalities[] in inequalities.c).
+### Inequality Computation:
+- Each inequality function (e.g., am, gm) takes a subset of features and computes a value for each row.
+- Functions handle edge cases (e.g., using `MIN_VALUE` to avoid division by zero).
+- Special cases for two inputs are implemented for some inequalities (e.g., log_mean, seiffert).
 
+### Feature Selection:
+- Computes the average absolute value of each inequality’s output across rows.
+- Sorts inequalities by this value and selects the top stage inequalities for each combination.
 
-Inequality Computation:
+### Output:
+- Creates new features in the DataFrame with names like `f_<feature_indices>_<inequality_name>` (e.g., `f_0_1_am` for arithmetic mean of features 0 and 1).
+- Computes mutual information scores between each feature (original and new) and the target using `mutual_info_regression`.
+- Optionally saves the new DataFrame to `csv_path` and mutual information scores to `report_path`.
 
-Each inequality function (e.g., am, gm) takes a subset of features and computes a value for each row.
-Functions handle edge cases (e.g., using MIN_VALUE to avoid division by zero).
-Special cases for two inputs are implemented for some inequalities (e.g., log_mean, seiffert).
+### C/Cython Integration:
+- The compute_features function in inequalities.c handles the core computation, called via the Cython wrapper compute_features_cython.
+- The Cython module optimizes memory management and data transfer between Python and C.
 
+### Compilation:
+- The build.sh script compiles the Cython file (ineq_cython.pyx) to C and then compiles the C code with inequalities.c into a shared library (ineq_cython.so).
+- This requires cython, gcc, NumPy, and Python development headers.
 
-Feature Selection:
+### Mutual Information:
+-After generating new features, the algorithm computes mutual information scores to quantify the relevance of each feature to the target, aiding in feature selection or analysis.
 
-Computes the average absolute value of each inequality’s output across rows.
-Sorts inequalities by this value and selects the top stage inequalities for each combination.
+### Usage
+- The InequalityFeaturizer class allows you to:
+  - Apply default inequalities (e.g., arithmetic mean, geometric mean, etc.) to feature combinations.
+  - Add or delete user-defined inequalities (requires manual C implementation).
+  - Generate new features and compute mutual information scores.
 
-
-Output:
-
-Creates new features in the DataFrame with names like f_<feature_indices>_<inequality_name> (e.g., f_0_1_am for arithmetic mean of features 0 and 1).
-Computes mutual information scores between each feature (original and new) and the target using mutual_info_regression.
-Optionally saves the new DataFrame to csv_path and mutual information scores to report_path.
-
-
-C/Cython Integration:
-
-The compute_features function in inequalities.c handles the core computation, called via the Cython wrapper compute_features_cython.
-The Cython module optimizes memory management and data transfer between Python and C.
-
-
-
-
-Compilation:
-
-The build.sh script compiles the Cython file (ineq_cython.pyx) to C and then compiles the C code with inequalities.c into a shared library (ineq_cython.so).
-This requires cython, gcc, NumPy, and Python development headers.
-
-
-Mutual Information:
-
-After generating new features, the algorithm computes mutual information scores to quantify the relevance of each feature to the target, aiding in feature selection or analysis.
-
-Usage
-The InequalityFeaturizer class allows you to:
-
-Apply default inequalities (e.g., arithmetic mean, geometric mean, etc.) to feature combinations.
-Add or delete user-defined inequalities (requires manual C implementation).
-Generate new features and compute mutual information scores.
-
-Example
+### Example
+```python
 pythonimport pandas as pd
 import numpy as np
 from inequality_based_featurization import InequalityFeaturizer
@@ -132,7 +117,8 @@ result_df = featurizer.featurize(
 # View results
 print("\nFirst few rows of resulting DataFrame:")
 print(result_df.head())
-Parameters
+```
+### Parameters
 
 featurize(df, level=1, stage=1, csv_path=None, report_path=None):
 
