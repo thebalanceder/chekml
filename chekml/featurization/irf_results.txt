@@ -1,0 +1,889 @@
+Feature Mutual Information with Target:
+feature1: 0.0000
+feature2: 0.0054
+feature3: 0.0000
+feature4: 0.6018
+feature5: 0.0000
+feature6: 0.0557
+feature7: 0.0897
+feature8: 0.1215
+feature9: 0.0090
+feature10: 0.0000
+target: 0.0134
+f_0_am: 0.0000
+f_0_qm: 0.0021
+f_0_log_mean: 0.0112
+f_1_am: 0.0076
+f_1_qm: 0.0000
+f_1_log_mean: 0.0000
+f_2_am: 0.0110
+f_2_qm: 0.0000
+f_2_log_mean: 0.0000
+f_3_am: 0.0000
+f_3_qm: 0.0000
+f_3_log_mean: 0.0005
+f_4_am: 0.0000
+f_4_qm: 0.0000
+f_4_log_mean: 0.0063
+f_5_am: 0.0140
+f_5_qm: 0.0118
+f_5_log_mean: 0.0167
+f_6_am: 0.0000
+f_6_qm: 0.0000
+f_6_log_mean: 0.0000
+f_7_am: 0.0000
+f_7_qm: 0.0040
+f_7_log_mean: 0.0067
+f_8_am: 0.0210
+f_8_qm: 0.0027
+f_8_log_mean: 0.0000
+f_9_am: 0.0114
+f_9_qm: 0.0000
+f_9_log_mean: 0.0000
+f_0_1_qm: 0.0000
+f_0_1_lehmer4: 0.0000
+f_0_1_lehmer3: 0.0000
+f_0_2_qm: 0.0050
+f_0_2_lehmer4: 0.0000
+f_0_2_lehmer3: 0.0000
+f_0_3_qm: 0.0000
+f_0_3_lehmer4: 0.0017
+f_0_3_lehmer3: 0.0095
+f_0_4_qm: 0.0100
+f_0_4_lehmer4: 0.0110
+f_0_4_lehmer3: 0.0000
+f_0_5_qm: 0.0037
+f_0_5_lehmer4: 0.0000
+f_0_5_lehmer3: 0.0000
+f_0_6_qm: 0.0000
+f_0_6_lehmer4: 0.0000
+f_0_6_lehmer3: 0.0000
+f_0_7_qm: 0.0000
+f_0_7_lehmer4: 0.0000
+f_0_7_lehmer3: 0.0174
+f_0_8_qm: 0.0041
+f_0_8_lehmer4: 0.0000
+f_0_8_lehmer3: 0.0000
+f_0_9_qm: 0.0349
+f_0_9_lehmer4: 0.0000
+f_0_9_lehmer3: 0.0000
+f_1_2_qm: 0.0088
+f_1_2_lehmer4: 0.0000
+f_1_2_lehmer3: 0.0156
+f_1_3_qm: 0.0000
+f_1_3_lehmer4: 0.0000
+f_1_3_lehmer3: 0.0000
+f_1_4_qm: 0.0111
+f_1_4_lehmer4: 0.0000
+f_1_4_lehmer3: 0.0090
+f_1_5_qm: 0.0000
+f_1_5_lehmer4: 0.0000
+f_1_5_lehmer3: 0.0000
+f_1_6_qm: 0.0000
+f_1_6_lehmer4: 0.0063
+f_1_6_lehmer3: 0.0008
+f_1_7_qm: 0.0000
+f_1_7_lehmer4: 0.0000
+f_1_7_lehmer3: 0.0082
+f_1_8_qm: 0.0000
+f_1_8_lehmer4: 0.0140
+f_1_8_lehmer3: 0.0000
+f_1_9_qm: 0.0093
+f_1_9_lehmer4: 0.0000
+f_1_9_lehmer3: 0.0000
+f_2_3_qm: 0.0000
+f_2_3_lehmer4: 0.0000
+f_2_3_lehmer3: 0.0000
+f_2_4_qm: 0.0000
+f_2_4_rms: 0.0001
+f_2_4_lehmer4: 0.0000
+f_2_5_qm: 0.0019
+f_2_5_lehmer4: 0.0000
+f_2_5_lehmer3: 0.0108
+f_2_6_qm: 0.0000
+f_2_6_rms: 0.0035
+f_2_6_lehmer4: 0.0000
+f_2_7_qm: 0.0033
+f_2_7_lehmer4: 0.0000
+f_2_7_lehmer3: 0.0092
+f_2_8_qm: 0.0000
+f_2_8_rms: 0.0049
+f_2_8_lehmer4: 0.0048
+f_2_9_qm: 0.0000
+f_2_9_rms: 0.0000
+f_2_9_lehmer4: 0.0000
+f_3_4_qm: 0.0000
+f_3_4_lehmer4: 0.0000
+f_3_4_lehmer3: 0.0000
+f_3_5_qm: 0.0000
+f_3_5_lehmer4: 0.0000
+f_3_5_lehmer3: 0.0000
+f_3_6_qm: 0.0000
+f_3_6_lehmer4: 0.0000
+f_3_6_lehmer3: 0.0000
+f_3_7_qm: 0.0000
+f_3_7_lehmer4: 0.0171
+f_3_7_lehmer3: 0.0095
+f_3_8_qm: 0.0002
+f_3_8_lehmer4: 0.0000
+f_3_8_lehmer3: 0.0079
+f_3_9_qm: 0.0087
+f_3_9_lehmer4: 0.0000
+f_3_9_lehmer3: 0.0000
+f_4_5_qm: 0.0135
+f_4_5_lehmer4: 0.0141
+f_4_5_lehmer3: 0.0000
+f_4_6_qm: 0.0090
+f_4_6_rms: 0.0119
+f_4_6_lehmer4: 0.0013
+f_4_7_qm: 0.0051
+f_4_7_lehmer4: 0.0000
+f_4_7_lehmer3: 0.0000
+f_4_8_qm: 0.0004
+f_4_8_rms: 0.0051
+f_4_8_lehmer4: 0.0000
+f_4_9_qm: 0.0000
+f_4_9_rms: 0.0000
+f_4_9_lehmer4: 0.0000
+f_5_6_qm: 0.0000
+f_5_6_lehmer4: 0.0000
+f_5_6_lehmer3: 0.0000
+f_5_7_qm: 0.0148
+f_5_7_lehmer4: 0.0074
+f_5_7_exp_mean: 0.0000
+f_5_8_qm: 0.0095
+f_5_8_lehmer4: 0.0051
+f_5_8_lehmer3: 0.0063
+f_5_9_qm: 0.0000
+f_5_9_lehmer4: 0.0000
+f_5_9_lehmer3: 0.0156
+f_6_7_qm: 0.0000
+f_6_7_lehmer4: 0.0000
+f_6_7_lehmer3: 0.0000
+f_6_8_qm: 0.0000
+f_6_8_rms: 0.0039
+f_6_8_lehmer4: 0.0046
+f_6_9_qm: 0.0000
+f_6_9_rms: 0.0000
+f_6_9_lehmer4: 0.0000
+f_7_8_qm: 0.0042
+f_7_8_lehmer4: 0.0000
+f_7_8_lehmer3: 0.0000
+f_7_9_qm: 0.0081
+f_7_9_lehmer4: 0.0028
+f_7_9_lehmer3: 0.0000
+f_8_9_qm: 0.0000
+f_8_9_rms: 0.0046
+
+Predictions DataFrame:
+   feature1  feature2  feature3  feature4  feature5  feature6  feature7  feature8  feature9  feature10      target    f_0_am    f_0_qm  f_0_log_mean    f_1_am    f_1_qm  f_1_log_mean    f_2_am    f_2_qm  f_2_log_mean    f_3_am    f_3_qm  f_3_log_mean    f_4_am    f_4_qm  f_4_log_mean    f_5_am    f_5_qm  f_5_log_mean    f_6_am    f_6_qm  f_6_log_mean    f_7_am    f_7_qm  f_7_log_mean    f_8_am    f_8_qm  f_8_log_mean    f_9_am    f_9_qm  f_9_log_mean  f_0_1_qm  f_0_1_lehmer4  f_0_1_lehmer3  f_0_2_qm  f_0_2_lehmer4  f_0_2_lehmer3  f_0_3_qm  f_0_3_lehmer4  f_0_3_lehmer3  f_0_4_qm  f_0_4_lehmer4  f_0_4_lehmer3  f_0_5_qm  f_0_5_lehmer4  f_0_5_lehmer3  f_0_6_qm  f_0_6_lehmer4  f_0_6_lehmer3  f_0_7_qm  f_0_7_lehmer4  f_0_7_lehmer3  f_0_8_qm  f_0_8_lehmer4  f_0_8_lehmer3  f_0_9_qm  f_0_9_lehmer4  f_0_9_lehmer3  f_1_2_qm  f_1_2_lehmer4  f_1_2_lehmer3  f_1_3_qm  f_1_3_lehmer4  f_1_3_lehmer3  f_1_4_qm  f_1_4_lehmer4  f_1_4_lehmer3  f_1_5_qm  f_1_5_lehmer4  f_1_5_lehmer3  f_1_6_qm  f_1_6_lehmer4  f_1_6_lehmer3  f_1_7_qm  f_1_7_lehmer4  f_1_7_lehmer3  f_1_8_qm  f_1_8_lehmer4  f_1_8_lehmer3  f_1_9_qm  f_1_9_lehmer4  f_1_9_lehmer3  f_2_3_qm  f_2_3_lehmer4  f_2_3_lehmer3  f_2_4_qm  f_2_4_rms  f_2_4_lehmer4  f_2_5_qm  f_2_5_lehmer4  f_2_5_lehmer3  f_2_6_qm  f_2_6_rms  f_2_6_lehmer4  f_2_7_qm  f_2_7_lehmer4  f_2_7_lehmer3  f_2_8_qm  f_2_8_rms  f_2_8_lehmer4  f_2_9_qm  f_2_9_rms  f_2_9_lehmer4  f_3_4_qm  f_3_4_lehmer4  f_3_4_lehmer3  f_3_5_qm  f_3_5_lehmer4  f_3_5_lehmer3  f_3_6_qm  f_3_6_lehmer4  f_3_6_lehmer3  f_3_7_qm  f_3_7_lehmer4  f_3_7_lehmer3  f_3_8_qm  f_3_8_lehmer4  f_3_8_lehmer3  f_3_9_qm  f_3_9_lehmer4  f_3_9_lehmer3  f_4_5_qm  f_4_5_lehmer4  f_4_5_lehmer3  f_4_6_qm  f_4_6_rms  f_4_6_lehmer4  f_4_7_qm  f_4_7_lehmer4  f_4_7_lehmer3  f_4_8_qm  f_4_8_rms  f_4_8_lehmer4  f_4_9_qm  f_4_9_rms  f_4_9_lehmer4  f_5_6_qm  f_5_6_lehmer4  f_5_6_lehmer3  f_5_7_qm  f_5_7_lehmer4  f_5_7_exp_mean      f_5_8_qm  f_5_8_lehmer4  f_5_8_lehmer3      f_5_9_qm  f_5_9_lehmer4  f_5_9_lehmer3  f_6_7_qm  f_6_7_lehmer4  f_6_7_lehmer3  f_6_8_qm  f_6_8_rms  f_6_8_lehmer4  f_6_9_qm  f_6_9_rms  f_6_9_lehmer4  f_7_8_qm  f_7_8_lehmer4  f_7_8_lehmer3  f_7_9_qm  f_7_9_lehmer4  f_7_9_lehmer3  f_8_9_qm  f_8_9_rms  f_8_9_lehmer4  feature1_decision_tree_pearson_identity  feature1_decision_tree_spearman_identity  feature2_decision_tree_pearson_identity
+0  1.262584  0.932591 -0.399636  0.224685 -1.760809  1.726964 -0.372833  0.722381 -1.525656  -1.418366  100.845305  1.262584 -0.295480     -0.692421 -1.406661 -2.872262      1.119575  1.340450 -0.622700     -0.213447  0.067518  0.572583      0.170416  0.097983 -0.055769     -1.382800 -1.119617  0.975545     -1.660961  0.243339  0.223239      1.133770 -0.186971  2.210523     -0.184902  0.628346  1.236093      0.592527  0.546734 -1.412304     -1.758739 -0.130143       0.447709      -0.202193  0.021272       0.424166      -1.059214 -1.295079       0.183360       0.656554  0.407052       0.751387      -1.230864  1.477530       0.404982      -0.208117  0.629629       1.812449      -0.503476  1.914031      -0.778305      -0.258905  0.142943      -0.276813      -0.744903  0.751933       0.321698      -0.281785  1.364140       0.474698      -1.555896 -0.291694      -1.142970       1.826010  0.346488      -0.808298      -0.645120  1.148446      -0.014452      -0.056946 -0.576892      -0.529053       0.029756  1.710613       0.223884      -1.103589 -0.309116       0.346504      -0.904317  0.881640      -0.351513      -0.805870  0.194090       0.895038      -0.530997 -1.430775   0.260322       1.496044  1.094192       1.050654       0.130741  0.852433   0.086144       0.507836 -0.773010       0.021312      -1.067533  0.673181  -0.385314      -1.197878 -0.968344  -0.224765      -1.987569  0.444603       0.296985      -0.051394 -0.370614       0.679598       0.196861  0.620672       1.628397      -1.763040  1.237816      -0.435486      -0.753418 -0.575818       0.852774       0.377300 -0.656894      -1.514847      -0.846961  0.774634       0.700310       1.139879  3.852731  -0.830950      -0.420984 -0.074446       0.444263       0.734878  0.760415   1.001046       2.145149  0.599929   1.380091       0.514439 -0.856084      -0.431620       2.010205 -0.810252      -0.196350        1.143754  5.425600e-01   7.011727e-01       1.271555  1.065480e+00       1.854093      -0.252354 -0.324831   2.720169e+00      -0.753736 -0.816936   0.551485      -1.022793  0.328762   0.026886  -5.640786e-01  0.853416      -0.437458       1.091507  1.696456      -0.987180       1.108704 -0.728003  -2.152891      -0.563725                               100.845305                                100.845305                               100.845305
+1 -0.295480 -0.370011 -0.109610 -0.088363  1.598647 -0.436386  0.006422  0.546284  0.560919  -0.258796   -1.282804 -0.372207  1.031000      0.559790  1.846637 -0.595661      0.555604  0.010353 -0.185288      0.593101 -1.006017  0.169361      1.542110  1.296995 -1.724918      0.645376  1.305479 -0.082151     -0.020902  0.399688  1.735964     -1.304470 -1.012104 -0.576510      0.293072 -0.018709 -0.576771     -0.919424 -0.170185 -1.200296     -0.612437  0.357015       1.149273       0.586857  1.108183       0.170865      -1.179040 -0.107302      -1.044809       0.351448 -0.192361       0.081829      -0.445503 -1.592994       0.536510      -0.649278 -0.544383       0.173181       1.471170  0.732640       2.153182       0.812526 -0.180480      -0.026406      -0.037635 -0.651836       0.736844      -1.081057  0.799942       2.445752      -0.753965  1.213098      -0.362441      -0.763259 -0.756351       1.201214       1.310309 -0.095296      -1.803140       0.166452 -0.089736       1.000582       0.413435  1.593187       0.150419      -0.252568  2.143944       0.428817      -0.643518  0.690144       0.213197      -0.334775  0.565510      -0.981509      -0.530258 -0.989628   0.949554      -2.619745 -0.580523       0.259883       0.621572 -0.550305  -0.471932       0.822545  0.621810      -0.803675      -1.478522  1.179440  -0.535328       0.742095 -0.112328   1.873298       1.037540 -0.365322      -0.223463      -0.173072 -1.519370      -0.949399       0.338484 -1.377669      -0.650643       0.337603 -0.161286      -1.222128      -0.167122 -0.446183      -0.927353      -0.294950  0.064474      -0.172627      -0.450065  0.181866       1.615376      -0.612789  0.466430   0.381935       0.829406 -0.234153      -0.244157      -1.407512  1.031845  -0.082681      -0.482744  1.642015   0.276691       0.963376  1.382159      -0.246062       1.727543  1.633432      -0.003603        0.440014  1.022570e+00  -7.848983e-01      -0.712846 -1.556629e+00      -0.268531       0.681891 -2.362932  -7.859895e-01       0.975120 -0.935439  -0.808494      -0.392108  0.996048   0.996267  -1.801058e+00  0.048860      -0.602212       0.159856 -0.315269       0.191099       0.511203 -2.471645   2.573360      -0.483186                                -1.282804                                 -1.282804                                -1.282804
+2 -0.692421 -1.320023  0.194607 -0.742471 -0.037037 -0.622649  1.695051  0.043602 -0.429302  -0.611769  -66.793627  1.098777  0.352055     -0.560181  1.173474  0.197600     -0.032695  1.529550 -1.801980      0.346448 -2.940389 -0.050238      0.068563 -0.551186 -0.114736      0.233216 -0.493001  0.122010     -0.909387 -2.896255 -1.710168     -0.024196 -0.333819  1.072507      0.754291 -0.026514  2.493000      1.409347 -1.334025  0.992042     -0.203580 -0.225776       0.856399       1.711708 -0.037222       0.497998      -0.185659 -1.563191       1.615583      -0.096713 -1.661520      -0.747212       0.207688 -0.349317      -0.055585       0.281191  0.609138      -2.848543       0.543360 -0.955540       2.075401      -0.214921  0.219150      -0.060661       0.674819  1.329153       1.775311      -0.922165  0.471468       0.217433      -0.059525  0.216459       1.148637       0.556230  1.532739       0.115026      -0.846357  1.702215      -1.435862       0.955142  1.392002       0.003046       1.538037 -1.224298       1.307143      -0.391649  0.395804      -1.867265       1.852278 -0.562467      -1.369803       0.171368  0.491919      -0.120381      -0.487911  0.035264  -1.438278      -0.477657 -0.677715      -0.857158       1.375707  0.917862  -1.351685       0.325796  0.560785       1.909417      -0.155677 -0.420645  -1.129052       0.815737 -0.681052  -0.168822      -0.692905  0.529693      -0.458884      -0.599375 -0.415288      -0.366824      -1.515744 -1.254289      -0.349258       1.676437 -0.138264       0.421921      -2.073390 -0.439731      -0.193659       1.374876 -2.153390      -0.815810       0.787085  0.507274       0.742127      -0.573700  1.187030   0.425458       1.881157  2.290943      -0.609783      -0.546859  1.049009   0.146793      -0.530869 -2.921350  -0.152470      -0.897254 -0.259547       0.357113       0.968645  0.536653       0.477041        2.231300 -4.294055e-01   1.772252e+00      -1.881849  1.135566e+00      -0.393339       0.677875 -1.129707   1.126565e+00      -1.668584  0.076852  -1.379618      -0.474904 -0.203674   0.924634   1.475356e+00 -0.978373       1.412221       0.579291 -2.039232       0.747910      -1.026515 -0.555477  -0.798297      -0.918652                               -66.793627                                -66.793627                               -66.793627
+3 -1.406661 -0.725744  0.026091  0.517659 -0.755383 -0.624819 -1.279577 -1.840874 -0.611518   0.186767  -63.099788  0.899600 -0.034988     -0.990536  0.612774  0.018434     -0.464617 -1.570876  2.056207     -0.026521 -0.034712  0.919076      1.579572 -0.019638  0.028181      0.034083 -1.150994 -0.883857     -0.669073  0.078635  0.872321     -0.072010  0.298753 -0.809604      0.114228 -0.860413  0.066991     -0.039555 -1.053682  0.109395     -1.692957  2.319330      -1.294681      -1.627542 -0.646573      -2.038125      -0.562168  0.607897       0.267127       0.289169 -0.676392       1.392465      -0.773789 -0.989605       2.403416       1.632411 -2.025143       0.176442       0.057013  0.224092      -0.319054      -0.955123  0.753342       0.199060      -0.107030 -0.982487      -2.553921       0.087047  1.669905      -1.236951       0.377100 -0.025554       0.064280       0.208864 -0.727137       1.677701      -0.460639 -1.713135       0.331980       1.301741  0.614167      -0.447322      -0.269875 -1.347126       0.473238      -1.096275  1.266911       0.493318       0.168461  0.515035      -0.592394      -0.487606  1.886186      -0.240325      -0.248691 -0.452306   0.975198      -0.673491 -0.939335       0.652323      -1.067620 -0.459361   1.217159       0.285865 -1.615132       1.030283       0.235615  1.579213   1.189470      -1.110576  0.267050   1.513450       0.122670 -0.688150       0.013002       0.822060 -0.167118       2.170943       0.038003  0.302635       1.503398      -1.021233  1.384273      -0.120948      -0.254977 -1.280429      -2.151815       0.583928  0.619154      -1.836205      -0.825497 -0.535963       0.915402       0.296120 -1.421811  -1.556582      -0.787784 -0.701992      -0.998385       1.265708 -0.772825  -1.359856      -0.137449  0.577072   0.013929      -1.225766 -1.090399       0.725096      -1.000331  0.913585       0.895193       -0.018513  2.560297e-01  -1.871443e-01      -0.027305  1.628616e+00      -2.530288      -0.558922 -0.832356  -5.176113e-01       1.550500  1.032546   0.222134       0.341756  0.672574  -2.696887   1.418366e+00  0.258796       0.611769       0.186767  0.513600       0.576557       0.309209  0.151785   1.448084       1.551152                               -63.099788                                -63.099788                               -63.099788
+4 -2.872262 -1.594703 -0.147603 -0.466037 -0.532701  0.323168 -1.768439  0.140886 -1.169917   0.513600  -33.828889  0.436714  0.817427      1.658109  0.573069  1.626275      0.733614  0.822040  0.021285      0.048266  0.615506  0.641419      0.764712  1.335310  1.736639      0.945085  0.885200  0.354562      0.836766  0.821388  0.885008      1.087735  0.152892  1.423448      0.393487  1.013699  0.731072      1.097515  1.366656  0.750500      0.201102  1.631432       0.309277       0.579661  0.732749       0.151504       0.791107  0.621681       0.745596       0.926306  0.979044       0.689990       2.325241  0.517049       0.279051       0.441018  0.469143       0.585052       0.598053  0.621241       1.284050       1.627012  1.208981       0.487968       0.747778  0.414840       1.455415       0.780655  0.531493       1.082751       0.611268  1.205932       0.834204       0.840802  2.893226       0.746262       0.381578  0.125609       0.919502       0.532905  0.623422       0.964903       1.531121  0.426656       0.983477       0.483325  0.618852       1.182314       1.486007  0.661085       0.303668       0.999021  0.417851       0.525003       1.341257  1.048797   1.312344       0.385178  1.183581       1.933375       0.864931  1.135286   0.427015       1.419597  1.178173       0.019181       0.505864  0.941798   0.635388       0.921829  1.628045   0.723406       0.920380  1.748348       1.620604       0.796443  1.458418       0.677165       0.323094  0.726302       0.926128       1.316563  1.237620       0.966443       0.322528  0.230324       1.535609       0.997579  1.799142       1.822501       0.815440  0.119999       0.739934       0.155276  0.249801   0.622090       0.585095  1.021790       1.979207       1.052297  1.063053   2.017045       0.846304  1.099644   0.840647       0.153288  0.966973       0.703246       0.674203  0.747549       0.522060        1.256768  1.000000e-10   1.000000e-10       0.517659  1.000000e-10       1.519030       1.340158  2.133033   1.000000e-10       0.330112  0.572583   0.161738       2.644214  1.227669   1.523124   1.000000e-10  1.005567       0.559790       1.842977  0.223239       1.072893       0.010353  2.210523   0.593101       0.628346                               -33.828889                                -33.828889                               -33.828889
+
+Metric Scores DataFrame:
+      feature_combo          model    metric loss_function     score  mutual_information direction
+0          feature1         linear   pearson      identity  0.029628        0.000000e+00  maximize
+1          feature1         linear  spearman      identity -0.023404        0.000000e+00  maximize
+2          feature1  decision_tree   pearson      identity  1.000000        4.039698e+00  maximize
+3          feature1  decision_tree  spearman      identity  1.000000        4.039698e+00  maximize
+4          feature2         linear   pearson      identity  0.031725        5.375592e-03  maximize
+5          feature2         linear  spearman      identity  0.046494        5.375592e-03  maximize
+6          feature2  decision_tree   pearson      identity  1.000000        4.039698e+00  maximize
+7          feature2  decision_tree  spearman      identity  1.000000        4.039698e+00  maximize
+8          feature3         linear   pearson      identity  0.034453        0.000000e+00  maximize
+9          feature3         linear  spearman      identity  0.000284        0.000000e+00  maximize
+10         feature3  decision_tree   pearson      identity  1.000000        4.039698e+00  maximize
+11         feature3  decision_tree  spearman      identity  1.000000        4.039698e+00  maximize
+12         feature4         linear   pearson      identity  0.814842        6.018078e-01  maximize
+13         feature4         linear  spearman      identity -0.015158        6.018078e-01  maximize
+14         feature4  decision_tree   pearson      identity  1.000000        4.039698e+00  maximize
+15         feature4  decision_tree  spearman      identity  1.000000        4.039698e+00  maximize
+16         feature5         linear   pearson      identity  0.049472        0.000000e+00  maximize
+17         feature5         linear  spearman      identity  0.043920        0.000000e+00  maximize
+18         feature5  decision_tree   pearson      identity  1.000000        4.039698e+00  maximize
+19         feature5  decision_tree  spearman      identity  1.000000        4.039698e+00  maximize
+20         feature6         linear   pearson      identity  0.452111        5.569775e-02  maximize
+21         feature6         linear  spearman      identity -0.040942        5.569775e-02  maximize
+22         feature6  decision_tree   pearson      identity  1.000000        4.039698e+00  maximize
+23         feature6  decision_tree  spearman      identity  1.000000        4.039698e+00  maximize
+24         feature7         linear   pearson      identity  0.125359        8.971197e-02  maximize
+25         feature7         linear  spearman      identity  0.037013        8.971197e-02  maximize
+26         feature7  decision_tree   pearson      identity  1.000000        4.039698e+00  maximize
+27         feature7  decision_tree  spearman      identity  1.000000        4.039698e+00  maximize
+28         feature8         linear   pearson      identity  0.363737        1.214895e-01  maximize
+29         feature8         linear  spearman      identity  0.089954        1.214895e-01  maximize
+30         feature8  decision_tree   pearson      identity  1.000000        4.039698e+00  maximize
+31         feature8  decision_tree  spearman      identity  1.000000        4.039698e+00  maximize
+32         feature9         linear   pearson      identity  0.050672        9.035825e-03  maximize
+33         feature9         linear  spearman      identity -0.050335        9.035825e-03  maximize
+34         feature9  decision_tree   pearson      identity  1.000000        4.039698e+00  maximize
+35         feature9  decision_tree  spearman      identity  1.000000        4.039698e+00  maximize
+36        feature10         linear   pearson      identity  0.055185        0.000000e+00  maximize
+37        feature10         linear  spearman      identity -0.049075        0.000000e+00  maximize
+38        feature10  decision_tree   pearson      identity  1.000000        4.039698e+00  maximize
+39        feature10  decision_tree  spearman      identity  1.000000        4.039698e+00  maximize
+40           f_0_am         linear   pearson      identity  0.045458        1.585664e-02  maximize
+41           f_0_am         linear  spearman      identity -0.034321        1.985340e-02  maximize
+42           f_0_am  decision_tree   pearson      identity  0.300948        7.288946e-02  maximize
+43           f_0_am  decision_tree  spearman      identity  0.004082        6.779007e-02  maximize
+44           f_0_qm         linear   pearson      identity  0.058522        0.000000e+00  maximize
+45           f_0_qm         linear  spearman      identity -0.044460        0.000000e+00  maximize
+46           f_0_qm  decision_tree   pearson      identity  0.296670        4.906691e-02  maximize
+47           f_0_qm  decision_tree  spearman      identity -0.006266        5.972487e-02  maximize
+48     f_0_log_mean         linear   pearson      identity  0.088191        2.076434e-03  maximize
+49     f_0_log_mean         linear  spearman      identity -0.047256        0.000000e+00  maximize
+50     f_0_log_mean  decision_tree   pearson      identity  0.300929        6.597878e-02  maximize
+51     f_0_log_mean  decision_tree  spearman      identity -0.020693        6.149478e-02  maximize
+52           f_1_am         linear   pearson      identity  0.003100        1.357459e-02  maximize
+53           f_1_am         linear  spearman      identity -0.037448        1.286030e-02  maximize
+54           f_1_am  decision_tree   pearson      identity  0.300948        6.531742e-02  maximize
+55           f_1_am  decision_tree  spearman      identity  0.004082        6.556127e-02  maximize
+56           f_1_qm         linear   pearson      identity  0.055360        1.444819e-02  maximize
+57           f_1_qm         linear  spearman      identity -0.042135        9.730034e-03  maximize
+58           f_1_qm  decision_tree   pearson      identity  0.288168        4.584065e-02  maximize
+59           f_1_qm  decision_tree  spearman      identity -0.004296        5.037995e-02  maximize
+60     f_1_log_mean         linear   pearson      identity  0.109670        0.000000e+00  maximize
+61     f_1_log_mean         linear  spearman      identity -0.016854        0.000000e+00  maximize
+62     f_1_log_mean  decision_tree   pearson      identity  0.300948        7.485374e-02  maximize
+63     f_1_log_mean  decision_tree  spearman      identity  0.004082        6.597395e-02  maximize
+64           f_2_am         linear   pearson      identity  0.070398        0.000000e+00  maximize
+65           f_2_am         linear  spearman      identity -0.033941        0.000000e+00  maximize
+66           f_2_am  decision_tree   pearson      identity  0.299202        5.164438e-02  maximize
+67           f_2_am  decision_tree  spearman      identity -0.005360        5.555967e-02  maximize
+68           f_2_qm         linear   pearson      identity  0.078730        1.506926e-02  maximize
+69           f_2_qm         linear  spearman      identity -0.045165        6.350316e-03  maximize
+70           f_2_qm  decision_tree   pearson      identity  0.299202        6.249757e-02  maximize
+71           f_2_qm  decision_tree  spearman      identity -0.005360        6.025276e-02  maximize
+72     f_2_log_mean         linear   pearson      identity  0.111731        0.000000e+00  maximize
+73     f_2_log_mean         linear  spearman      identity -0.044584        0.000000e+00  maximize
+74     f_2_log_mean  decision_tree   pearson      identity  0.288168        5.503832e-02  maximize
+75     f_2_log_mean  decision_tree  spearman      identity -0.004296        4.483263e-02  maximize
+76           f_3_am         linear   pearson      identity  0.119688        0.000000e+00  maximize
+77           f_3_am         linear  spearman      identity -0.032126        0.000000e+00  maximize
+78           f_3_am  decision_tree   pearson      identity  0.300948        7.075435e-02  maximize
+79           f_3_am  decision_tree  spearman      identity  0.004082        8.127041e-02  maximize
+80           f_3_qm         linear   pearson      identity  0.094292        0.000000e+00  maximize
+81           f_3_qm         linear  spearman      identity -0.034184        0.000000e+00  maximize
+82           f_3_qm  decision_tree   pearson      identity  0.283751        3.479255e-02  maximize
+83           f_3_qm  decision_tree  spearman      identity -0.037120        2.852495e-02  maximize
+84     f_3_log_mean         linear   pearson      identity  0.029167        9.883465e-04  maximize
+85     f_3_log_mean         linear  spearman      identity -0.028390        3.535957e-03  maximize
+86     f_3_log_mean  decision_tree   pearson      identity  0.288168        5.317664e-02  maximize
+87     f_3_log_mean  decision_tree  spearman      identity -0.004296        4.988929e-02  maximize
+88           f_4_am         linear   pearson      identity  0.046247        7.989290e-03  maximize
+89           f_4_am         linear  spearman      identity -0.021119        1.872391e-03  maximize
+90           f_4_am  decision_tree   pearson      identity  0.288168        4.839595e-02  maximize
+91           f_4_am  decision_tree  spearman      identity -0.004296        7.123721e-02  maximize
+92           f_4_qm         linear   pearson      identity  0.019216        0.000000e+00  maximize
+93           f_4_qm         linear  spearman      identity -0.045339        0.000000e+00  maximize
+94           f_4_qm  decision_tree   pearson      identity  0.286398        4.232906e-02  maximize
+95           f_4_qm  decision_tree  spearman      identity -0.015788        3.621802e-02  maximize
+96     f_4_log_mean         linear   pearson      identity  0.050946        0.000000e+00  maximize
+97     f_4_log_mean         linear  spearman      identity -0.031466        0.000000e+00  maximize
+98     f_4_log_mean  decision_tree   pearson      identity  0.300948        6.822395e-02  maximize
+99     f_4_log_mean  decision_tree  spearman      identity  0.004082        7.485374e-02  maximize
+100          f_5_am         linear   pearson      identity  0.111358        7.583094e-03  maximize
+101          f_5_am         linear  spearman      identity -0.042987        2.604920e-03  maximize
+102          f_5_am  decision_tree   pearson      identity  0.300929        6.229606e-02  maximize
+103          f_5_am  decision_tree  spearman      identity -0.020693        6.229606e-02  maximize
+104          f_5_qm         linear   pearson      identity  0.190460        1.950447e-02  maximize
+105          f_5_qm         linear  spearman      identity -0.020614        2.373770e-02  maximize
+106          f_5_qm  decision_tree   pearson      identity  0.300948        6.340902e-02  maximize
+107          f_5_qm  decision_tree  spearman      identity  0.004082        6.388687e-02  maximize
+108    f_5_log_mean         linear   pearson      identity  0.096662        0.000000e+00  maximize
+109    f_5_log_mean         linear  spearman      identity -0.044281        3.910613e-03  maximize
+110    f_5_log_mean  decision_tree   pearson      identity  0.296647        4.597976e-02  maximize
+111    f_5_log_mean  decision_tree  spearman      identity -0.015165        4.261728e-02  maximize
+112          f_6_am         linear   pearson      identity  0.109068        1.039731e-02  maximize
+113          f_6_am         linear  spearman      identity -0.034309        1.149124e-02  maximize
+114          f_6_am  decision_tree   pearson      identity  0.300948        7.251260e-02  maximize
+115          f_6_am  decision_tree  spearman      identity  0.004082        7.462557e-02  maximize
+116          f_6_qm         linear   pearson      identity  0.089100        0.000000e+00  maximize
+117          f_6_qm         linear  spearman      identity -0.031190        0.000000e+00  maximize
+118          f_6_qm  decision_tree   pearson      identity  0.300948        7.034184e-02  maximize
+119          f_6_qm  decision_tree  spearman      identity  0.004082        7.054361e-02  maximize
+120    f_6_log_mean         linear   pearson      identity  0.023366        0.000000e+00  maximize
+121    f_6_log_mean         linear  spearman      identity -0.034328        0.000000e+00  maximize
+122    f_6_log_mean  decision_tree   pearson      identity  0.288142        4.260147e-02  maximize
+123    f_6_log_mean  decision_tree  spearman      identity -0.010892        5.187724e-02  maximize
+124          f_7_am         linear   pearson      identity  0.040821        2.957290e-03  maximize
+125          f_7_am         linear  spearman      identity -0.044440        0.000000e+00  maximize
+126          f_7_am  decision_tree   pearson      identity  0.300948        7.343707e-02  maximize
+127          f_7_am  decision_tree  spearman      identity  0.004082        6.798073e-02  maximize
+128          f_7_qm         linear   pearson      identity  0.085637        0.000000e+00  maximize
+129          f_7_qm         linear  spearman      identity -0.018416        0.000000e+00  maximize
+130          f_7_qm  decision_tree   pearson      identity  0.283782        3.593543e-02  maximize
+131          f_7_qm  decision_tree  spearman      identity -0.014901        3.302474e-02  maximize
+132    f_7_log_mean         linear   pearson      identity  0.039755        0.000000e+00  maximize
+133    f_7_log_mean         linear  spearman      identity -0.032207        3.414585e-03  maximize
+134    f_7_log_mean  decision_tree   pearson      identity  0.300948        6.776260e-02  maximize
+135    f_7_log_mean  decision_tree  spearman      identity  0.004082        7.960374e-02  maximize
+136          f_8_am         linear   pearson      identity  0.141432        1.731776e-03  maximize
+137          f_8_am         linear  spearman      identity -0.035465        4.285569e-04  maximize
+138          f_8_am  decision_tree   pearson      identity  0.280344        4.291068e-02  maximize
+139          f_8_am  decision_tree  spearman      identity -0.038036        3.776665e-02  maximize
+140          f_8_qm         linear   pearson      identity  0.062294        2.785616e-02  maximize
+141          f_8_qm         linear  spearman      identity -0.036202        2.886594e-02  maximize
+142          f_8_qm  decision_tree   pearson      identity  0.296647        4.699071e-02  maximize
+143          f_8_qm  decision_tree  spearman      identity -0.015165        4.650265e-02  maximize
+144    f_8_log_mean         linear   pearson      identity  0.041098        0.000000e+00  maximize
+145    f_8_log_mean         linear  spearman      identity -0.018707        0.000000e+00  maximize
+146    f_8_log_mean  decision_tree   pearson      identity  0.300948        7.485374e-02  maximize
+147    f_8_log_mean  decision_tree  spearman      identity  0.004082        7.367102e-02  maximize
+148          f_9_am         linear   pearson      identity  0.099847        2.821754e-03  maximize
+149          f_9_am         linear  spearman      identity -0.034346        3.139121e-05  maximize
+150          f_9_am  decision_tree   pearson      identity  0.296670        5.557316e-02  maximize
+151          f_9_am  decision_tree  spearman      identity -0.006266        4.251510e-02  maximize
+152          f_9_qm         linear   pearson      identity  0.000839        1.152389e-02  maximize
+153          f_9_qm         linear  spearman      identity -0.046831        1.232517e-02  maximize
+154          f_9_qm  decision_tree   pearson      identity  0.300948        6.913455e-02  maximize
+155          f_9_qm  decision_tree  spearman      identity  0.004082        7.084593e-02  maximize
+156    f_9_log_mean         linear   pearson      identity  0.041414        0.000000e+00  maximize
+157    f_9_log_mean         linear  spearman      identity -0.045964        0.000000e+00  maximize
+158    f_9_log_mean  decision_tree   pearson      identity  0.296670        5.201262e-02  maximize
+159    f_9_log_mean  decision_tree  spearman      identity -0.006266        5.757231e-02  maximize
+160        f_0_1_qm         linear   pearson      identity  0.019811        0.000000e+00  maximize
+161        f_0_1_qm         linear  spearman      identity -0.043389        0.000000e+00  maximize
+162        f_0_1_qm  decision_tree   pearson      identity  0.282171        6.774277e-02  maximize
+163        f_0_1_qm  decision_tree  spearman      identity -0.005193        5.970222e-02  maximize
+164   f_0_1_lehmer4         linear   pearson      identity  0.063155        0.000000e+00  maximize
+165   f_0_1_lehmer4         linear  spearman      identity -0.033811        0.000000e+00  maximize
+166   f_0_1_lehmer4  decision_tree   pearson      identity  0.288168        4.436224e-02  maximize
+167   f_0_1_lehmer4  decision_tree  spearman      identity -0.004296        5.123300e-02  maximize
+168   f_0_1_lehmer3         linear   pearson      identity  0.096577        0.000000e+00  maximize
+169   f_0_1_lehmer3         linear  spearman      identity -0.042009        0.000000e+00  maximize
+170   f_0_1_lehmer3  decision_tree   pearson      identity  0.296647        4.879277e-02  maximize
+171   f_0_1_lehmer3  decision_tree  spearman      identity -0.015165        5.314789e-02  maximize
+172        f_0_2_qm         linear   pearson      identity  0.032979        0.000000e+00  maximize
+173        f_0_2_qm         linear  spearman      identity -0.019013        0.000000e+00  maximize
+174        f_0_2_qm  decision_tree   pearson      identity  0.286398        3.972484e-02  maximize
+175        f_0_2_qm  decision_tree  spearman      identity -0.015788        4.324258e-02  maximize
+176   f_0_2_lehmer4         linear   pearson      identity  0.117967        2.020085e-03  maximize
+177   f_0_2_lehmer4         linear  spearman      identity -0.031618        2.617701e-03  maximize
+178   f_0_2_lehmer4  decision_tree   pearson      identity  0.300929        6.597878e-02  maximize
+179   f_0_2_lehmer4  decision_tree  spearman      identity -0.020693        6.597878e-02  maximize
+180   f_0_2_lehmer3         linear   pearson      identity  0.108573        0.000000e+00  maximize
+181   f_0_2_lehmer3         linear  spearman      identity -0.041878        6.326127e-03  maximize
+182   f_0_2_lehmer3  decision_tree   pearson      identity  0.300948        8.127041e-02  maximize
+183   f_0_2_lehmer3  decision_tree  spearman      identity  0.004082        6.548336e-02  maximize
+184        f_0_3_qm         linear   pearson      identity  0.024033        0.000000e+00  maximize
+185        f_0_3_qm         linear  spearman      identity -0.047055        0.000000e+00  maximize
+186        f_0_3_qm  decision_tree   pearson      identity  0.300948        6.662695e-02  maximize
+187        f_0_3_qm  decision_tree  spearman      identity  0.004082        7.367102e-02  maximize
+188   f_0_3_lehmer4         linear   pearson      identity  0.046910        0.000000e+00  maximize
+189   f_0_3_lehmer4         linear  spearman      identity -0.034013        0.000000e+00  maximize
+190   f_0_3_lehmer4  decision_tree   pearson      identity  0.296670        5.278477e-02  maximize
+191   f_0_3_lehmer4  decision_tree  spearman      identity -0.006266        6.344817e-02  maximize
+192   f_0_3_lehmer3         linear   pearson      identity  0.145610        2.060703e-03  maximize
+193   f_0_3_lehmer3         linear  spearman      identity -0.032083        8.598658e-04  maximize
+194   f_0_3_lehmer3  decision_tree   pearson      identity  0.296670        5.098310e-02  maximize
+195   f_0_3_lehmer3  decision_tree  spearman      identity -0.006266        4.146661e-02  maximize
+196        f_0_4_qm         linear   pearson      identity  0.120640        7.809962e-03  maximize
+197        f_0_4_qm         linear  spearman      identity -0.035894        6.559962e-03  maximize
+198        f_0_4_qm  decision_tree   pearson      identity  0.300948        6.697395e-02  maximize
+199        f_0_4_qm  decision_tree  spearman      identity  0.004082        6.789761e-02  maximize
+200   f_0_4_lehmer4         linear   pearson      identity  0.054782        9.963686e-03  maximize
+201   f_0_4_lehmer4         linear  spearman      identity -0.034439        1.130297e-02  maximize
+202   f_0_4_lehmer4  decision_tree   pearson      identity  0.296647        4.612113e-02  maximize
+203   f_0_4_lehmer4  decision_tree  spearman      identity -0.015165        4.093745e-02  maximize
+204   f_0_4_lehmer3         linear   pearson      identity  0.029379        8.159483e-03  maximize
+205   f_0_4_lehmer3         linear  spearman      identity -0.044032        1.017554e-02  maximize
+206   f_0_4_lehmer3  decision_tree   pearson      identity  0.300948        6.145247e-02  maximize
+207   f_0_4_lehmer3  decision_tree  spearman      identity  0.004082        7.120890e-02  maximize
+208        f_0_5_qm         linear   pearson      identity  0.107582        0.000000e+00  maximize
+209        f_0_5_qm         linear  spearman      identity -0.033301        0.000000e+00  maximize
+210        f_0_5_qm  decision_tree   pearson      identity  0.299202        5.492705e-02  maximize
+211        f_0_5_qm  decision_tree  spearman      identity -0.005360        5.515003e-02  maximize
+212   f_0_5_lehmer4         linear   pearson      identity  0.069796        0.000000e+00  maximize
+213   f_0_5_lehmer4         linear  spearman      identity -0.031921        0.000000e+00  maximize
+214   f_0_5_lehmer4  decision_tree   pearson      identity  0.300929        6.514544e-02  maximize
+215   f_0_5_lehmer4  decision_tree  spearman      identity -0.020693        6.597878e-02  maximize
+216   f_0_5_lehmer3         linear   pearson      identity  0.075334        0.000000e+00  maximize
+217   f_0_5_lehmer3         linear  spearman      identity -0.044067        0.000000e+00  maximize
+218   f_0_5_lehmer3  decision_tree   pearson      identity  0.288142        4.887437e-02  maximize
+219   f_0_5_lehmer3  decision_tree  spearman      identity -0.010892        4.946798e-02  maximize
+220        f_0_6_qm         linear   pearson      identity  0.075336        0.000000e+00  maximize
+221        f_0_6_qm         linear  spearman      identity -0.020027        0.000000e+00  maximize
+222        f_0_6_qm  decision_tree   pearson      identity  0.300929        6.989544e-02  maximize
+223        f_0_6_qm  decision_tree  spearman      identity -0.020693        6.325060e-02  maximize
+224   f_0_6_lehmer4         linear   pearson      identity  0.140404        0.000000e+00  maximize
+225   f_0_6_lehmer4         linear  spearman      identity -0.034409        0.000000e+00  maximize
+226   f_0_6_lehmer4  decision_tree   pearson      identity  0.286398        3.843445e-02  maximize
+227   f_0_6_lehmer4  decision_tree  spearman      identity -0.015788        4.638807e-02  maximize
+228   f_0_6_lehmer3         linear   pearson      identity  0.054633        0.000000e+00  maximize
+229   f_0_6_lehmer3         linear  spearman      identity -0.032710        0.000000e+00  maximize
+230   f_0_6_lehmer3  decision_tree   pearson      identity  0.300929        6.019768e-02  maximize
+231   f_0_6_lehmer3  decision_tree  spearman      identity -0.020693        6.597878e-02  maximize
+232        f_0_7_qm         linear   pearson      identity  0.093998        0.000000e+00  maximize
+233        f_0_7_qm         linear  spearman      identity -0.034388        0.000000e+00  maximize
+234        f_0_7_qm  decision_tree   pearson      identity  0.266852        4.212930e-02  maximize
+235        f_0_7_qm  decision_tree  spearman      identity -0.022000        4.296974e-02  maximize
+236   f_0_7_lehmer4         linear   pearson      identity  0.045100        0.000000e+00  maximize
+237   f_0_7_lehmer4         linear  spearman      identity -0.044454        0.000000e+00  maximize
+238   f_0_7_lehmer4  decision_tree   pearson      identity  0.286398        3.907245e-02  maximize
+239   f_0_7_lehmer4  decision_tree  spearman      identity -0.015788        2.995185e-02  maximize
+240   f_0_7_lehmer3         linear   pearson      identity  0.098497        0.000000e+00  maximize
+241   f_0_7_lehmer3         linear  spearman      identity -0.045162        0.000000e+00  maximize
+242   f_0_7_lehmer3  decision_tree   pearson      identity  0.300948        6.520558e-02  maximize
+243   f_0_7_lehmer3  decision_tree  spearman      identity  0.004082        6.316990e-02  maximize
+244        f_0_8_qm         linear   pearson      identity  0.092160        5.218840e-03  maximize
+245        f_0_8_qm         linear  spearman      identity -0.032996        1.148080e-04  maximize
+246        f_0_8_qm  decision_tree   pearson      identity  0.300948        6.139166e-02  maximize
+247        f_0_8_qm  decision_tree  spearman      identity  0.004082        6.678045e-02  maximize
+248   f_0_8_lehmer4         linear   pearson      identity  0.053679        6.162716e-04  maximize
+249   f_0_8_lehmer4         linear  spearman      identity -0.042807        0.000000e+00  maximize
+250   f_0_8_lehmer4  decision_tree   pearson      identity  0.282171        6.236818e-02  maximize
+251   f_0_8_lehmer4  decision_tree  spearman      identity -0.005193        5.721317e-02  maximize
+252   f_0_8_lehmer3         linear   pearson      identity  0.050699        0.000000e+00  maximize
+253   f_0_8_lehmer3         linear  spearman      identity -0.047623        0.000000e+00  maximize
+254   f_0_8_lehmer3  decision_tree   pearson      identity  0.288142        4.416202e-02  maximize
+255   f_0_8_lehmer3  decision_tree  spearman      identity -0.010892        4.854103e-02  maximize
+256        f_0_9_qm         linear   pearson      identity  0.092119        0.000000e+00  maximize
+257        f_0_9_qm         linear  spearman      identity -0.020084        0.000000e+00  maximize
+258        f_0_9_qm  decision_tree   pearson      identity  0.296670        4.751554e-02  maximize
+259        f_0_9_qm  decision_tree  spearman      identity -0.006266        5.847585e-02  maximize
+260   f_0_9_lehmer4         linear   pearson      identity  0.002089        3.442113e-02  maximize
+261   f_0_9_lehmer4         linear  spearman      identity -0.032557        3.396658e-02  maximize
+262   f_0_9_lehmer4  decision_tree   pearson      identity  0.290601        6.260383e-02  maximize
+263   f_0_9_lehmer4  decision_tree  spearman      identity -0.002478        6.355621e-02  maximize
+264   f_0_9_lehmer3         linear   pearson      identity  0.115485        8.530138e-03  maximize
+265   f_0_9_lehmer3         linear  spearman      identity -0.045882        1.886153e-03  maximize
+266   f_0_9_lehmer3  decision_tree   pearson      identity  0.286398        3.665015e-02  maximize
+267   f_0_9_lehmer3  decision_tree  spearman      identity -0.015788        3.101631e-02  maximize
+268        f_1_2_qm         linear   pearson      identity  0.074230        0.000000e+00  maximize
+269        f_1_2_qm         linear  spearman      identity -0.025447        0.000000e+00  maximize
+270        f_1_2_qm  decision_tree   pearson      identity  0.282143        5.676662e-02  maximize
+271        f_1_2_qm  decision_tree  spearman      identity -0.011132        5.632435e-02  maximize
+272   f_1_2_lehmer4         linear   pearson      identity  0.028421        1.023661e-02  maximize
+273   f_1_2_lehmer4         linear  spearman      identity -0.034438        1.065328e-02  maximize
+274   f_1_2_lehmer4  decision_tree   pearson      identity  0.296670        4.855945e-02  maximize
+275   f_1_2_lehmer4  decision_tree  spearman      identity -0.006266        6.000048e-02  maximize
+276   f_1_2_lehmer3         linear   pearson      identity  0.000675        0.000000e+00  maximize
+277   f_1_2_lehmer3         linear  spearman      identity -0.047574        0.000000e+00  maximize
+278   f_1_2_lehmer3  decision_tree   pearson      identity  0.280375        5.473160e-02  maximize
+279   f_1_2_lehmer3  decision_tree  spearman      identity -0.016071        4.880597e-02  maximize
+280        f_1_3_qm         linear   pearson      identity  0.030772        1.880334e-02  maximize
+281        f_1_3_qm         linear  spearman      identity -0.041892        1.914069e-02  maximize
+282        f_1_3_qm  decision_tree   pearson      identity  0.282171        6.289829e-02  maximize
+283        f_1_3_qm  decision_tree  spearman      identity -0.005193        5.644255e-02  maximize
+284   f_1_3_lehmer4         linear   pearson      identity  0.026946        4.668155e-03  maximize
+285   f_1_3_lehmer4         linear  spearman      identity  0.026465        1.200980e-03  maximize
+286   f_1_3_lehmer4  decision_tree   pearson      identity  0.300948        7.343707e-02  maximize
+287   f_1_3_lehmer4  decision_tree  spearman      identity  0.004082        6.865598e-02  maximize
+288   f_1_3_lehmer3         linear   pearson      identity  0.083350        0.000000e+00  maximize
+289   f_1_3_lehmer3         linear  spearman      identity -0.031082        0.000000e+00  maximize
+290   f_1_3_lehmer3  decision_tree   pearson      identity  0.266852        3.722570e-02  maximize
+291   f_1_3_lehmer3  decision_tree  spearman      identity -0.022000        4.141921e-02  maximize
+292        f_1_4_qm         linear   pearson      identity  0.066698        6.030520e-03  maximize
+293        f_1_4_qm         linear  spearman      identity -0.018468        8.530520e-03  maximize
+294        f_1_4_qm  decision_tree   pearson      identity  0.277708        4.586271e-02  maximize
+295        f_1_4_qm  decision_tree  spearman      identity -0.015756        4.559709e-02  maximize
+296   f_1_4_lehmer4         linear   pearson      identity  0.022415        1.006519e-03  maximize
+297   f_1_4_lehmer4         linear  spearman      identity -0.024145        5.269545e-03  maximize
+298   f_1_4_lehmer4  decision_tree   pearson      identity  0.300929        6.149478e-02  maximize
+299   f_1_4_lehmer4  decision_tree  spearman      identity -0.020693        6.149478e-02  maximize
+300   f_1_4_lehmer3         linear   pearson      identity  0.083647        0.000000e+00  maximize
+301   f_1_4_lehmer3         linear  spearman      identity -0.045262        0.000000e+00  maximize
+302   f_1_4_lehmer3  decision_tree   pearson      identity  0.299202        5.097451e-02  maximize
+303   f_1_4_lehmer3  decision_tree  spearman      identity -0.005360        4.815211e-02  maximize
+304        f_1_5_qm         linear   pearson      identity  0.109360        1.422067e-02  maximize
+305        f_1_5_qm         linear  spearman      identity -0.017951        9.278655e-03  maximize
+306        f_1_5_qm  decision_tree   pearson      identity  0.300948        6.516018e-02  maximize
+307        f_1_5_qm  decision_tree  spearman      identity -0.017109        6.537436e-02  maximize
+308   f_1_5_lehmer4         linear   pearson      identity  0.067717        0.000000e+00  maximize
+309   f_1_5_lehmer4         linear  spearman      identity -0.046093        0.000000e+00  maximize
+310   f_1_5_lehmer4  decision_tree   pearson      identity  0.300948        6.971684e-02  maximize
+311   f_1_5_lehmer4  decision_tree  spearman      identity  0.004082        6.933769e-02  maximize
+312   f_1_5_lehmer3         linear   pearson      identity  0.076771        0.000000e+00  maximize
+313   f_1_5_lehmer3         linear  spearman      identity -0.036437        0.000000e+00  maximize
+314   f_1_5_lehmer3  decision_tree   pearson      identity  0.288168        5.828100e-02  maximize
+315   f_1_5_lehmer3  decision_tree  spearman      identity -0.004296        5.363759e-02  maximize
+316        f_1_6_qm         linear   pearson      identity  0.008898        0.000000e+00  maximize
+317        f_1_6_qm         linear  spearman      identity -0.045124        0.000000e+00  maximize
+318        f_1_6_qm  decision_tree   pearson      identity  0.300948        6.085246e-02  maximize
+319        f_1_6_qm  decision_tree  spearman      identity -0.017109        6.343893e-02  maximize
+320   f_1_6_lehmer4         linear   pearson      identity  0.011072        0.000000e+00  maximize
+321   f_1_6_lehmer4         linear  spearman      identity  0.024743        0.000000e+00  maximize
+322   f_1_6_lehmer4  decision_tree   pearson      identity  0.264039        2.757452e-02  maximize
+323   f_1_6_lehmer4  decision_tree  spearman      identity -0.050143        2.980015e-02  maximize
+324   f_1_6_lehmer3         linear   pearson      identity  0.023319        0.000000e+00  maximize
+325   f_1_6_lehmer3         linear  spearman      identity -0.033055        7.165348e-03  maximize
+326   f_1_6_lehmer3  decision_tree   pearson      identity  0.277708        4.892704e-02  maximize
+327   f_1_6_lehmer3  decision_tree  spearman      identity -0.015756        5.239288e-02  maximize
+328        f_1_7_qm         linear   pearson      identity  0.140931        8.468786e-04  maximize
+329        f_1_7_qm         linear  spearman      identity -0.017906        1.325929e-04  maximize
+330        f_1_7_qm  decision_tree   pearson      identity  0.299202        5.875300e-02  maximize
+331        f_1_7_qm  decision_tree  spearman      identity -0.005360        5.177876e-02  maximize
+332   f_1_7_lehmer4         linear   pearson      identity  0.043173        0.000000e+00  maximize
+333   f_1_7_lehmer4         linear  spearman      identity -0.024977        0.000000e+00  maximize
+334   f_1_7_lehmer4  decision_tree   pearson      identity  0.300948        6.340570e-02  maximize
+335   f_1_7_lehmer4  decision_tree  spearman      identity -0.017109        6.824050e-02  maximize
+336   f_1_7_lehmer3         linear   pearson      identity  0.068811        1.076949e-03  maximize
+337   f_1_7_lehmer3         linear  spearman      identity -0.042327        1.195997e-03  maximize
+338   f_1_7_lehmer3  decision_tree   pearson      identity  0.280375        4.488255e-02  maximize
+339   f_1_7_lehmer3  decision_tree  spearman      identity -0.016071        4.271947e-02  maximize
+340        f_1_8_qm         linear   pearson      identity  0.066126        8.169474e-03  maximize
+341        f_1_8_qm         linear  spearman      identity -0.034310        8.169474e-03  maximize
+342        f_1_8_qm  decision_tree   pearson      identity  0.288167        4.690413e-02  maximize
+343        f_1_8_qm  decision_tree  spearman      identity -0.007415        5.353393e-02  maximize
+344   f_1_8_lehmer4         linear   pearson      identity  0.052215        0.000000e+00  maximize
+345   f_1_8_lehmer4         linear  spearman      identity -0.035251        0.000000e+00  maximize
+346   f_1_8_lehmer4  decision_tree   pearson      identity  0.299202        6.716257e-02  maximize
+347   f_1_8_lehmer4  decision_tree  spearman      identity -0.005360        4.132296e-02  maximize
+348   f_1_8_lehmer3         linear   pearson      identity  0.040911        1.646907e-02  maximize
+349   f_1_8_lehmer3         linear  spearman      identity -0.042919        1.130240e-02  maximize
+350   f_1_8_lehmer3  decision_tree   pearson      identity  0.268647        4.634552e-02  maximize
+351   f_1_8_lehmer3  decision_tree  spearman      identity -0.038726        3.844924e-02  maximize
+352        f_1_9_qm         linear   pearson      identity  0.052698        0.000000e+00  maximize
+353        f_1_9_qm         linear  spearman      identity -0.035816        0.000000e+00  maximize
+354        f_1_9_qm  decision_tree   pearson      identity  0.288168        5.121451e-02  maximize
+355        f_1_9_qm  decision_tree  spearman      identity -0.004296        4.779230e-02  maximize
+356   f_1_9_lehmer4         linear   pearson      identity  0.019753        9.347336e-03  maximize
+357   f_1_9_lehmer4         linear  spearman      identity -0.046156        6.430670e-03  maximize
+358   f_1_9_lehmer4  decision_tree   pearson      identity  0.262249        4.063093e-02  maximize
+359   f_1_9_lehmer4  decision_tree  spearman      identity  0.001386        3.837212e-02  maximize
+360   f_1_9_lehmer3         linear   pearson      identity  0.059216        0.000000e+00  maximize
+361   f_1_9_lehmer3         linear  spearman      identity -0.045508        0.000000e+00  maximize
+362   f_1_9_lehmer3  decision_tree   pearson      identity  0.282170        5.027377e-02  maximize
+363   f_1_9_lehmer3  decision_tree  spearman      identity -0.007923        5.728739e-02  maximize
+364        f_2_3_qm         linear   pearson      identity  0.029476        0.000000e+00  maximize
+365        f_2_3_qm         linear  spearman      identity -0.027154        0.000000e+00  maximize
+366        f_2_3_qm  decision_tree   pearson      identity  0.299202        5.204664e-02  maximize
+367        f_2_3_qm  decision_tree  spearman      identity -0.005360        5.212544e-02  maximize
+368   f_2_3_lehmer4         linear   pearson      identity  0.129623        0.000000e+00  maximize
+369   f_2_3_lehmer4         linear  spearman      identity -0.033224        0.000000e+00  maximize
+370   f_2_3_lehmer4  decision_tree   pearson      identity  0.299202        4.965633e-02  maximize
+371   f_2_3_lehmer4  decision_tree  spearman      identity -0.005360        6.117771e-02  maximize
+372   f_2_3_lehmer3         linear   pearson      identity  0.051573        0.000000e+00  maximize
+373   f_2_3_lehmer3         linear  spearman      identity -0.043687        0.000000e+00  maximize
+374   f_2_3_lehmer3  decision_tree   pearson      identity  0.293655        5.405264e-02  maximize
+375   f_2_3_lehmer3  decision_tree  spearman      identity -0.008850        4.393471e-02  maximize
+376        f_2_4_qm         linear   pearson      identity  0.108745        0.000000e+00  maximize
+377        f_2_4_qm         linear  spearman      identity -0.045561        0.000000e+00  maximize
+378        f_2_4_qm  decision_tree   pearson      identity  0.283750        3.421997e-02  maximize
+379        f_2_4_qm  decision_tree  spearman      identity -0.037526        3.253827e-02  maximize
+380       f_2_4_rms         linear   pearson      identity  0.083493        0.000000e+00  maximize
+381       f_2_4_rms         linear  spearman      identity -0.036145        0.000000e+00  maximize
+382       f_2_4_rms  decision_tree   pearson      identity  0.295468        5.161666e-02  maximize
+383       f_2_4_rms  decision_tree  spearman      identity -0.012803        5.496582e-02  maximize
+384   f_2_4_lehmer4         linear   pearson      identity  0.119370        1.496913e-03  maximize
+385   f_2_4_lehmer4         linear  spearman      identity -0.032224        8.627865e-03  maximize
+386   f_2_4_lehmer4  decision_tree   pearson      identity  0.276199        5.386193e-02  maximize
+387   f_2_4_lehmer4  decision_tree  spearman      identity -0.008684        5.132735e-02  maximize
+388        f_2_5_qm         linear   pearson      identity  0.139061        0.000000e+00  maximize
+389        f_2_5_qm         linear  spearman      identity -0.037565        0.000000e+00  maximize
+390        f_2_5_qm  decision_tree   pearson      identity  0.296647        4.621719e-02  maximize
+391        f_2_5_qm  decision_tree  spearman      identity -0.015165        4.533132e-02  maximize
+392   f_2_5_lehmer4         linear   pearson      identity  0.113364        0.000000e+00  maximize
+393   f_2_5_lehmer4         linear  spearman      identity -0.034322        0.000000e+00  maximize
+394   f_2_5_lehmer4  decision_tree   pearson      identity  0.268684        4.276769e-02  maximize
+395   f_2_5_lehmer4  decision_tree  spearman      identity -0.016833        5.102778e-02  maximize
+396   f_2_5_lehmer3         linear   pearson      identity  0.021933        0.000000e+00  maximize
+397   f_2_5_lehmer3         linear  spearman      identity -0.035131        0.000000e+00  maximize
+398   f_2_5_lehmer3  decision_tree   pearson      identity  0.280375        4.256768e-02  maximize
+399   f_2_5_lehmer3  decision_tree  spearman      identity -0.016071        5.755944e-02  maximize
+400        f_2_6_qm         linear   pearson      identity  0.150610        6.958518e-03  maximize
+401        f_2_6_qm         linear  spearman      identity -0.018096        6.958518e-03  maximize
+402        f_2_6_qm  decision_tree   pearson      identity  0.300948        7.120890e-02  maximize
+403        f_2_6_qm  decision_tree  spearman      identity  0.004082        6.355976e-02  maximize
+404       f_2_6_rms         linear   pearson      identity  0.039497        0.000000e+00  maximize
+405       f_2_6_rms         linear  spearman      identity -0.019179        0.000000e+00  maximize
+406       f_2_6_rms  decision_tree   pearson      identity  0.296670        4.647635e-02  maximize
+407       f_2_6_rms  decision_tree  spearman      identity -0.006266        4.964488e-02  maximize
+408   f_2_6_lehmer4         linear   pearson      identity  0.086594        4.090650e-03  maximize
+409   f_2_6_lehmer4         linear  spearman      identity -0.028021        3.495411e-03  maximize
+410   f_2_6_lehmer4  decision_tree   pearson      identity  0.291054        4.775892e-02  maximize
+411   f_2_6_lehmer4  decision_tree  spearman      identity -0.012342        5.067261e-02  maximize
+412        f_2_7_qm         linear   pearson      identity  0.133067        0.000000e+00  maximize
+413        f_2_7_qm         linear  spearman      identity -0.043113        0.000000e+00  maximize
+414        f_2_7_qm  decision_tree   pearson      identity  0.300928        5.844521e-02  maximize
+415        f_2_7_qm  decision_tree  spearman      identity -0.046888        6.726724e-02  maximize
+416   f_2_7_lehmer4         linear   pearson      identity  0.002891        7.533711e-03  maximize
+417   f_2_7_lehmer4         linear  spearman      identity -0.034831        5.784176e-03  maximize
+418   f_2_7_lehmer4  decision_tree   pearson      identity  0.300948        6.911504e-02  maximize
+419   f_2_7_lehmer4  decision_tree  spearman      identity  0.004082        7.462557e-02  maximize
+420   f_2_7_lehmer3         linear   pearson      identity  0.081186        0.000000e+00  maximize
+421   f_2_7_lehmer3         linear  spearman      identity -0.045976        0.000000e+00  maximize
+422   f_2_7_lehmer3  decision_tree   pearson      identity  0.300948        7.351446e-02  maximize
+423   f_2_7_lehmer3  decision_tree  spearman      identity  0.004082        7.260374e-02  maximize
+424        f_2_8_qm         linear   pearson      identity  0.120899        0.000000e+00  maximize
+425        f_2_8_qm         linear  spearman      identity -0.033569        5.287397e-03  maximize
+426        f_2_8_qm  decision_tree   pearson      identity  0.282143        5.541851e-02  maximize
+427        f_2_8_qm  decision_tree  spearman      identity -0.011132        4.879330e-02  maximize
+428       f_2_8_rms         linear   pearson      identity  0.013071        0.000000e+00  maximize
+429       f_2_8_rms         linear  spearman      identity  0.019041        0.000000e+00  maximize
+430       f_2_8_rms  decision_tree   pearson      identity  0.240151        3.735603e-02  maximize
+431       f_2_8_rms  decision_tree  spearman      identity -0.016886        3.902573e-02  maximize
+432   f_2_8_lehmer4         linear   pearson      identity  0.015224        0.000000e+00  maximize
+433   f_2_8_lehmer4         linear  spearman      identity  0.028984        0.000000e+00  maximize
+434   f_2_8_lehmer4  decision_tree   pearson      identity  0.225494        4.206939e-02  maximize
+435   f_2_8_lehmer4  decision_tree  spearman      identity -0.035695        3.750146e-02  maximize
+436        f_2_9_qm         linear   pearson      identity  0.024742        0.000000e+00  maximize
+437        f_2_9_qm         linear  spearman      identity -0.045300        8.907812e-03  maximize
+438        f_2_9_qm  decision_tree   pearson      identity  0.240151        5.169565e-02  maximize
+439        f_2_9_qm  decision_tree  spearman      identity -0.016886        3.569419e-02  maximize
+440       f_2_9_rms         linear   pearson      identity  0.035227        3.890742e-04  maximize
+441       f_2_9_rms         linear  spearman      identity -0.043683        0.000000e+00  maximize
+442       f_2_9_rms  decision_tree   pearson      identity  0.299202        5.273834e-02  maximize
+443       f_2_9_rms  decision_tree  spearman      identity -0.008090        5.211732e-02  maximize
+444   f_2_9_lehmer4         linear   pearson      identity  0.062043        2.892499e-03  maximize
+445   f_2_9_lehmer4         linear  spearman      identity -0.047046        7.550293e-03  maximize
+446   f_2_9_lehmer4  decision_tree   pearson      identity  0.248322        4.661839e-02  maximize
+447   f_2_9_lehmer4  decision_tree  spearman      identity -0.076742        4.561839e-02  maximize
+448        f_3_4_qm         linear   pearson      identity  0.080541        0.000000e+00  maximize
+449        f_3_4_qm         linear  spearman      identity -0.020876        0.000000e+00  maximize
+450        f_3_4_qm  decision_tree   pearson      identity  0.276175        4.340313e-02  maximize
+451        f_3_4_qm  decision_tree  spearman      identity -0.033731        4.326561e-02  maximize
+452   f_3_4_lehmer4         linear   pearson      identity  0.079801        0.000000e+00  maximize
+453   f_3_4_lehmer4         linear  spearman      identity -0.021395        0.000000e+00  maximize
+454   f_3_4_lehmer4  decision_tree   pearson      identity  0.289245        3.565493e-02  maximize
+455   f_3_4_lehmer4  decision_tree  spearman      identity -0.037196        4.183982e-02  maximize
+456   f_3_4_lehmer3         linear   pearson      identity  0.075515        0.000000e+00  maximize
+457   f_3_4_lehmer3         linear  spearman      identity -0.045001        0.000000e+00  maximize
+458   f_3_4_lehmer3  decision_tree   pearson      identity  0.299202        4.887721e-02  maximize
+459   f_3_4_lehmer3  decision_tree  spearman      identity -0.005360        5.474665e-02  maximize
+460        f_3_5_qm         linear   pearson      identity  0.086805        0.000000e+00  maximize
+461        f_3_5_qm         linear  spearman      identity -0.042810        0.000000e+00  maximize
+462        f_3_5_qm  decision_tree   pearson      identity  0.300948        7.249236e-02  maximize
+463        f_3_5_qm  decision_tree  spearman      identity -0.017109        7.068680e-02  maximize
+464   f_3_5_lehmer4         linear   pearson      identity  0.014256        0.000000e+00  maximize
+465   f_3_5_lehmer4         linear  spearman      identity -0.006540        0.000000e+00  maximize
+466   f_3_5_lehmer4  decision_tree   pearson      identity  0.255013        5.645407e-02  maximize
+467   f_3_5_lehmer4  decision_tree  spearman      identity -0.010652        4.885142e-02  maximize
+468   f_3_5_lehmer3         linear   pearson      identity  0.097684        0.000000e+00  maximize
+469   f_3_5_lehmer3         linear  spearman      identity -0.032141        0.000000e+00  maximize
+470   f_3_5_lehmer3  decision_tree   pearson      identity  0.296670        5.447770e-02  maximize
+471   f_3_5_lehmer3  decision_tree  spearman      identity -0.011582        5.791051e-02  maximize
+472        f_3_6_qm         linear   pearson      identity  0.062864        0.000000e+00  maximize
+473        f_3_6_qm         linear  spearman      identity -0.022156        6.381183e-04  maximize
+474        f_3_6_qm  decision_tree   pearson      identity  0.295468        5.878735e-02  maximize
+475        f_3_6_qm  decision_tree  spearman      identity -0.012803        5.553623e-02  maximize
+476   f_3_6_lehmer4         linear   pearson      identity  0.011956        0.000000e+00  maximize
+477   f_3_6_lehmer4         linear  spearman      identity -0.020659        0.000000e+00  maximize
+478   f_3_6_lehmer4  decision_tree   pearson      identity  0.268684        4.549005e-02  maximize
+479   f_3_6_lehmer4  decision_tree  spearman      identity -0.016833        4.901851e-02  maximize
+480   f_3_6_lehmer3         linear   pearson      identity  0.066351        0.000000e+00  maximize
+481   f_3_6_lehmer3         linear  spearman      identity -0.042270        0.000000e+00  maximize
+482   f_3_6_lehmer3  decision_tree   pearson      identity  0.286398        3.606321e-02  maximize
+483   f_3_6_lehmer3  decision_tree  spearman      identity -0.015788        5.424145e-02  maximize
+484        f_3_7_qm         linear   pearson      identity  0.096299        0.000000e+00  maximize
+485        f_3_7_qm         linear  spearman      identity -0.019874        0.000000e+00  maximize
+486        f_3_7_qm  decision_tree   pearson      identity  0.290558        5.578599e-02  maximize
+487        f_3_7_qm  decision_tree  spearman      identity -0.054478        5.460544e-02  maximize
+488   f_3_7_lehmer4         linear   pearson      identity  0.090266        1.031999e-03  maximize
+489   f_3_7_lehmer4         linear  spearman      identity -0.047538        0.000000e+00  maximize
+490   f_3_7_lehmer4  decision_tree   pearson      identity  0.290573        6.493037e-02  maximize
+491   f_3_7_lehmer4  decision_tree  spearman      identity -0.018014        5.605058e-02  maximize
+492   f_3_7_lehmer3         linear   pearson      identity  0.126714        1.432479e-02  maximize
+493   f_3_7_lehmer3         linear  spearman      identity -0.044619        1.754630e-02  maximize
+494   f_3_7_lehmer3  decision_tree   pearson      identity  0.255049        6.791955e-02  maximize
+495   f_3_7_lehmer3  decision_tree  spearman      identity -0.005246        6.148921e-02  maximize
+496        f_3_8_qm         linear   pearson      identity  0.165366        1.376633e-03  maximize
+497        f_3_8_qm         linear  spearman      identity -0.044863        8.698511e-03  maximize
+498        f_3_8_qm  decision_tree   pearson      identity  0.300929        6.597878e-02  maximize
+499        f_3_8_qm  decision_tree  spearman      identity -0.020693        6.443116e-02  maximize
+500   f_3_8_lehmer4         linear   pearson      identity  0.034639        8.348963e-04  maximize
+501   f_3_8_lehmer4         linear  spearman      identity -0.033244        0.000000e+00  maximize
+502   f_3_8_lehmer4  decision_tree   pearson      identity  0.275914        4.197153e-02  maximize
+503   f_3_8_lehmer4  decision_tree  spearman      identity -0.021130        3.507034e-02  maximize
+504   f_3_8_lehmer3         linear   pearson      identity  0.047479        0.000000e+00  maximize
+505   f_3_8_lehmer3         linear  spearman      identity -0.031315        0.000000e+00  maximize
+506   f_3_8_lehmer3  decision_tree   pearson      identity  0.248355        3.807422e-02  maximize
+507   f_3_8_lehmer3  decision_tree  spearman      identity -0.008630        4.558363e-02  maximize
+508        f_3_9_qm         linear   pearson      identity  0.039028        1.356308e-02  maximize
+509        f_3_9_qm         linear  spearman      identity -0.042952        9.802555e-03  maximize
+510        f_3_9_qm  decision_tree   pearson      identity  0.205046        2.481039e-02  maximize
+511        f_3_9_qm  decision_tree  spearman      identity -0.065709        2.919134e-02  maximize
+512   f_3_9_lehmer4         linear   pearson      identity  0.085719        5.502708e-04  maximize
+513   f_3_9_lehmer4         linear  spearman      identity -0.044833        6.908387e-03  maximize
+514   f_3_9_lehmer4  decision_tree   pearson      identity  0.237161        3.340549e-02  maximize
+515   f_3_9_lehmer4  decision_tree  spearman      identity -0.040234        2.870694e-02  maximize
+516   f_3_9_lehmer3         linear   pearson      identity  0.035710        0.000000e+00  maximize
+517   f_3_9_lehmer3         linear  spearman      identity -0.045958        0.000000e+00  maximize
+518   f_3_9_lehmer3  decision_tree   pearson      identity  0.296670        4.846515e-02  maximize
+519   f_3_9_lehmer3  decision_tree  spearman      identity -0.006266        5.201908e-02  maximize
+520        f_4_5_qm         linear   pearson      identity  0.084324        6.385471e-04  maximize
+521        f_4_5_qm         linear  spearman      identity -0.032636        3.305214e-03  maximize
+522        f_4_5_qm  decision_tree   pearson      identity  0.255013        4.965026e-02  maximize
+523        f_4_5_qm  decision_tree  spearman      identity -0.010652        4.676362e-02  maximize
+524   f_4_5_lehmer4         linear   pearson      identity  0.107258        9.487313e-03  maximize
+525   f_4_5_lehmer4         linear  spearman      identity -0.026375        9.198498e-03  maximize
+526   f_4_5_lehmer4  decision_tree   pearson      identity  0.300948        6.709764e-02  maximize
+527   f_4_5_lehmer4  decision_tree  spearman      identity -0.017109        6.046016e-02  maximize
+528   f_4_5_lehmer3         linear   pearson      identity  0.089333        1.353958e-02  maximize
+529   f_4_5_lehmer3         linear  spearman      identity -0.020422        1.048666e-02  maximize
+530   f_4_5_lehmer3  decision_tree   pearson      identity  0.230872        3.384588e-02  maximize
+531   f_4_5_lehmer3  decision_tree  spearman      identity -0.051418        3.568999e-02  maximize
+532        f_4_6_qm         linear   pearson      identity  0.112488        0.000000e+00  maximize
+533        f_4_6_qm         linear  spearman      identity -0.037307        0.000000e+00  maximize
+534        f_4_6_qm  decision_tree   pearson      identity  0.295451        5.248936e-02  maximize
+535        f_4_6_qm  decision_tree  spearman      identity -0.055249        5.671754e-02  maximize
+536       f_4_6_rms         linear   pearson      identity  0.129724        1.097062e-02  maximize
+537       f_4_6_rms         linear  spearman      identity -0.044049        1.180266e-02  maximize
+538       f_4_6_rms  decision_tree   pearson      identity  0.275289        3.670037e-02  maximize
+539       f_4_6_rms  decision_tree  spearman      identity -0.042280        3.482058e-02  maximize
+540   f_4_6_lehmer4         linear   pearson      identity  0.021516        1.162783e-02  maximize
+541   f_4_6_lehmer4         linear  spearman      identity -0.041929        1.184031e-02  maximize
+542   f_4_6_lehmer4  decision_tree   pearson      identity  0.295468        5.792205e-02  maximize
+543   f_4_6_lehmer4  decision_tree  spearman      identity -0.045183        5.863634e-02  maximize
+544        f_4_7_qm         linear   pearson      identity  0.019898        0.000000e+00  maximize
+545        f_4_7_qm         linear  spearman      identity -0.045631        0.000000e+00  maximize
+546        f_4_7_qm  decision_tree   pearson      identity  0.276199        5.009086e-02  maximize
+547        f_4_7_qm  decision_tree  spearman      identity -0.008684        4.970197e-02  maximize
+548   f_4_7_lehmer4         linear   pearson      identity  0.067709        1.667749e-03  maximize
+549   f_4_7_lehmer4         linear  spearman      identity -0.034324        6.132402e-03  maximize
+550   f_4_7_lehmer4  decision_tree   pearson      identity  0.300929        6.275060e-02  maximize
+551   f_4_7_lehmer4  decision_tree  spearman      identity -0.020693        6.989544e-02  maximize
+552   f_4_7_lehmer3         linear   pearson      identity  0.070616        0.000000e+00  maximize
+553   f_4_7_lehmer3         linear  spearman      identity -0.023177        0.000000e+00  maximize
+554   f_4_7_lehmer3  decision_tree   pearson      identity  0.297659        5.498314e-02  maximize
+555   f_4_7_lehmer3  decision_tree  spearman      identity -0.007238        4.801720e-02  maximize
+556        f_4_8_qm         linear   pearson      identity  0.025199        4.931342e-03  maximize
+557        f_4_8_qm         linear  spearman      identity -0.033772        4.651628e-03  maximize
+558        f_4_8_qm  decision_tree   pearson      identity  0.276960        4.134187e-02  maximize
+559        f_4_8_qm  decision_tree  spearman      identity -0.021061        4.564980e-02  maximize
+560       f_4_8_rms         linear   pearson      identity  0.052640        4.253914e-07  maximize
+561       f_4_8_rms         linear  spearman      identity -0.020185        7.040233e-04  maximize
+562       f_4_8_rms  decision_tree   pearson      identity  0.288435        5.719029e-02  maximize
+563       f_4_8_rms  decision_tree  spearman      identity -0.004014        5.144494e-02  maximize
+564   f_4_8_lehmer4         linear   pearson      identity  0.105494        1.453296e-02  maximize
+565   f_4_8_lehmer4         linear  spearman      identity -0.031147        1.029892e-03  maximize
+566   f_4_8_lehmer4  decision_tree   pearson      identity  0.290573        5.521157e-02  maximize
+567   f_4_8_lehmer4  decision_tree  spearman      identity -0.050571        5.332992e-02  maximize
+568        f_4_9_qm         linear   pearson      identity  0.014634        0.000000e+00  maximize
+569        f_4_9_qm         linear  spearman      identity -0.035512        0.000000e+00  maximize
+570        f_4_9_qm  decision_tree   pearson      identity  0.267093        3.243728e-02  maximize
+571        f_4_9_qm  decision_tree  spearman      identity -0.046164        3.377657e-02  maximize
+572       f_4_9_rms         linear   pearson      identity  0.116033        0.000000e+00  maximize
+573       f_4_9_rms         linear  spearman      identity -0.032468        0.000000e+00  maximize
+574       f_4_9_rms  decision_tree   pearson      identity  0.299181        4.617857e-02  maximize
+575       f_4_9_rms  decision_tree  spearman      identity -0.011405        4.827638e-02  maximize
+576   f_4_9_lehmer4         linear   pearson      identity  0.107827        0.000000e+00  maximize
+577   f_4_9_lehmer4         linear  spearman      identity -0.018992        0.000000e+00  maximize
+578   f_4_9_lehmer4  decision_tree   pearson      identity  0.299202        5.212348e-02  maximize
+579   f_4_9_lehmer4  decision_tree  spearman      identity -0.008090        5.337870e-02  maximize
+580        f_5_6_qm         linear   pearson      identity  0.103022        3.783531e-03  maximize
+581        f_5_6_qm         linear  spearman      identity -0.045711        0.000000e+00  maximize
+582        f_5_6_qm  decision_tree   pearson      identity  0.300948        6.342145e-02  maximize
+583        f_5_6_qm  decision_tree  spearman      identity  0.004082        6.750269e-02  maximize
+584   f_5_6_lehmer4         linear   pearson      identity  0.049318        0.000000e+00  maximize
+585   f_5_6_lehmer4         linear  spearman      identity -0.045853        0.000000e+00  maximize
+586   f_5_6_lehmer4  decision_tree   pearson      identity  0.294903        4.276412e-02  maximize
+587   f_5_6_lehmer4  decision_tree  spearman      identity -0.040320        4.062902e-02  maximize
+588   f_5_6_lehmer3         linear   pearson      identity  0.103050        0.000000e+00  maximize
+589   f_5_6_lehmer3         linear  spearman      identity -0.033866        8.710478e-04  maximize
+590   f_5_6_lehmer3  decision_tree   pearson      identity  0.282171        6.701865e-02  maximize
+591   f_5_6_lehmer3  decision_tree  spearman      identity -0.005193        7.249007e-02  maximize
+592        f_5_7_qm         linear   pearson      identity  0.009751        1.721738e-04  maximize
+593        f_5_7_qm         linear  spearman      identity -0.035867        2.706983e-04  maximize
+594        f_5_7_qm  decision_tree   pearson      identity  0.193068        2.288961e-02  maximize
+595        f_5_7_qm  decision_tree  spearman      identity -0.042099        1.600619e-02  maximize
+596   f_5_7_lehmer4         linear   pearson      identity  0.127994        5.881533e-03  maximize
+597   f_5_7_lehmer4         linear  spearman      identity -0.043624        8.236121e-03  maximize
+598   f_5_7_lehmer4  decision_tree   pearson      identity  0.283049        2.717283e-02  maximize
+599   f_5_7_lehmer4  decision_tree  spearman      identity -0.075338        3.604864e-02  maximize
+600  f_5_7_exp_mean         linear   pearson      identity  0.035620        6.291083e-03  maximize
+601  f_5_7_exp_mean         linear  spearman      identity -0.034412        0.000000e+00  maximize
+602  f_5_7_exp_mean  decision_tree   pearson      identity  0.296670        4.793793e-02  maximize
+603  f_5_7_exp_mean  decision_tree  spearman      identity -0.006266        5.538795e-02  maximize
+604        f_5_8_qm         linear   pearson      identity  0.137267        0.000000e+00  maximize
+605        f_5_8_qm         linear  spearman      identity -0.039434        0.000000e+00  maximize
+606        f_5_8_qm  decision_tree   pearson      identity  0.266876        3.985928e-02  maximize
+607        f_5_8_qm  decision_tree  spearman      identity -0.042133        4.307724e-02  maximize
+608   f_5_8_lehmer4         linear   pearson      identity  0.084627        9.472271e-03  maximize
+609   f_5_8_lehmer4         linear  spearman      identity -0.019224        1.255560e-02  maximize
+610   f_5_8_lehmer4  decision_tree   pearson      identity  0.290272        4.801522e-02  maximize
+611   f_5_8_lehmer4  decision_tree  spearman      identity -0.035720        4.838012e-02  maximize
+612   f_5_8_lehmer3         linear   pearson      identity  0.139224        1.088686e-02  maximize
+613   f_5_8_lehmer3         linear  spearman      identity -0.031372        2.109658e-02  maximize
+614   f_5_8_lehmer3  decision_tree   pearson      identity  0.248355        4.236686e-02  maximize
+615   f_5_8_lehmer3  decision_tree  spearman      identity -0.008630        5.113843e-02  maximize
+616        f_5_9_qm         linear   pearson      identity  0.100822        1.856434e-03  maximize
+617        f_5_9_qm         linear  spearman      identity -0.031184        1.039817e-02  maximize
+618        f_5_9_qm  decision_tree   pearson      identity  0.286553        5.083395e-02  maximize
+619        f_5_9_qm  decision_tree  spearman      identity -0.007938        3.916469e-02  maximize
+620   f_5_9_lehmer4         linear   pearson      identity  0.114167        0.000000e+00  maximize
+621   f_5_9_lehmer4         linear  spearman      identity -0.031847        3.447878e-03  maximize
+622   f_5_9_lehmer4  decision_tree   pearson      identity  0.298239        5.723518e-02  maximize
+623   f_5_9_lehmer4  decision_tree  spearman      identity -0.005124        4.984775e-02  maximize
+624   f_5_9_lehmer3         linear   pearson      identity  0.032715        0.000000e+00  maximize
+625   f_5_9_lehmer3         linear  spearman      identity  0.029950        2.718558e-03  maximize
+626   f_5_9_lehmer3  decision_tree   pearson      identity  0.282171        5.782577e-02  maximize
+627   f_5_9_lehmer3  decision_tree  spearman      identity -0.005193        6.187279e-02  maximize
+628        f_6_7_qm         linear   pearson      identity  0.052463        1.111419e-02  maximize
+629        f_6_7_qm         linear  spearman      identity -0.044799        1.087393e-02  maximize
+630        f_6_7_qm  decision_tree   pearson      identity  0.227743        3.535811e-02  maximize
+631        f_6_7_qm  decision_tree  spearman      identity -0.046237        4.409509e-02  maximize
+632   f_6_7_lehmer4         linear   pearson      identity  0.083891        0.000000e+00  maximize
+633   f_6_7_lehmer4         linear  spearman      identity -0.021152        0.000000e+00  maximize
+634   f_6_7_lehmer4  decision_tree   pearson      identity  0.284725        3.195046e-02  maximize
+635   f_6_7_lehmer4  decision_tree  spearman      identity -0.039656        3.181176e-02  maximize
+636   f_6_7_lehmer3         linear   pearson      identity  0.033552        9.983988e-04  maximize
+637   f_6_7_lehmer3         linear  spearman      identity -0.041082        0.000000e+00  maximize
+638   f_6_7_lehmer3  decision_tree   pearson      identity  0.282171        5.539954e-02  maximize
+639   f_6_7_lehmer3  decision_tree  spearman      identity -0.005193        6.304311e-02  maximize
+640        f_6_8_qm         linear   pearson      identity  0.033428        0.000000e+00  maximize
+641        f_6_8_qm         linear  spearman      identity  0.027008        1.596421e-03  maximize
+642        f_6_8_qm  decision_tree   pearson      identity  0.184532        1.944394e-02  maximize
+643        f_6_8_qm  decision_tree  spearman      identity -0.008915        9.571478e-03  maximize
+644       f_6_8_rms         linear   pearson      identity  0.102183        0.000000e+00  maximize
+645       f_6_8_rms         linear  spearman      identity -0.020969        0.000000e+00  maximize
+646       f_6_8_rms  decision_tree   pearson      identity  0.253904        3.330864e-02  maximize
+647       f_6_8_rms  decision_tree  spearman      identity -0.049068        3.051188e-02  maximize
+648   f_6_8_lehmer4         linear   pearson      identity  0.040167        6.202717e-03  maximize
+649   f_6_8_lehmer4         linear  spearman      identity -0.045262        4.522161e-03  maximize
+650   f_6_8_lehmer4  decision_tree   pearson      identity  0.291054        5.840959e-02  maximize
+651   f_6_8_lehmer4  decision_tree  spearman      identity -0.012342        3.367232e-02  maximize
+652        f_6_9_qm         linear   pearson      identity  0.018347        4.574852e-03  maximize
+653        f_6_9_qm         linear  spearman      identity -0.026537        5.824852e-03  maximize
+654        f_6_9_qm  decision_tree   pearson      identity  0.223720        3.692133e-02  maximize
+655        f_6_9_qm  decision_tree  spearman      identity  0.000761        3.366235e-02  maximize
+656       f_6_9_rms         linear   pearson      identity  0.070885        6.737960e-04  maximize
+657       f_6_9_rms         linear  spearman      identity -0.037967        1.113622e-03  maximize
+658       f_6_9_rms  decision_tree   pearson      identity  0.201394        3.645931e-02  maximize
+659       f_6_9_rms  decision_tree  spearman      identity -0.046858        2.972531e-02  maximize
+660   f_6_9_lehmer4         linear   pearson      identity  0.013400        0.000000e+00  maximize
+661   f_6_9_lehmer4         linear  spearman      identity -0.045382        0.000000e+00  maximize
+662   f_6_9_lehmer4  decision_tree   pearson      identity  0.286553        6.097810e-02  maximize
+663   f_6_9_lehmer4  decision_tree  spearman      identity -0.007938        4.701932e-02  maximize
+664        f_7_8_qm         linear   pearson      identity  0.070035        0.000000e+00  maximize
+665        f_7_8_qm         linear  spearman      identity -0.034820        0.000000e+00  maximize
+666        f_7_8_qm  decision_tree   pearson      identity  0.300929        6.049180e-02  maximize
+667        f_7_8_qm  decision_tree  spearman      identity -0.020693        6.380616e-02  maximize
+668   f_7_8_lehmer4         linear   pearson      identity  0.015954        7.109459e-03  maximize
+669   f_7_8_lehmer4         linear  spearman      identity -0.040527        5.442793e-03  maximize
+670   f_7_8_lehmer4  decision_tree   pearson      identity  0.261005        3.444726e-02  maximize
+671   f_7_8_lehmer4  decision_tree  spearman      identity -0.035651        2.973315e-02  maximize
+672   f_7_8_lehmer3         linear   pearson      identity  0.037618        0.000000e+00  maximize
+673   f_7_8_lehmer3         linear  spearman      identity -0.026786        0.000000e+00  maximize
+674   f_7_8_lehmer3  decision_tree   pearson      identity  0.233197        2.627502e-02  maximize
+675   f_7_8_lehmer3  decision_tree  spearman      identity -0.035581        2.710294e-02  maximize
+676        f_7_9_qm         linear   pearson      identity  0.071579        4.713858e-03  maximize
+677        f_7_9_qm         linear  spearman      identity -0.018927        4.583150e-03  maximize
+678        f_7_9_qm  decision_tree   pearson      identity  0.283782        3.997691e-02  maximize
+679        f_7_9_qm  decision_tree  spearman      identity -0.014901        4.596659e-02  maximize
+680   f_7_9_lehmer4         linear   pearson      identity  0.100787        7.389722e-03  maximize
+681   f_7_9_lehmer4         linear  spearman      identity -0.034204        8.798813e-03  maximize
+682   f_7_9_lehmer4  decision_tree   pearson      identity  0.287098        5.817291e-02  maximize
+683   f_7_9_lehmer4  decision_tree  spearman      identity -0.011699        5.013551e-02  maximize
+684   f_7_9_lehmer3         linear   pearson      identity  0.137337        6.175624e-03  maximize
+685   f_7_9_lehmer3         linear  spearman      identity -0.034667        7.830848e-03  maximize
+686   f_7_9_lehmer3  decision_tree   pearson      identity  0.274893        4.453714e-02  maximize
+687   f_7_9_lehmer3  decision_tree  spearman      identity -0.021335        4.398421e-02  maximize
+688        f_8_9_qm         linear   pearson      identity  0.023220        0.000000e+00  maximize
+689        f_8_9_qm         linear  spearman      identity  0.018710        0.000000e+00  maximize
+690        f_8_9_qm  decision_tree   pearson      identity  0.294930        4.766039e-02  maximize
+691        f_8_9_qm  decision_tree  spearman      identity -0.018096        3.956247e-02  maximize
+692       f_8_9_rms         linear   pearson      identity  0.016109        0.000000e+00  maximize
+693       f_8_9_rms         linear  spearman      identity -0.047286        0.000000e+00  maximize
+694       f_8_9_rms  decision_tree   pearson      identity  0.254716        2.567139e-02  maximize
+695       f_8_9_rms  decision_tree  spearman      identity -0.049401        2.100240e-02  maximize
+696   f_8_9_lehmer4         linear   pearson      identity  0.013323        8.162023e-03  maximize
+697   f_8_9_lehmer4         linear  spearman      identity -0.047670        8.648134e-03  maximize
+698   f_8_9_lehmer4  decision_tree   pearson      identity  0.286635        3.674873e-02  maximize
+699   f_8_9_lehmer4  decision_tree  spearman      identity -0.037939        3.506817e-02  maximize
+
+Number of trained models: 0
