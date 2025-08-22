@@ -10,7 +10,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 try:
-    from IF.v2.ineq_cython import compute_features_cython
+    from chekml.featurization.IF.v2.ineq_cython import compute_features_cython
 except ImportError:
     print("Cython module not found. Please compile ineq_cython.pyx first.")
     compute_features_cython = None

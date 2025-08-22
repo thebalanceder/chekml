@@ -12,13 +12,14 @@ from sklearn.model_selection import cross_val_score
 from sklearn.metrics import mean_squared_error, make_scorer
 from sklearn.preprocessing import StandardScaler
 from sklearn.impute import SimpleImputer
+from sklearn.feature_selection import mutual_info_regression
 import torch
 import torch.nn as nn
 import torch.optim as optim
 from chekml.featurization.IF.v2.inequality_based_featurization import InequalityFeaturizer
 from chekml.featurization.IRF.v4.information_repurposed_featurization import InformationRepurposedFeaturizer
 from chekml.featurization.MhF.MhF import MetaheuristicFeaturizer, PyTorchWrapper
-from chekml.featurization.MetaheuristicOptimization.CIntegration_cffi1.wrapper import Wrapper
+from chekml.MetaheuristicOptimization.CIntegration_cffi1.wrapper import Wrapper
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -72,29 +73,33 @@ def compile_cython_module(cython_file, c_file, output_so):
         raise RuntimeError(f"Compilation failed: {e}")
 
 class FeaturizerPipeline:
-    def __init__(self, base_dir=None, timeout_seconds=60):
+    def __init__(self, base_dir=None, wrapper_class=None, timeout_seconds=60):
         """
         Initialize the FeaturizerPipeline.
 
         Parameters:
         - base_dir (str, optional): Base directory for dynamic file paths. Defaults to script directory.
+        - wrapper_class (class, optional): Wrapper class for MetaheuristicFeaturizer. Defaults to Wrapper from chekml.
         - timeout_seconds (int, default: 60): Timeout for InformationRepurposedFeaturizer to prevent hanging.
         """
         self.base_dir = base_dir or os.path.dirname(os.path.abspath(__file__))
+        self.wrapper_class = wrapper_class or Wrapper
         self.timeout_seconds = timeout_seconds
         self.ineq_cython_file = os.path.join(self.base_dir, "IF", "v2", "ineq_cython.pyx")
         self.inequalities_c_file = os.path.join(self.base_dir, "IF", "v2", "inequalities.c")
         self.ineq_so_file = os.path.join(self.base_dir, "IF", "v2", "ineq_cython.so")
         self.report = []
+        self.all_features = {}  # Track all features and their scores
 
-    def run(self, df, top_n=5, criterion="mutual_information", output_csv="best_features.csv", output_report="pipeline_report.txt"):
+    def run(self, df, top_n=5, criterion="mutual_information", exclude_features=None, output_csv="best_features.csv", output_report="pipeline_report.txt"):
         """
-        Run the feature engineering pipeline.
+        Run the feature engineering pipeline, selecting best features from all original and processed features.
 
         Parameters:
         - df (pandas.DataFrame): Input DataFrame with 'target' column.
         - top_n (int, default: 5): Number of top features to select and save.
         - criterion (str, default: "mutual_information"): Criterion for selecting best features ("mutual_information" or "cross_val_score").
+        - exclude_features (list, optional): List of feature names to exclude from best features selection.
         - output_csv (str, default: "best_features.csv"): Path to save top N features.
         - output_report (str, default: "pipeline_report.txt"): Path to save summary report.
 
@@ -102,8 +107,12 @@ class FeaturizerPipeline:
         - dict: Dictionary containing output DataFrame, feature scores, and selected features.
         """
         self.report = []
-        logging.info("Starting FeaturizerPipeline")
-        self.report.append("# Featurizer Pipeline Report\n")
+        self.all_features = {}
+        exclude_features = exclude_features or []
+        logging.info(f"Starting FeaturizerPipeline with wrapper: {self.wrapper_class.__name__}")
+        self.report.append(f"# Featurizer Pipeline Report\n")
+        self.report.append(f"- Wrapper class: {self.wrapper_class.__name__}\n")
+        self.report.append(f"- Excluded features: {exclude_features}\n")
 
         # Validate input
         if 'target' not in df.columns:
@@ -112,6 +121,21 @@ class FeaturizerPipeline:
             raise ValueError("Input DataFrame contains NaN values")
         if criterion not in ["mutual_information", "cross_val_score"]:
             raise ValueError("criterion must be 'mutual_information' or 'cross_val_score'")
+        invalid_excludes = [f for f in exclude_features if f not in df.columns and not f.startswith('f_')]
+        if invalid_excludes:
+            logging.warning(f"Some excluded features not in input DataFrame: {invalid_excludes}")
+
+        # Initialize feature scores with original features
+        original_features = [col for col in df.columns if col != 'target' and col not in exclude_features]
+        y = df['target']
+        if criterion == "mutual_information":
+            mi_scores = mutual_info_regression(df[original_features], y)
+            self.all_features.update(dict(zip(original_features, mi_scores)))
+        else:  # cross_val_score
+            scorer = make_scorer(mean_squared_error, greater_is_better=False)
+            for col in original_features:
+                scores = cross_val_score(LinearRegression(), df[[col]], y, cv=5, scoring=scorer)
+                self.all_features[col] = -scores.mean()  # Convert to positive
 
         # Step 1: InequalityFeaturizer
         logging.info("\n=== Running InequalityFeaturizer ===")
@@ -128,8 +152,18 @@ class FeaturizerPipeline:
                 csv_path='ineq_features.csv',
                 report_path='ineq_mi_report.txt'
             )
+            # Update feature scores for new features
+            new_features = [col for col in ineq_df.columns if col.startswith('f_') and col not in exclude_features]
+            if new_features:
+                if criterion == "mutual_information":
+                    mi_scores = mutual_info_regression(ineq_df[new_features], y)
+                    self.all_features.update(dict(zip(new_features, mi_scores)))
+                else:
+                    for col in new_features:
+                        scores = cross_val_score(LinearRegression(), ineq_df[[col]], y, cv=5, scoring=scorer)
+                        self.all_features[col] = -scores.mean()
             self.report.append(f"- Output shape: {ineq_df.shape}\n")
-            self.report.append(f"- New features: {[col for col in ineq_df.columns if col.startswith('f_')][:5]}\n")
+            self.report.append(f"- New features: {new_features[:5]}\n")
         except Exception as e:
             logging.error(f"InequalityFeaturizer failed: {e}")
             raise
@@ -163,18 +197,26 @@ class FeaturizerPipeline:
                     save_results_file="irf_results.txt",
                     n_jobs=1
                 )
+            # Update feature scores for new features
+            new_features = [col for col in irf_df.columns if not col.startswith('feature') and col != 'target' and col not in exclude_features]
+            if new_features:
+                if criterion == "mutual_information":
+                    mi_scores = mutual_info_regression(irf_df[new_features], y)
+                    self.all_features.update(dict(zip(new_features, mi_scores)))
+                else:
+                    for col in new_features:
+                        scores = cross_val_score(LinearRegression(), irf_df[[col]], y, cv=5, scoring=scorer)
+                        self.all_features[col] = -scores.mean()
             self.report.append(f"- Output shape: {irf_df.shape}\n")
-            self.report.append(f"- New features: {[col for col in irf_df.columns if not col.startswith('feature') and col != 'target'][:3]}\n")
+            self.report.append(f"- New features: {new_features[:3]}\n")
             self.report.append(f"- Top MI scores: {sorted([(k, f'{v:.4f}') for k, v in feature_mi.items() if v > 0.1], key=lambda x: x[1], reverse=True)[:5]}\n")
         except TimeoutError:
             logging.error("InformationRepurposedFeaturizer timed out")
             irf_df = ineq_df
-            feature_mi = {}
             self.report.append("- Failed: Timed out\n")
         except Exception as e:
             logging.error(f"InformationRepurposedFeaturizer failed: {e}")
             irf_df = ineq_df
-            feature_mi = {}
             self.report.append(f"- Failed: {e}\n")
 
         # Step 3: MetaheuristicFeaturizer
@@ -205,7 +247,7 @@ class FeaturizerPipeline:
                     problem_type="regression",
                     model=model,
                     scorer=custom_scorer,
-                    wrapper_class=Wrapper,
+                    wrapper_class=self.wrapper_class,
                     wrapper_method="DISO",
                     wrapper_population_size=10,
                     wrapper_max_iter=10
@@ -218,25 +260,17 @@ class FeaturizerPipeline:
                 logging.error(f"MetaheuristicFeaturizer with {model_name} failed: {e}")
                 self.report.append(f"- Failed: {e}\n")
 
-        # Select best features based on criterion
+        # Select best features from all features
         logging.info("\n=== Selecting Best Features ===")
         self.report.append("## Best Features Selection\n")
         try:
-            final_df = list(selected_dfs["LinearRegression"].values())[0]  # Use LinearRegression's first method
-            X_final = final_df.drop('target', axis=1)
-            y_final = final_df['target']
-            if criterion == "mutual_information":
-                from sklearn.feature_selection import mutual_info_regression
-                mi_scores = mutual_info_regression(X_final, y_final)
-                feature_scores = dict(zip(X_final.columns, mi_scores))
-                top_features = sorted(feature_scores.items(), key=lambda x: x[1], reverse=True)[:top_n]
-            else:  # cross_val_score
-                feature_scores = {}
-                for col in X_final.columns:
-                    scores = cross_val_score(LinearRegression(), X_final[[col]], y_final, cv=5, scoring=custom_scorer)
-                    feature_scores[col] = -scores.mean()  # Negative MSE to positive
-                top_features = sorted(feature_scores.items(), key=lambda x: x[1])[:top_n]
-
+            # Use the most comprehensive DataFrame (irf_df) for all features
+            X_final = irf_df.drop('target', axis=1)
+            y_final = irf_df['target']
+            # Exclude specified features
+            valid_features = [(f, s) for f, s in self.all_features.items() if f not in exclude_features]
+            top_features = sorted(valid_features, key=lambda x: x[1], reverse=(criterion == "mutual_information"))[:top_n]
+            
             # Save best features to CSV
             best_df = pd.concat([X_final[[f[0] for f in top_features]], y_final], axis=1)
             best_df.to_csv(output_csv, index=False)
@@ -252,7 +286,7 @@ class FeaturizerPipeline:
         logging.info("\n=== Evaluating Final Features ===")
         self.report.append("## Final Evaluation\n")
         try:
-            scores = cross_val_score(LinearRegression(), X_final, y_final, cv=5, scoring=custom_scorer)
+            scores = cross_val_score(LinearRegression(), X_final[[f[0] for f in top_features]], y_final, cv=5, scoring=custom_scorer)
             self.report.append(f"- 5-fold CV MSE: {-scores.mean():.4f} (+/- {2 * scores.std():.4f})\n")
         except Exception as e:
             logging.error(f"Final evaluation failed: {e}")
@@ -264,17 +298,51 @@ class FeaturizerPipeline:
 
         return {
             "final_df": best_df,
-            "feature_scores": feature_scores,
+            "feature_scores": self.all_features,
             "selected_features": [f[0] for f in top_features]
         }
 
 if __name__ == "__main__":
-    # Example usage
+    # Example usage with custom wrapper
     np.random.seed(42)
     torch.manual_seed(42)
+    from sklearn.datasets import make_regression
+
+    # Custom wrapper example
+    class CustomWrapper:
+        def __init__(self, dim, bounds, population_size, max_iter, method="DISO"):
+            self.dim = dim
+            self.bounds = bounds
+            self.population_size = population_size
+            self.max_iter = max_iter
+            self.method = method
+            self.best_solution = np.random.uniform(0, 1, dim)
+            self.best_score = float('inf')
+
+        def optimize(self, objective_function):
+            for _ in range(self.max_iter):
+                solution = np.random.uniform(0, 1, self.dim)
+                score = objective_function(solution)
+                if score < self.best_score:
+                    self.best_score = score
+                    self.best_solution = solution
+
+        def get_best_solution(self):
+            return self.best_solution, self.best_score
+
+        def free(self):
+            pass
+
     X, y = make_regression(n_samples=200, n_features=10, n_informative=5, noise=0.1, random_state=42)
     df = pd.DataFrame(X, columns=[f'feature{i+1}' for i in range(10)])
     df['target'] = y
-    pipeline = FeaturizerPipeline()
-    result = pipeline.run(df, top_n=5, criterion="mutual_information")
+    pipeline = FeaturizerPipeline(wrapper_class=CustomWrapper)
+    result = pipeline.run(
+        df,
+        top_n=5,
+        criterion="mutual_information",
+        exclude_features=['feature1', 'feature2'],
+        output_csv="best_features.csv",
+        output_report="pipeline_report.txt"
+    )
     logging.info(f"Pipeline completed. Best features: {result['selected_features']}")
