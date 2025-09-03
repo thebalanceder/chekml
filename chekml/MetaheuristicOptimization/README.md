@@ -66,7 +66,7 @@ Optimizes a quadratic function `sum(x**2)` in 10 dimensions.
 ```python
 import numpy as np
 import logging
-from CIntegration_cffi import wrapper  # Adjust import
+from chekml.MetaheuristicOptimization.CIntegration_cffi import wrapper  # Adjust import
 
 logging.basicConfig(level=logging.INFO)
 
@@ -101,7 +101,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
 from sklearn.datasets import make_regression
 import logging
-from CIntegration_cffi import wrapper
+from chekml.MetaheuristicOptimization.CIntegration_cffi import wrapper
 
 logging.basicConfig(level=logging.INFO)
 
@@ -166,7 +166,7 @@ if __name__ == "__main__":
 ```python
 import numpy as np
 import logging
-from CIntegration_cffi import wrapper
+from chekml.MetaheuristicOptimization.CIntegration_cffi import wrapper
 
 logging.basicConfig(level=logging.INFO)
 
@@ -198,7 +198,7 @@ if __name__ == "__main__":
 import numpy as np
 import logging
 import time
-from CIntegration_cffi import wrapper
+from chekml.MetaheuristicOptimization.CIntegration_cffi import wrapper
 
 logging.basicConfig(level=logging.INFO)
 
