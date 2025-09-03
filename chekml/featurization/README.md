@@ -62,7 +62,7 @@
 
 ### Example
 ```python
-pythonimport pandas as pd
+import pandas as pd
 import numpy as np
 from inequality_based_featurization import InequalityFeaturizer
 
