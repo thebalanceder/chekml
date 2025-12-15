@@ -86,16 +86,21 @@ class InequalityFeaturizer:
     def _compile_cython(self):
         """Compile the Cython module."""
         try:
+            base_dir = os.path.dirname(__file__)
+            c_file = os.path.join(base_dir, "ineq_cython.c")
+            ineq_file = os.path.join(base_dir, "inequalities.c")
+            pyx_file = os.path.join(base_dir, "ineq_cython.pyx")
+            output_file = os.path.join(base_dir, "ineq_cython.so")
+
             # Cythonize the .pyx file
-            subprocess.run([
-                "cython", "-3", "--force", self.cython_file_path
-            ], check=True)
+            subprocess.run(["cython", "-3", "--force", pyx_file], check=True)
+
             # Compile the generated C file with gcc
             python_include = sysconfig.get_path('include')
             numpy_include = np.get_include()
             subprocess.run([
                 "gcc", "-shared", "-pthread", "-fPIC", "-O3",
-                "-o", "ineq_cython.so", "ineq_cython.c", "inequalities.c",
+                "-o", output_file, c_file, ineq_file,
                 "-lm", "-I", numpy_include, "-I", python_include,
                 "-DNPY_NO_DEPRECATED_API=NPY_1_7_API_VERSION"
             ], check=True)
