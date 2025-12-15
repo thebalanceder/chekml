@@ -8,7 +8,7 @@ import os
 
 warnings.filterwarnings('ignore')
 
-def Inequality_Featurizer(df, level=1, stage=1, csv_path=None, report_path=None):
+def InequalityFeaturizer(df, level=1, stage=1, csv_path=None, report_path=None):
     """
     Creates new features based on inequality equations and computes mutual information.
     
