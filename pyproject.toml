@@ -1,6 +1,6 @@
 [project]
 name = "chekml"
-version = "0.1.11"
+version = "0.1.12"
 description = "A versatile library for data manipulation"
 readme = "README.md"
 authors = [
@@ -33,6 +33,8 @@ include-package-data = false   # disable auto-include junk
 chekml = ["**/*.so",
     "featurization/IF/v2/*.c",  # C source
     "featurization/IF/v2/*.h",  # headers
+    "featurization/IF/v2/*.pyx",
     "featurization/IRF/v4/*.c",
-    "featurization/IRF/v4/*.h"]
+    "featurization/IRF/v4/*.h",
+    "featurization/IRF/v4/*.cpp"]
 
