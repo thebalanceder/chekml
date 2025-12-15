@@ -30,5 +30,9 @@ exclude = ["testing*", "documentation*", "dist*", "build*"]
 include-package-data = false   # disable auto-include junk
 
 [tool.setuptools.package-data]
-chekml = ["**/*.so"]           # only keep final .so files you need
+chekml = ["**/*.so",
+    "featurization/IF/v2/*.c",  # C source
+    "featurization/IF/v2/*.h",  # headers
+    "featurization/IRF/v4/*.c",
+    "featurization/IRF/v4/*.h"]
 
