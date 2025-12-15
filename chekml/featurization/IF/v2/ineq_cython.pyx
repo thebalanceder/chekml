@@ -13,6 +13,7 @@ cdef extern from "string.h":
 import numpy as np
 cimport numpy as np
 cimport cython
+np.import_array()
 from libc.stdlib cimport malloc, free
 from libc.string cimport strdup
 
