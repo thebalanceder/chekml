@@ -1,6 +1,6 @@
 [project]
 name = "chekml"
-version = "0.1.14"
+version = "0.1.15"
 description = "A versatile library for data manipulation"
 readme = "README.md"
 authors = [
@@ -31,10 +31,10 @@ include-package-data = false   # disable auto-include junk
 
 [tool.setuptools.package-data]
 chekml = ["**/*.so",
-    "featurization/IF/v2/*.c",  # C source
-    "featurization/IF/v2/*.h",  # headers
-    "featurization/IF/v2/*.pyx",
-    "featurization/IRF/v4/*.c",
-    "featurization/IRF/v4/*.h",
-    "featurization/IRF/v4/*.cpp"]
+    "featurization/IF/fast/*.c",  # C source
+    "featurization/IF/fast/*.h",  # headers
+    "featurization/IF/fast/*.pyx",
+    "featurization/IRF/fast/*.c",
+    "featurization/IRF/fast/*.h",
+    "featurization/IRF/fast/*.cpp"]
 
