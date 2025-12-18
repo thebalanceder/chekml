@@ -592,3 +592,126 @@ print("\nFeature scores:", {k: f"{v:.4f}" for k, v in result["feature_scores"].i
 - The wrapper_class must implement optimize, get_best_solution, and free methods (see CustomWrapper example).
 - The pipeline uses a timeout for InformationRepurposedFeaturizer to prevent hanging on large datasets.
 - PyTorch models require compatible hardware (CPU or GPU) and a defined criterion (e.g., nn.MSELoss).
+
+## 5. FeatureEvaluator
+
+- example of how to use `FeatureEvaluator`
+
+```python
+from sklearn.datasets import fetch_california_housing
+from chekml.featurization import FeatureEvaluator
+
+data = fetch_california_housing(as_frame=True)
+df = data.frame.sample(n=3000, random_state=42)
+X = df.drop(columns='MedHouseVal')
+y = df['MedHouseVal']
+
+evaluator = FeatureEvaluator(
+    weights={'tree_importance': 2.5, 'permutation_importance': 2.0, 'mutual_info': 1.8},
+    show_heatmap=True
+)
+
+universal_scores = evaluator.fit(X, y)
+print(universal_scores.round(4))
+
+learned_weights = evaluator.learn_adaptive_weights(X, y)
+print(learned_weights)
+```
+
+### Using FeatureEvaluator in InformationRepurposedFeaturizer
+### Step 1: Helper – evaluator → scalar
+
+- This helper converts the evaluator output into one float.
+
+```python
+def evaluator_overall_scalar_score(evaluator, y_true, y_pred):
+    """
+    Convert FeatureEvaluator overall score into a single scalar.
+    """
+    Xp = pd.DataFrame({"pred": y_pred})
+    scores = evaluator.fit(Xp, y_true)  # Series with one entry
+    return float(scores.iloc[0])
+```
+
+### Step 2: Custom Metric (overall score)
+
+- This metric answers:
+- “How informative are the predictions as a feature for y?”
+
+```python
+def metric_feature_evaluator_overall(y_true, y_pred):
+    evaluator = FeatureEvaluator(
+        weights=None,
+        interaction_weights=None,
+        max_interaction_order=1,
+        show_heatmap=False
+    )
+    return evaluator_overall_scalar_score(
+        evaluator, y_true, y_pred
+    )
+```
+
+- Register the metric
+```python
+custom_metrics = {
+    "feature_evaluator_overall": (
+        metric_feature_evaluator_overall,
+        "maximize"
+    )
+}
+```
+
+### Step 3: Custom Loss (target shaping)
+
+- Instead of computing gradients, the loss reshapes the target based on information density.
+
+- Highly informative targets are amplified
+- Weak / noisy regions are dampened
+
+```python
+def loss_feature_evaluator_overall(y):
+    y = np.asarray(y)
+
+    evaluator = FeatureEvaluator(
+        weights=None,
+        interaction_weights=None,
+        max_interaction_order=1,
+        show_heatmap=False
+    )
+
+    score = evaluator_overall_scalar_score(
+        evaluator,
+        y_true=y,
+        y_pred=y
+    )
+
+    return y * (1.0 + score)
+```
+
+- Register the loss
+
+```python
+custom_loss = {
+    "feature_evaluator_overall": (
+        loss_feature_evaluator_overall,
+        "maximize"
+    )
+}
+```
+
+### Step 4: Use with InformationRepurposedFeaturizer
+```python
+result_df, metric_scores_df, feature_mi, trained_models = (
+    InformationRepurposedFeaturizerSlow(
+        df=data,
+        models=custom_models,
+        loss_functions=custom_loss,
+        metrics=custom_metrics,
+        prediction_mode="top_n",
+        top_n=5,
+        score_key="feature_evaluator_overall",
+        level=2,
+        n_jobs=4
+    )
+)
+```
