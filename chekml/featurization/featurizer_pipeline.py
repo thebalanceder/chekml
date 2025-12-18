@@ -16,8 +16,8 @@ from sklearn.feature_selection import mutual_info_regression
 import torch
 import torch.nn as nn
 import torch.optim as optim
-from chekml.featurization.IF.v2.inequality_based_featurization import InequalityFeaturizer
-from chekml.featurization.IRF.v4.information_repurposed_featurization import InformationRepurposedFeaturizer
+from chekml.featurization.IF.slow.inequality_based_featurization import InequalityFeaturizerSlow
+from chekml.featurization.IRF.slow.information_repurposed_featurization import InformationRepurposedFeaturizerSlow
 from chekml.featurization.MhF.MhF import MetaheuristicFeaturizer, PyTorchWrapper
 from chekml.MetaheuristicOptimization.CIntegration_cffi1.wrapper import Wrapper
 
@@ -144,7 +144,7 @@ class FeaturizerPipeline:
             compile_cython_module(self.ineq_cython_file, self.inequalities_c_file, self.ineq_so_file)
 
         try:
-            ineq_featurizer = InequalityFeaturizer()
+            ineq_featurizer = InequalityFeaturizerSlow()
             ineq_df = ineq_featurizer.featurize(
                 df,
                 level=2,
@@ -184,7 +184,7 @@ class FeaturizerPipeline:
         }
         try:
             with timeout(self.timeout_seconds):
-                irf_df, metric_scores_df, feature_mi, trained_models = InformationRepurposedFeaturizer(
+                irf_df, metric_scores_df, feature_mi, trained_models = InformationRepurposedFeaturizerSlow(
                     df=ineq_df,
                     models=custom_models,
                     loss_functions=custom_loss,

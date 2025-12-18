@@ -55,7 +55,7 @@
     -After generating new features, the algorithm computes mutual information scores to quantify the relevance of each feature to the target, aiding in feature selection or analysis.
 
 ### Usage
-- The `InequalityFeaturizer` class allows you to:
+- The `InequalityFeaturizerSlow` and 'InequalityFeaturizerFast' class allows you to:
   - Apply default inequalities (e.g., arithmetic mean, geometric mean, etc.) to feature combinations.
   - Add or delete user-defined inequalities (requires manual C implementation).
   - Generate new features and compute mutual information scores.
@@ -64,7 +64,7 @@
 ```python
 import pandas as pd
 import numpy as np
-from inequality_based_featurization import InequalityFeaturizer
+from inequality_based_featurization import InequalityFeaturizerSlow
 
 # Create sample data
 np.random.seed(42)
@@ -76,7 +76,7 @@ data = pd.DataFrame({
 data['target'] = 0.5 * data['A'] + 0.5 * data['C'] + np.random.randn(100) * 0.1
 
 # Initialize featurizer
-featurizer = InequalityFeaturizer()
+featurizer = InequalityFeaturizerSlow()
 
 # Add a custom inequality (requires manual C implementation)
 custom_ineq = """
@@ -164,7 +164,7 @@ cInequality inequalities[] = {
   - Each metric is a tuple of a function and its optimization direction (`"maximize"` or `"minimize"`).
 
 ### Algorithm of Information Repurposed Featurizer
-- The `InformationRepurposedFeaturizer` generates new features by training machine learning models on combinations of input features, evaluating their predictions using various statistical metrics, and selecting the most informative features. It leverages OpenCL-accelerated metrics (via `metrics.cpp`) for performance. Here’s how the algorithm works:
+- The `InformationRepurposedFeaturizerSlow` and 'InformationRepurposedFeaturizerFast' generates new features by training machine learning models on combinations of input features, evaluating their predictions using various statistical metrics, and selecting the most informative features. It leverages OpenCL-accelerated metrics (via `metrics.cpp`) for performance. Here’s how the algorithm works:
 
 -Initialization:
   - Validates the input DataFrame, ensuring it has a `target` column and no NaN values (handled by `SimpleImputer` if present).
@@ -220,7 +220,7 @@ cInequality inequalities[] = {
 ```python
 import pandas as pd
 import numpy as np
-from information_repurposed_featurization import InformationRepurposedFeaturizer
+from information_repurposed_featurization import InformationRepurposedFeaturizerSlow
 from sklearn.tree import DecisionTreeRegressor
 from xgboost import XGBRegressor
 from scipy.stats import pearsonr, spearmanr
@@ -255,7 +255,7 @@ custom_metrics = {
 }
 
 # Run featurizer
-result_df, metric_scores_df, feature_mi, trained_models = InformationRepurposedFeaturizer(
+result_df, metric_scores_df, feature_mi, trained_models = InformationRepurposedFeaturizerSlow(
     df=data,
     models=custom_models,
     loss_functions=custom_loss,
@@ -492,7 +492,7 @@ for model_name, model in models.items():
   - Checks if the Cython module (`ineq_cython.so`) exists; if not, compiles `ineq_cython.pyx` and `inequalities.c` using `compile_cython_module` to enable InequalityFeaturizer.
 
 - InequalityFeaturizer:
-  - Applies the `InequalityFeaturizer` to generate features based on mathematical inequalities (e.g., arithmetic mean, geometric mean) applied to feature combinations.
+  - Applies the `InequalityFeaturizerSlow` or 'InequalityFeaturizerFast' to generate features based on mathematical inequalities (e.g., arithmetic mean, geometric mean) applied to feature combinations.
   - Parameters: `level=2`, `stage=3`, `csv_path=None`, `report_path=None`.
   - Computes mutual information scores for generated features against the target.
   - Stores feature scores in `self.all_features` and updates the report.

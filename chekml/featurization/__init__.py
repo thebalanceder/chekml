@@ -5,6 +5,7 @@ __all__ = [
     "InformationRepurposedFeaturizerSlow",
     "InequalityFeaturizerFast",
     "InformationRepurposedFeaturizerFast",
+    "FeatureEvaluator"
 ]
 
 # --------------------------
@@ -22,6 +23,10 @@ def __getattr__(name):
     if name == "InformationRepurposedFeaturizerSlow":
         from .IRF.slow.information_repurposed_featurization import InformationRepurposedFeaturizer
         return InformationRepurposedFeaturizer
+
+    if name == "FeatureEvaluator":
+        from .FeatureEvaluator import FeatureEvaluator
+        return FeatureEvaluator
 
     if name == "InequalityFeaturizerFast":
         try:
