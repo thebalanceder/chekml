@@ -64,7 +64,7 @@
 ```python
 import pandas as pd
 import numpy as np
-from inequality_based_featurization import InequalityFeaturizerSlow
+from chekml.featurization import InequalityFeaturizerSlow
 
 # Create sample data
 np.random.seed(42)
@@ -220,7 +220,7 @@ cInequality inequalities[] = {
 ```python
 import pandas as pd
 import numpy as np
-from information_repurposed_featurization import InformationRepurposedFeaturizerSlow
+from chekml.featurization import InformationRepurposedFeaturizerSlow
 from sklearn.tree import DecisionTreeRegressor
 from xgboost import XGBRegressor
 from scipy.stats import pearsonr, spearmanr
@@ -371,7 +371,7 @@ from sklearn.tree import DecisionTreeRegressor
 from sklearn.neural_network import MLPRegressor
 from sklearn.metrics import make_scorer, mean_squared_error
 from chekml.MetaheuristicOptimization.CIntegration_cffi1.wrapper import Wrapper
-from MhF import MetaheuristicFeaturizer
+from chekml.featurization import MetaheuristicFeaturizer
 import torch
 import torch.nn as nn
 
