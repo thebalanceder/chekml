@@ -7,6 +7,190 @@ import itertools
 import warnings
 warnings.filterwarnings('ignore')
 
+# Module-level constants and functions to allow pickling (functions must be
+# accessible at module scope so pickle can find them by name).
+MIN_VALUE = 1e-10
+
+def am(x):
+    return np.mean(x)
+
+def gm(x):
+    x = np.maximum(x, MIN_VALUE)
+    return np.exp(np.mean(np.log(x)))
+
+def hm(x):
+    x = np.maximum(x, MIN_VALUE)
+    return len(x) / np.sum(1.0 / x)
+
+def qm(x):
+    return np.sqrt(np.mean(x ** 2))
+
+def pm3(x):
+    x = np.maximum(x, MIN_VALUE)
+    return np.mean(x ** 3) ** (1.0 / 3.0)
+
+def pm_neg1(x):
+    x = np.maximum(x, MIN_VALUE)
+    return len(x) / np.sum(1.0 / x)
+
+def lehmer2(x):
+    x = np.maximum(x, MIN_VALUE)
+    num = np.sum(x ** 2)
+    denom = np.sum(x)
+    return num / denom
+
+def lehmer05(x):
+    x = np.maximum(x, MIN_VALUE)
+    num = np.sum(np.sqrt(x))
+    denom = np.sum(1.0 / np.sqrt(x))
+    return num / denom
+
+def log_mean(x):
+    if len(x) == 2 and x[0] != x[1]:
+        a, b = sorted(np.maximum(x, MIN_VALUE))
+        return (b - a) / np.log(b / a)
+    else:
+        return np.mean(x)
+
+def identric(x):
+    if len(x) == 2 and x[0] != x[1]:
+        a, b = sorted(np.maximum(x, MIN_VALUE))
+        return a ** (b / (b - a)) * b ** (a / (a - b))
+    else:
+        x = np.maximum(x, MIN_VALUE)
+        return np.exp(np.mean(np.log(x)) - 1.0)
+
+def heronian(x):
+    if len(x) == 2:
+        a, b = sorted(np.maximum(x, MIN_VALUE))
+        return (a + np.sqrt(a * b) + b) / 3.0
+    else:
+        return np.mean(x)
+
+def contra_hm(x):
+    sum_sq = np.sum(x ** 2)
+    sum_x = np.sum(x)
+    n = len(x)
+    return (sum_sq / n) / (sum_x / n)
+
+def rms(x):
+    return np.sqrt(np.mean(x ** 2))
+
+def pm4(x):
+    x = np.maximum(x, MIN_VALUE)
+    return np.mean(x ** 4) ** (1.0 / 4.0)
+
+def pm2(x):
+    x = np.maximum(x, MIN_VALUE)
+    return np.mean(x ** 2) ** (1.0 / 2.0)
+
+def pm_neg2(x):
+    x = np.maximum(x, MIN_VALUE)
+    return (len(x) / np.sum(x ** -2)) ** (1.0 / 2.0)
+
+def lehmer3(x):
+    x = np.maximum(x, MIN_VALUE)
+    num = np.sum(x ** 3)
+    denom = np.sum(x ** 2)
+    return num / denom
+
+def lehmer_neg1(x):
+    x = np.maximum(x, MIN_VALUE)
+    num = np.sum(1.0 / x)
+    denom = np.sum(1.0 / (x ** 2))
+    return num / denom
+
+def centroidal(x):
+    weights = np.arange(1, len(x) + 1)
+    return np.sum(weights * x) / np.sum(weights)
+
+def seiffert(x):
+    if len(x) == 2 and x[0] != x[1]:
+        a, b = sorted(np.maximum(x, MIN_VALUE))
+        return (a - b) / (2.0 * np.arcsin((a - b) / (a + b)))
+    else:
+        return np.mean(x)
+
+def neuman_sandor(x):
+    if len(x) == 2 and x[0] != x[1]:
+        a, b = sorted(np.maximum(x, MIN_VALUE))
+        return (a - b) / (2.0 * np.arcsinh((a - b) / (a + b)))
+    else:
+        return np.mean(x)
+
+def log_mean_gen(x):
+    n = len(x)
+    if n > 1:
+        sum_val = 0.0
+        count = 0
+        for i in range(n):
+            for j in range(i + 1, n):
+                a, b = sorted(np.maximum([x[i], x[j]], MIN_VALUE))
+                sum_val += a if a == b else (b - a) / np.log(b / a)
+                count += 1
+        return sum_val / count
+    else:
+        return x[0]
+
+def stolarsky2(x):
+    if len(x) == 2 and x[0] != x[1]:
+        a, b = sorted(np.maximum(x, MIN_VALUE))
+        return ((b ** 2 - a ** 2) / (2.0 * (b - a))) ** 1.0
+    else:
+        return np.mean(x)
+
+def pm6(x):
+    x = np.maximum(x, MIN_VALUE)
+    return np.mean(x ** 6) ** (1.0 / 6.0)
+
+def pm_neg3(x):
+    x = np.maximum(x, MIN_VALUE)
+    return (len(x) / np.sum(x ** -3)) ** (1.0 / 3.0)
+
+def lehmer4(x):
+    x = np.maximum(x, MIN_VALUE)
+    num = np.sum(x ** 4)
+    denom = np.sum(x ** 3)
+    return num / denom
+
+def lehmer_neg2(x):
+    x = np.maximum(x, MIN_VALUE)
+    num = np.sum(1.0 / (x ** 2))
+    denom = np.sum(1.0 / (x ** 3))
+    return num / denom
+
+def exp_mean(x):
+    return np.log(np.mean(np.exp(x)))
+
+def quad_entropy(x):
+    x = np.maximum(x, MIN_VALUE)
+    sum_x = np.sum(x)
+    p = x / sum_x
+    return -np.sum(p ** 2 * np.log(np.maximum(p, MIN_VALUE)))
+
+def wgm(x):
+    x = np.maximum(x, MIN_VALUE)
+    sum_x = np.sum(x)
+    w = x / sum_x
+    return np.exp(np.sum(w * np.log(x)))
+
+def hyperbolic(x):
+    if len(x) == 2 and x[0] != x[1]:
+        a, b = sorted(np.maximum(x, MIN_VALUE))
+        return (a + b) / (2.0 * np.cosh((a - b) / (a + b)))
+    else:
+        return np.mean(x)
+
+def stolarsky3(x):
+    if len(x) == 2 and x[0] != x[1]:
+        a, b = sorted(np.maximum(x, MIN_VALUE))
+        return ((b ** 3 - a ** 3) / (3.0 * (b - a))) ** (1.0 / 2.0)
+    else:
+        return np.mean(x)
+
+def midrange(x):
+    return (np.min(x) + np.max(x)) / 2.0
+
 class InequalityFeaturizer:
     def __init__(self):
         self.inequalities = {}  # name: func (Python functions)
@@ -14,188 +198,7 @@ class InequalityFeaturizer:
         self._init_default_inequalities()
     
     def _init_default_inequalities(self):
-        MIN_VALUE = 1e-10
-        
-        def am(x):
-            return np.mean(x)
-        
-        def gm(x):
-            x = np.maximum(x, MIN_VALUE)
-            return np.exp(np.mean(np.log(x)))
-        
-        def hm(x):
-            x = np.maximum(x, MIN_VALUE)
-            return len(x) / np.sum(1.0 / x)
-        
-        def qm(x):
-            return np.sqrt(np.mean(x ** 2))
-        
-        def pm3(x):
-            x = np.maximum(x, MIN_VALUE)
-            return np.mean(x ** 3) ** (1.0 / 3.0)
-        
-        def pm_neg1(x):
-            x = np.maximum(x, MIN_VALUE)
-            return len(x) / np.sum(1.0 / x)
-        
-        def lehmer2(x):
-            x = np.maximum(x, MIN_VALUE)
-            num = np.sum(x ** 2)
-            denom = np.sum(x)
-            return num / denom
-        
-        def lehmer05(x):
-            x = np.maximum(x, MIN_VALUE)
-            num = np.sum(np.sqrt(x))
-            denom = np.sum(1.0 / np.sqrt(x))
-            return num / denom
-        
-        def log_mean(x):
-            if len(x) == 2 and x[0] != x[1]:
-                a, b = sorted(np.maximum(x, MIN_VALUE))
-                return (b - a) / np.log(b / a)
-            else:
-                return np.mean(x)
-        
-        def identric(x):
-            if len(x) == 2 and x[0] != x[1]:
-                a, b = sorted(np.maximum(x, MIN_VALUE))
-                return a ** (b / (b - a)) * b ** (a / (a - b))
-            else:
-                x = np.maximum(x, MIN_VALUE)
-                return np.exp(np.mean(np.log(x)) - 1.0)
-        
-        def heronian(x):
-            if len(x) == 2:
-                a, b = sorted(np.maximum(x, MIN_VALUE))
-                return (a + np.sqrt(a * b) + b) / 3.0
-            else:
-                return np.mean(x)
-        
-        def contra_hm(x):
-            sum_sq = np.sum(x ** 2)
-            sum_x = np.sum(x)
-            n = len(x)
-            return (sum_sq / n) / (sum_x / n)
-        
-        def rms(x):
-            return np.sqrt(np.mean(x ** 2))
-        
-        def pm4(x):
-            x = np.maximum(x, MIN_VALUE)
-            return np.mean(x ** 4) ** (1.0 / 4.0)
-        
-        def pm2(x):
-            x = np.maximum(x, MIN_VALUE)
-            return np.mean(x ** 2) ** (1.0 / 2.0)
-        
-        def pm_neg2(x):
-            x = np.maximum(x, MIN_VALUE)
-            return (len(x) / np.sum(x ** -2)) ** (1.0 / 2.0)
-        
-        def lehmer3(x):
-            x = np.maximum(x, MIN_VALUE)
-            num = np.sum(x ** 3)
-            denom = np.sum(x ** 2)
-            return num / denom
-        
-        def lehmer_neg1(x):
-            x = np.maximum(x, MIN_VALUE)
-            num = np.sum(1.0 / x)
-            denom = np.sum(1.0 / (x ** 2))
-            return num / denom
-        
-        def centroidal(x):
-            weights = np.arange(1, len(x) + 1)
-            return np.sum(weights * x) / np.sum(weights)
-        
-        def seiffert(x):
-            if len(x) == 2 and x[0] != x[1]:
-                a, b = sorted(np.maximum(x, MIN_VALUE))
-                return (a - b) / (2.0 * np.arcsin((a - b) / (a + b)))
-            else:
-                return np.mean(x)
-        
-        def neuman_sandor(x):
-            if len(x) == 2 and x[0] != x[1]:
-                a, b = sorted(np.maximum(x, MIN_VALUE))
-                return (a - b) / (2.0 * np.arcsinh((a - b) / (a + b)))
-            else:
-                return np.mean(x)
-        
-        def log_mean_gen(x):
-            n = len(x)
-            if n > 1:
-                sum_val = 0.0
-                count = 0
-                for i in range(n):
-                    for j in range(i + 1, n):
-                        a, b = sorted(np.maximum([x[i], x[j]], MIN_VALUE))
-                        sum_val += a if a == b else (b - a) / np.log(b / a)
-                        count += 1
-                return sum_val / count
-            else:
-                return x[0]
-        
-        def stolarsky2(x):
-            if len(x) == 2 and x[0] != x[1]:
-                a, b = sorted(np.maximum(x, MIN_VALUE))
-                return ((b ** 2 - a ** 2) / (2.0 * (b - a))) ** 1.0
-            else:
-                return np.mean(x)
-        
-        def pm6(x):
-            x = np.maximum(x, MIN_VALUE)
-            return np.mean(x ** 6) ** (1.0 / 6.0)
-        
-        def pm_neg3(x):
-            x = np.maximum(x, MIN_VALUE)
-            return (len(x) / np.sum(x ** -3)) ** (1.0 / 3.0)
-        
-        def lehmer4(x):
-            x = np.maximum(x, MIN_VALUE)
-            num = np.sum(x ** 4)
-            denom = np.sum(x ** 3)
-            return num / denom
-        
-        def lehmer_neg2(x):
-            x = np.maximum(x, MIN_VALUE)
-            num = np.sum(1.0 / (x ** 2))
-            denom = np.sum(1.0 / (x ** 3))
-            return num / denom
-        
-        def exp_mean(x):
-            return np.log(np.mean(np.exp(x)))
-        
-        def quad_entropy(x):
-            x = np.maximum(x, MIN_VALUE)
-            sum_x = np.sum(x)
-            p = x / sum_x
-            return -np.sum(p ** 2 * np.log(np.maximum(p, MIN_VALUE)))
-        
-        def wgm(x):
-            x = np.maximum(x, MIN_VALUE)
-            sum_x = np.sum(x)
-            w = x / sum_x
-            return np.exp(np.sum(w * np.log(x)))
-        
-        def hyperbolic(x):
-            if len(x) == 2 and x[0] != x[1]:
-                a, b = sorted(np.maximum(x, MIN_VALUE))
-                return (a + b) / (2.0 * np.cosh((a - b) / (a + b)))
-            else:
-                return np.mean(x)
-        
-        def stolarsky3(x):
-            if len(x) == 2 and x[0] != x[1]:
-                a, b = sorted(np.maximum(x, MIN_VALUE))
-                return ((b ** 3 - a ** 3) / (3.0 * (b - a))) ** (1.0 / 2.0)
-            else:
-                return np.mean(x)
-        
-        def midrange(x):
-            return (np.min(x) + np.max(x)) / 2.0
-        
+        # Reference the module-level functions so they are picklable
         default_funcs = {
             "am": am, "gm": gm, "hm": hm, "qm": qm,
             "pm3": pm3, "pm_neg1": pm_neg1, "lehmer2": lehmer2, "lehmer05": lehmer05,
@@ -208,7 +211,7 @@ class InequalityFeaturizer:
             "exp_mean": exp_mean, "quad_entropy": quad_entropy, "wgm": wgm,
             "hyperbolic": hyperbolic, "stolarsky3": stolarsky3, "midrange": midrange
         }
-        
+
         self.inequalities = default_funcs
     
     def add_inequality(self, name, source_code):

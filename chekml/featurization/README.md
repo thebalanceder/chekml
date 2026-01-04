@@ -313,10 +313,11 @@ print("\nNumber of trained models:", len(trained_models))
 ### Fit / Transform usage (InformationRepurposedFeaturizer)
 
 ```python
-from chekml.featurization.IRF.slow.information_repurposed_featurization import InformationRepurposedFeaturizer
+
+from chekml.featurization.IRF.slow.information_repurposed_featurization import InformationRepurposedFeaturizerWrapper
 
 # Fit on training data
-irf = InformationRepurposedFeaturizer(prediction_mode='top_n', top_n=5, level=2)
+irf = InformationRepurposedFeaturizerWrapper(prediction_mode='top_n', top_n=5, level=2)
 irf.fit(train_df)
 
 # Apply to new data (will load saved models from saved_models/)

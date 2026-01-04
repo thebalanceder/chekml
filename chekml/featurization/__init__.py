@@ -3,6 +3,8 @@
 __all__ = [
     "InequalityFeaturizerSlow",
     "InformationRepurposedFeaturizerSlow",
+    "InformationRepurposedWrapper",
+    "InformationRepurposedWrapperFast",
     "InequalityFeaturizerFast",
     "InformationRepurposedFeaturizerFast",
     "MetaheuristicFeaturizer",
@@ -53,6 +55,8 @@ _LAZY_MAP = {
     "InequalityFeaturizerFast": ("IF.fast.inequality_based_featurization", "InequalityFeaturizer"),
     "InformationRepurposedFeaturizerSlow": ("IRF.slow.information_repurposed_featurization", "InformationRepurposedFeaturizer"),
     "InformationRepurposedFeaturizerFast": ("IRF.fast.information_repurposed_featurization", "InformationRepurposedFeaturizer"),
+    "InformationRepurposedWrapper": ("IRF.slow.information_repurposed_featurization", "InformationRepurposedFeaturizerWrapper"),
+    "InformationRepurposedWrapperFast": ("IRF.fast.information_repurposed_featurization", "InformationRepurposedFeaturizerWrapper"),
     "MetaheuristicFeaturizer": ("MhF.MhF", "MetaheuristicFeaturizer"),
     "FeatureEvaluator": ("FeatureEvaluator", "FeatureEvaluator")
 }

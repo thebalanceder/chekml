@@ -16,7 +16,7 @@ import os
 warnings.filterwarnings("ignore")
 
 
-class InformationRepurposedFeaturizer:
+class InformationRepurposedFeaturizerWrapper:
     """Wrapper exposing a fit/transform API around the functional IRF implementation.
 
     Notes:
