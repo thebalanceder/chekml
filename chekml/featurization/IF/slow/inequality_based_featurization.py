@@ -397,8 +397,21 @@ class InequalityFeaturizer:
             # feat looks like 'f_{combo}_{ineq}' -> strip leading 'f_'
             core = feat[2:]
             parts = core.split('_')
-            ineq_name = parts[-1]
-            comb_idxs = tuple(int(p) for p in parts[:-1])
+            # Robust parsing: leading tokens are integer column indexes; remaining tokens
+            # (joined by '_') form the inequality name (may contain underscores).
+            int_tokens = []
+            rest_tokens = []
+            for tok in parts:
+                try:
+                    int_tokens.append(int(tok))
+                except ValueError:
+                    rest_tokens.append(tok)
+
+            if not int_tokens:
+                raise ValueError(f"Cannot parse feature spec (no combo indices found): {core}")
+
+            comb_idxs = tuple(int_tokens)
+            ineq_name = '_'.join(rest_tokens) if rest_tokens else ''
             specs.append({'comb': comb_idxs, 'ineq': ineq_name, 'colname': feat})
 
         self.selected_specs = specs
