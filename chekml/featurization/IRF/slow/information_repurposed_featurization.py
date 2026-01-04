@@ -15,6 +15,115 @@ import cloudpickle
 import os
 warnings.filterwarnings("ignore")
 
+
+class InformationRepurposedFeaturizer:
+    """Wrapper exposing a fit/transform API around the functional IRF implementation.
+
+    Notes:
+    - `fit(df)` will run the existing InformationRepurposedFeaturizer(...) function
+      with `save_models=True` to persist trained models to `saved_models/` and
+      will record which prediction-columns were selected.
+    - `transform(df)` will load the saved models (or use returned trained models)
+      and produce predictions for the same feature combinations on `df`.
+
+    Caveats: the original implementation fits a per-combo `SimpleImputer` and
+    `StandardScaler` which are *not* persisted by the functional implementation.
+    For transform-time preprocessing we fit a fresh imputer/scaler on the
+    provided `df[combo_columns]` as a pragmatic fallback.
+    """
+
+    def __init__(self, models=None, loss_functions=None, metrics=None,
+                 prediction_mode="top_n", top_n=5, score_key="mutual_information",
+                 specific_metrics=None, level=1, save_results_file=None):
+        self.models = models
+        self.loss_functions = loss_functions
+        self.metrics = metrics
+        self.prediction_mode = prediction_mode
+        self.top_n = top_n
+        self.score_key = score_key
+        self.specific_metrics = specific_metrics
+        self.level = level
+        self.save_results_file = save_results_file
+        self.selected_pred_names = None
+        self.trained_models = None
+
+    def fit(self, df):
+        # Run the functional IRF to obtain trained models and selected prediction columns
+        result_df, metric_scores_df, feature_mi, trained_models = InformationRepurposedFeaturizer(
+            df=df,
+            models=self.models,
+            loss_functions=self.loss_functions,
+            metrics=self.metrics,
+            prediction_mode=self.prediction_mode,
+            top_n=self.top_n,
+            score_key=self.score_key,
+            specific_metrics=self.specific_metrics,
+            level=self.level,
+            save_models=True,
+            save_results_file=self.save_results_file
+        )
+
+        base_cols = [c for c in df.columns if c != 'target']
+        # Selected predictions are the extra columns added by the function
+        self.selected_pred_names = [c for c in result_df.columns if c not in base_cols + ['target']]
+        self.trained_models = trained_models or {}
+        return {'result_df': result_df, 'metric_scores_df': metric_scores_df, 'feature_mi': feature_mi}
+
+    def transform(self, df):
+        if self.selected_pred_names is None:
+            raise RuntimeError('Featurizer has not been fitted. Call fit() first.')
+
+        new_df = df.copy()
+        os.makedirs('saved_models', exist_ok=True)
+
+        for pred_name in self.selected_pred_names:
+            parts = pred_name.split('_')
+            # reverse of f"{combo_name}_{model_name}_{metric_name}_{loss_function_name}"
+            if len(parts) < 4:
+                # unexpected format; skip
+                new_df[pred_name] = np.nan
+                continue
+            combo_parts = parts[:-3]
+            combo_cols = combo_parts
+
+            # Ensure combo columns exist
+            missing = [c for c in combo_cols if c not in df.columns]
+            if missing:
+                new_df[pred_name] = np.nan
+                continue
+
+            X_combo = df[combo_cols]
+            imputer = SimpleImputer(strategy='mean')
+            scaler = StandardScaler()
+            try:
+                X_imputed = imputer.fit_transform(X_combo)
+                X_scaled = scaler.fit_transform(X_imputed)
+            except Exception:
+                new_df[pred_name] = np.nan
+                continue
+
+            # Load model: prefer in-memory returned model, else load from disk
+            model = None
+            if self.trained_models and pred_name in self.trained_models:
+                model = self.trained_models[pred_name]
+            else:
+                model_path = f"saved_models/{pred_name}.pkl"
+                if os.path.exists(model_path):
+                    with open(model_path, 'rb') as f:
+                        model = cloudpickle.load(f)
+
+            if model is None:
+                new_df[pred_name] = np.nan
+                continue
+
+            try:
+                preds = model.predict(X_scaled)
+                new_df[pred_name] = preds
+            except Exception:
+                new_df[pred_name] = np.nan
+
+        return new_df
+
 def custom_digitize(data, bins):
     """Custom binning function to handle edge cases."""
     if len(np.unique(data)) < 2:

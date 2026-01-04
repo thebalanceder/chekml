@@ -339,28 +339,68 @@ class InequalityFeaturizer:
             if not isinstance(report_path, str) or not report_path.endswith('.txt'):
                 raise ValueError("report_path must be a string ending with '.txt'")
         
-        features = [col for col in df.columns if col != 'target']
-        new_df = df.copy()
-        
+        # Backwards-compatible convenience: run fit + transform
+        self.fit(df, level=level, stage=stage, top_k=None, csv_path=csv_path, report_path=report_path)
+        return self.transform(df)
+
+    def fit(self, df, level=1, stage=1, top_k=None, csv_path=None, report_path=None):
+        """Fit the featurizer on a training DataFrame (must contain 'target').
+
+        This computes candidate inequality features, scores them by mutual
+        information with the target, and records the selected features for
+        later `transform` calls.
+        """
+        if df.isna().any().any():
+            raise ValueError("Input DataFrame contains NaN values")
+        if 'target' not in df.columns:
+            raise ValueError("DataFrame must contain 'target' column")
+
+        self.base_features = [col for col in df.columns if col != 'target']
+        self.level = level
+        self.stage = stage
+
         # Convert DataFrame to NumPy array
-        data = df[features].to_numpy()
-        cols = np.arange(len(features), dtype=np.int32)
-        
-        # Call Python compute_features
+        data = df[self.base_features].to_numpy()
+        cols = np.arange(len(self.base_features), dtype=np.int32)
+
         output, new_names = self.compute_features(data, cols, level, stage)
-        
-        # Add new features to DataFrame
+
+        new_df = df.copy()
         for i, name in enumerate(new_names):
             new_df[f"f_{name}"] = output[:, i]
-        
+
         # Compute mutual information
         X = new_df.drop('target', axis=1)
         y = new_df['target']
         X = X.fillna(X.mean())
-        
+
         mi_scores = mutual_info_regression(X, y)
         mi_dict = dict(zip(X.columns, mi_scores))
-        
+
+        # Select features that were generated (start with 'f_')
+        f_items = [(feat, mi_dict.get(feat, 0.0)) for feat in X.columns if feat.startswith('f_')]
+        f_items.sort(key=lambda x: x[1], reverse=True)
+
+        if top_k is None:
+            selected = f_items
+        else:
+            selected = f_items[:int(top_k)]
+
+        self.selected_feature_names = [feat for feat, score in selected]
+
+        # Parse selected feature names into specs for transform
+        specs = []
+        for feat in self.selected_feature_names:
+            # feat looks like 'f_{combo}_{ineq}' -> strip leading 'f_'
+            core = feat[2:]
+            parts = core.split('_')
+            ineq_name = parts[-1]
+            comb_idxs = tuple(int(p) for p in parts[:-1])
+            specs.append({'comb': comb_idxs, 'ineq': ineq_name, 'colname': feat})
+
+        self.selected_specs = specs
+
+        # Optionally save a report
         output_str = io.StringIO()
         output_str.write("\nMutual Information Scores:\n")
         for feature, score in mi_dict.items():
@@ -368,20 +408,52 @@ class InequalityFeaturizer:
         report_content = output_str.getvalue()
         print(report_content, end='')
         output_str.close()
-        
+
         if report_path is not None:
             try:
                 with open(report_path, 'w') as f:
                     f.write(report_content)
             except Exception as e:
                 print(f"Error saving report to {report_path}: {e}")
-        
+
         if csv_path is not None:
             try:
                 new_df.to_csv(csv_path, index=False)
             except Exception as e:
                 print(f"Error saving DataFrame to {csv_path}: {e}")
-        
+
+        return {'mi_scores': mi_dict, 'selected': self.selected_feature_names}
+
+    def transform(self, df):
+        """Apply the previously selected inequality features to a new DataFrame.
+
+        The DataFrame must contain the same base features used during `fit`.
+        """
+        if not hasattr(self, 'selected_specs'):
+            raise RuntimeError('Featurizer has not been fitted. Call fit() first.')
+
+        # Ensure base features exist
+        missing = set(self.base_features) - set(df.columns)
+        if missing:
+            raise ValueError(f"Input DataFrame is missing base features: {missing}")
+
+        new_df = df.copy()
+        data = df[self.base_features].to_numpy()
+        rows = data.shape[0]
+
+        for spec in self.selected_specs:
+            comb = spec['comb']
+            ineq = spec['ineq']
+            colname = spec['colname']
+            func = self.inequalities.get(ineq)
+            col = np.zeros(rows)
+            for j in range(rows):
+                try:
+                    col[j] = func(data[j, list(comb)])
+                except Exception:
+                    col[j] = np.nan
+            new_df[colname] = col
+
         return new_df
 
 if __name__ == "__main__":

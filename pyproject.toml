@@ -21,7 +21,7 @@ build-backend = "setuptools.build_meta"
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["chekml*"]          # only your package
-exclude = ["testing*", "documentation*", "dist*", "build*"]
+exclude = ["testing*", "documentation*", "dist*", "build*","chekml/featurization/sample_submission.csv","chekml/featurization/image2biomass.py"]
 
 # -----------------------------
 # Control what non-Python files are shipped

@@ -121,31 +121,63 @@ class InequalityFeaturizer:
             if not isinstance(report_path, str) or not report_path.endswith('.txt'):
                 raise ValueError("report_path must be a string ending with '.txt'")
         
-        features = [col for col in df.columns if col != 'target']
-        new_df = df.copy()
-        
-        # Convert DataFrame to NumPy array
-        data = df[features].to_numpy()
-        cols = np.arange(len(features), dtype=np.int32)
-        
-        # Call Cython function
+        # Backwards-compatible convenience: fit then transform
+        self.fit(df, level=level, stage=stage, top_k=None, csv_path=csv_path, report_path=report_path)
+        return self.transform(df)
+
+    def fit(self, df, level=1, stage=1, top_k=None, csv_path=None, report_path=None):
+        """Fit the fast featurizer. Records selected feature names for transform.
+        This uses the Cython implementation to generate candidates and scores them
+        by mutual information. The selected features' names are recorded.
+        """
+        if df.isna().any().any():
+            raise ValueError("Input DataFrame contains NaN values")
+        if 'target' not in df.columns:
+            raise ValueError("DataFrame must contain 'target' column")
+
         if compute_features_cython is None:
-            raise RuntimeError("Cython module not available.")
-        
+            raise RuntimeError("Cython module not available. Cannot fit fast featurizer.")
+
+        self.base_features = [col for col in df.columns if col != 'target']
+        self.level = level
+        self.stage = stage
+
+        new_df = df.copy()
+        data = df[self.base_features].to_numpy()
+        cols = np.arange(len(self.base_features), dtype=np.int32)
+
         output, new_names = compute_features_cython(data, cols, level, stage)
-        
-        # Add new features to DataFrame
+
         for i, name in enumerate(new_names):
             new_df[f"f_{name}"] = output[:, i]
-        
-        # Compute mutual information
+
         X = new_df.drop('target', axis=1)
         y = new_df['target']
         X = X.fillna(X.mean())
-        
+
         mi_scores = mutual_info_regression(X, y)
         mi_dict = dict(zip(X.columns, mi_scores))
-        
+
+        f_items = [(feat, mi_dict.get(feat, 0.0)) for feat in X.columns if feat.startswith('f_')]
+        f_items.sort(key=lambda x: x[1], reverse=True)
+
+        if top_k is None:
+            selected = f_items
+        else:
+            selected = f_items[:int(top_k)]
+
+        self.selected_feature_names = [feat for feat, score in selected]
+
+        # store indexes of selected features in the generated name list for quick transform
+        name_map = {n: i for i, n in enumerate(new_names)}
+        self.selected_name_indices = []
+        for feat in self.selected_feature_names:
+            core = feat[2:]
+            idx = name_map.get(core)
+            if idx is not None:
+                self.selected_name_indices.append(idx)
+
+        # Optionally save report/csv
         output_str = io.StringIO()
         output_str.write("\nMutual Information Scores:\n")
         for feature, score in mi_dict.items():
@@ -153,20 +185,52 @@ class InequalityFeaturizer:
         report_content = output_str.getvalue()
         print(report_content, end='')
         output_str.close()
-        
+
         if report_path is not None:
             try:
                 with open(report_path, 'w') as f:
                     f.write(report_content)
             except Exception as e:
                 print(f"Error saving report to {report_path}: {e}")
-        
+
         if csv_path is not None:
             try:
                 new_df.to_csv(csv_path, index=False)
             except Exception as e:
                 print(f"Error saving DataFrame to {csv_path}: {e}")
-        
+
+        return {'mi_scores': mi_dict, 'selected': self.selected_feature_names}
+
+    def transform(self, df):
+        """Apply the previously selected inequality features to new data.
+
+        This will call the Cython generator with the same `level`/`stage`
+        used during `fit` and then keep only the chosen columns.
+        """
+        if not hasattr(self, 'selected_feature_names'):
+            raise RuntimeError('Featurizer has not been fitted. Call fit() first.')
+        if compute_features_cython is None:
+            raise RuntimeError("Cython module not available. Cannot transform with fast featurizer.")
+
+        missing = set(self.base_features) - set(df.columns)
+        if missing:
+            raise ValueError(f"Input DataFrame is missing base features: {missing}")
+
+        data = df[self.base_features].to_numpy()
+        cols = np.arange(len(self.base_features), dtype=np.int32)
+        output, new_names = compute_features_cython(data, cols, self.level, self.stage)
+
+        new_df = df.copy()
+        # Map name -> index in new_names
+        name_map = {n: i for i, n in enumerate(new_names)}
+        for feat in self.selected_feature_names:
+            core = feat[2:]
+            idx = name_map.get(core)
+            if idx is not None:
+                new_df[feat] = output[:, idx]
+            else:
+                new_df[feat] = np.nan
+
         return new_df
 
 if __name__ == "__main__":

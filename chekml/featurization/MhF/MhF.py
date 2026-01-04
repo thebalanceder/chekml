@@ -20,6 +20,57 @@ import torch.optim as optim
 warnings.filterwarnings("ignore")
 logging.basicConfig(level=logging.INFO)
 
+
+class MetaheuristicFeaturizerWrapper:
+    """Wrapper providing a fit/transform API for the MetaheuristicFeaturizer.
+
+    Usage:
+      wrapper = MetaheuristicFeaturizerWrapper(...)
+      wrapper.fit([train_df1, train_df2])
+      selected = wrapper.transform(test_df)
+    """
+    def __init__(self, top_n=5, problem_type="classification", model=None, scorer=None,
+                 wrapper_class=None, wrapper_method="DISO", wrapper_population_size=20,
+                 wrapper_max_iter=50, **wrapper_kwargs):
+        self.kwargs = dict(
+            top_n=top_n,
+            problem_type=problem_type,
+            model=model,
+            scorer=scorer,
+            wrapper_class=wrapper_class,
+            wrapper_method=wrapper_method,
+            wrapper_population_size=wrapper_population_size,
+            wrapper_max_iter=wrapper_max_iter,
+            **wrapper_kwargs
+        )
+        self.selected_by_method = None
+
+    def fit(self, dataframes):
+        # Call functional MetaheuristicFeaturizer to compute selected DataFrames
+        selected_dfs = MetaheuristicFeaturizer(dataframes, **self.kwargs)
+        # Record selected columns for each method
+        self.selected_by_method = {}
+        for method, df in selected_dfs.items():
+            cols = [c for c in df.columns if c != 'target']
+            self.selected_by_method[method] = cols
+        return self.selected_by_method
+
+    def transform(self, df):
+        if self.selected_by_method is None:
+            raise RuntimeError('Featurizer has not been fitted. Call fit() first.')
+        outputs = {}
+        for method, cols in self.selected_by_method.items():
+            missing = [c for c in cols if c not in df.columns]
+            # Use available columns; missing ones will be filled with NaN
+            present = [c for c in cols if c in df.columns]
+            out_df = df[present].copy()
+            for m in missing:
+                out_df[m] = np.nan
+            if 'target' in df.columns:
+                out_df['target'] = df['target']
+            outputs[method] = out_df[cols + (['target'] if 'target' in df.columns else [])]
+        return outputs
+
 class PyTorchWrapper(BaseEstimator):
     def __init__(self, model, criterion=None, optimizer=optim.Adam, lr=0.001, epochs=10, batch_size=32, device='cpu'):
         self.model = model

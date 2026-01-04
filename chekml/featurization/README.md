@@ -104,6 +104,21 @@ result_df = featurizer.featurize(
 print("\nFirst few rows of resulting DataFrame:")
 print(result_df.head())
 ```
+ 
+### Fit / Transform usage
+
+```python
+# Train / fit on training data
+featurizer = InequalityFeaturizerSlow()
+featurizer.fit(train_df, level=2, stage=3, top_k=20)
+
+# Apply to held-out/test data
+test_with_feats = featurizer.transform(test_df)
+
+# Persist featurizer for later reuse
+import joblib
+joblib.dump(featurizer, 'inequality_featurizer_slow.pkl')
+```
 ### Parameters
 
 ### Example C implementation for `custom_ineq`:
@@ -168,8 +183,23 @@ cInequality inequalities[] = {
 
 -Initialization:
   - Validates the input DataFrame, ensuring it has a `target` column and no NaN values (handled by `SimpleImputer` if present).
+
+### Fit / Transform usage (MetaheuristicFeaturizer)
+
+```python
+from chekml.featurization.MhF.MhF import MetaheuristicFeaturizerWrapper
+
+# Fit on a list of training DataFrames
+wrapper = MetaheuristicFeaturizerWrapper(top_n=10, problem_type='regression', model=LinearRegression())
+selected = wrapper.fit([train_df])
+
+# Apply selection to new data
+selected_on_test = wrapper.transform(test_df)
+
+# `selected_on_test` is a dict mapping method -> DataFrame with selected columns + target (if present)
+```
+
   - Sets up default or user-provided models, loss functions, and metrics.
-  - Initializes `StandardScaler` for feature scaling and `SimpleImputer` for handling missing values.
 
 - Feature Combination:
   - Generates all possible combinations of features up to the specified `level` (e.g., level=2 means pairs of features).
@@ -278,6 +308,21 @@ print(result_df.head())
 print("\nMetric Scores DataFrame:")
 print(metric_scores_df)
 print("\nNumber of trained models:", len(trained_models))
+```
+
+### Fit / Transform usage (InformationRepurposedFeaturizer)
+
+```python
+from chekml.featurization.IRF.slow.information_repurposed_featurization import InformationRepurposedFeaturizer
+
+# Fit on training data
+irf = InformationRepurposedFeaturizer(prediction_mode='top_n', top_n=5, level=2)
+irf.fit(train_df)
+
+# Apply to new data (will load saved models from saved_models/)
+test_with_preds = irf.transform(test_df)
+
+# Persisted models are saved under saved_models/*.pkl
 ```
 
 ## 3. Metaheuristic Featurizer
